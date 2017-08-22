@@ -211,11 +211,52 @@ export const _vote = (votes) =>
 
 /* Getters for contract state */
 
-export const _getTeamAdresses = () =>
+export const getTeams = () =>
   new Promise((resolve, reject) => {
+    hackathonContract.TeamRegistered({}, {
+      fromBlock: contract.startingBlock, toBlock: 'latest'
+    })
+      .get((error, events) => {
+        if (error) {
+          return reject(error);
+        }
 
+        return resolve(events);
+      });
   });
 
+export const getJuries = () =>
+  new Promise((resolve, reject) => {
+    hackathonContract.JuryMember({}, {
+      fromBlock: contract.startingBlock, toBlock: 'latest'
+    })
+      .get((error, events) => {
+        if (error) {
+          return reject(error);
+        }
+
+        return resolve(events);
+      });
+  });
+
+export const getSponsors = () => {
+  new Promise((resolve, reject) => {
+    hackathonContract.SponsorshipReceived({}, {
+      fromBlock: contract.startingBlock, toBlock: 'latest',
+    })
+      .get((error, events) => {
+        if (error) {
+          return reject(error);
+        }
+
+        return resolve(events);
+      });
+  });
+};
+
 setTimeout(() => {
+  // getTeams()
+  //   .then(data => console.log(data))
+  //   .catch(error => console.error(error));
 }, 1000);
 
