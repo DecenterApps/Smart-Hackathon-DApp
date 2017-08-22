@@ -137,12 +137,18 @@ contract DecenterHackathon {
         }
     }
 
-    function sendRemainingEtherToOwner() onlyOwner {
-        administrator.transfer(this.balance);
+    function getUserType(address _address) constant returns (string) {
+        if(_address == administrator) {
+            return "administrator";
+        } else if(bytes(juryMemberNames[msg.sender]).length > 0) {
+            return "jury";
+        } else {
+            return "other";
+        }
     }
 
-    function getTeamAddresses() constant returns (address[]) {
-        return teamAddresses;
+    function sendRemainingEtherToOwner() onlyOwner {
+        administrator.transfer(this.balance);
     }
 
     function restartPeriod() onlyOwner {
