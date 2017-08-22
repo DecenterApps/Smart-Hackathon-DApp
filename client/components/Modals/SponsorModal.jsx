@@ -1,5 +1,5 @@
 import React from 'react';
-import AdminSponsorsForm from '../../components/AdminSponsors/AdminSponsorsForm';
+import AdminSponsorsForm from '../AdminSponsors/AdminSponsorsForm';
 
 const SponsorModal = () => (
   <div className="form-wrapper">

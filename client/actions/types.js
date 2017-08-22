@@ -16,6 +16,10 @@ export const SPONSORS_FETCH = 'sponsors_fetch';
 export const SPONSORS_SUCCESS = 'sponsors_success';
 export const SPONSORS_ERROR = 'sponsors_error';
 
+export const ADD_JUDGE = 'add_judge';
+export const ADD_JUDGE_SUCCESS = 'add_judge_success';
+export const ADD_JUDGE_ERROR = 'add_judge_error';
+
 export const JUDGES_FETCH = 'judges_fetch';
 export const JUDGES_SUCCESS = 'judges_success';
 export const JUDGES_ERROR = 'judges_error';

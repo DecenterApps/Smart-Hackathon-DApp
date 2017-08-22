@@ -1,9 +1,14 @@
-import { JUDGES_FETCH, JUDGES_SUCCESS, JUDGES_ERROR } from '../actions/types';
+import {
+  JUDGES_FETCH, JUDGES_SUCCESS, JUDGES_ERROR, ADD_JUDGE, ADD_JUDGE_SUCCESS,
+  ADD_JUDGE_ERROR
+} from '../actions/types';
 
 
 const INITIAL_STATE = {
   isFetching: true,
-  judges: []
+  judges: [],
+  submitting: false,
+  addJudgeError: false
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -26,6 +31,26 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         isFetching: false,
         error: action.error
+      };
+
+    case ADD_JUDGE:
+      return {
+        ...state,
+        submitting: true
+      };
+
+    case ADD_JUDGE_SUCCESS:
+      return {
+        submitting: false,
+        addJudgeError: false,
+        sponsors: [...state.judges, action.payload.judges]
+      };
+
+    case ADD_JUDGE_ERROR:
+      return {
+        ...state,
+        submitting: false,
+        addJudgeError: action.payload.addSponsorError
       };
 
     default:

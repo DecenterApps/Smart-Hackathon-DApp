@@ -164,7 +164,7 @@ export const _registerTeam = (name, teamAddress, memberNames, rewardEligible) =>
       });
   });
 
-export const _registerJuryMember = (juryMemberAddress) =>
+export const _registerJuryMember = (juryMemberName, juryMemberAddress) =>
   new Promise((resolve, reject) => {
     if (!web3.isAddress(juryMemberAddress)) {
       return reject({
@@ -172,7 +172,7 @@ export const _registerJuryMember = (juryMemberAddress) =>
       });
     }
 
-    return hackathonContract.registerJuryMember(juryMemberAddress, (error, result) => {
+    return hackathonContract.registerJuryMember(juryMemberName, juryMemberAddress, (error, result) => {
       if (error) {
         return reject({
           message: error,

@@ -1,8 +1,10 @@
 import React from 'react';
+import AdminJudgesForm from '../AdminJudges/AdminJudgesForm';
 
 const JudgeModal = () => (
-  <div>
-    <div>JUDGE MODAL CONTENT</div>
+  <div className="form-wrapper">
+    <div className="form-name">Dodaj Sponzora</div>
+    <AdminJudgesForm />
   </div>
 );
 
