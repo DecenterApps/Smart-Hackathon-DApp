@@ -3,7 +3,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import DollarIcon from '../Decorative/DollarIcon.jsx';
+import DollarIcon from '../Decorative/DollarIcon/index.jsx';
+import Loader from '../Decorative/Loader/index.jsx';
 
 require('./_index.scss');
 
@@ -17,6 +18,13 @@ class AdminTeams extends Component {
     return (
       <div>
         {
+          this.props.teams.isFetching &&
+          <div className="empty-section">
+            <h1><Loader color="#777" />Učitavanje</h1>
+          </div>
+        }
+        {
+          !this.props.teams.isFetching &&
           !this.props.teams.teams.length > 0 &&
           <div className="empty-section">
             <div className="">
@@ -26,6 +34,7 @@ class AdminTeams extends Component {
           </div>
         }
         {
+          !this.props.teams.isFetching &&
           this.props.teams.teams.length > 0 &&
           <table className="admin-table">
             <tbody>
@@ -54,11 +63,13 @@ class AdminTeams extends Component {
 
 AdminTeams.propTypes = {
   teams: PropTypes.shape({
+    isFetching: PropTypes.bool.isRequired,
     teams: PropTypes.array
   })
 };
 AdminTeams.defaultProps = {
   teams: {
+    isFetching: true,
     teams: [1]
   }
 };
