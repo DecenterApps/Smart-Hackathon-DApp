@@ -141,6 +141,10 @@ contract DecenterHackathon {
         administrator.transfer(this.balance);
     }
 
+    function getTeamAddresses() constant returns (address[]) {
+        return teamAddresses;
+    }
+
     function restartPeriod() onlyOwner {
         currentPeriod = Period.Registration;
     }
