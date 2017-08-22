@@ -1,4 +1,4 @@
-pragma solidity ^0.4.0;
+pragma solidity ^0.4.15;
 
 contract DecenterHackathon {
 
@@ -9,7 +9,7 @@ contract DecenterHackathon {
     struct Team {
         string name;
         uint score;
-        bool rewardEligable;
+        bool rewardEligible;
     }
 
     struct Sponsor {
@@ -19,20 +19,19 @@ contract DecenterHackathon {
         uint contribution;
     }
 
-    mapping(address => Sponsor) public sponsors;
     mapping(address => Team) public teams;
-    mapping(address => uint) juryMemberIds;
+    mapping(address => string) juryMemberNames;
 
     address administrator;
-    address[] juryMembers;
-    address[] public allSponsors;
-    address[] public allTeams;
+    Sponsor[] public sponsors;
+    address[] public juryMembers;
+    address[] public teamAddresses;
     uint public totalContribution;
 
     event PeriodChanged(Period newPeriod);
     event TeamRegistered(string teamName, address teamAddress);
     event SponsorshipReceived(string sponsorName, uint amount);
-    event VoteReceived(uint juryMemberId, address[] votes);
+    event VoteReceived(string juryMemberName, address[] votes);
     event PrizePaid(string teamName, uint amount);
 
     modifier onlyOwner {
@@ -41,7 +40,7 @@ contract DecenterHackathon {
     }
 
     modifier onlyJury {
-        require(juryMemberIds[msg.sender] > 0);
+        require(bytes(juryMemberNames[msg.sender]).length > 0);
         _;
     }
 
@@ -59,46 +58,39 @@ contract DecenterHackathon {
         PeriodChanged(currentPeriod);
     }
 
-    function registerTeam(string _name, address _teamAddress, bool rewardEligable) onlyOwner {
+    function registerTeam(string _name, address _teamAddress, bool rewardEligible) onlyOwner {
         require(currentPeriod == Period.Registration);
         require(bytes(teams[_teamAddress].name).length == 0);
 
         teams[_teamAddress] = Team({
             name: _name,
             score: 0,
-            rewardEligable: rewardEligable
+            rewardEligible: rewardEligible
         });
 
-        allTeams.push(_teamAddress);
+        teamAddresses.push(_teamAddress);
 
         TeamRegistered(_name, _teamAddress);
     }
 
-    function registerJuryMember(address _juryMemberAddress) onlyOwner {
+    function registerJuryMember(string _name, address _ethAddress) onlyOwner {
         require(currentPeriod == Period.Registration);
-        require(juryMemberIds[_juryMemberAddress] == 0);
 
-        juryMembers.push(_juryMemberAddress);
-        juryMemberIds[_juryMemberAddress] = juryMembers.length;
+        juryMembers.push(_ethAddress);
+        juryMemberNames[_ethAddress] = _name;
     }
 
     function contributeToPrizePool(string _name, string _siteUrl, string _logoUrl) payable {
         require(currentPeriod == Period.Registration);
         require(msg.value > 0);
 
-        // A single sponsor should be initialized only once
-        if (sponsors[msg.sender].contribution == 0) {
-                sponsors[msg.sender] = Sponsor({
-                name: _name,
-                siteUrl: _siteUrl,
-                logoUrl: _logoUrl,
-                contribution: 0
-            });
+        sponsors.push(Sponsor({
+            name: _name,
+            siteUrl: _siteUrl,
+            logoUrl: _logoUrl,
+            contribution: msg.value
+        }));
 
-            allSponsors.push(msg.sender);
-        }
-
-        sponsors[msg.sender].contribution += msg.value;
         totalContribution += msg.value;
 
         SponsorshipReceived(_name, msg.value);
@@ -114,14 +106,14 @@ contract DecenterHackathon {
             _points--;
         }
 
-        juryMemberIds[msg.sender] = 0;
+        juryMemberNames[msg.sender] = "";
 
-        VoteReceived(juryMemberIds[msg.sender], _votes);
+        VoteReceived(juryMemberNames[msg.sender], _votes);
     }
 
     function payoutPrizes(address[] _sortedTeams) onlyOwner {
         require(currentPeriod == Period.Final);
-        require(_sortedTeams.length == allTeams.length);
+        require(_sortedTeams.length == teamAddresses.length);
 
         for (uint i = 0; i < _sortedTeams.length - 1; i++) {
             // All submitted sorted teams must be registered
@@ -136,7 +128,7 @@ contract DecenterHackathon {
         for (uint j = 0; j < _sortedTeams.length - 1; j++) {
             uint _prizeAmount = totalContribution / _partOfPrizePool;
 
-            if (teams[_sortedTeams[j]].rewardEligable) {
+            if (teams[_sortedTeams[j]].rewardEligible) {
                 _partOfPrizePool *= 2;
 
                 _sortedTeams[j].transfer(_prizeAmount);
