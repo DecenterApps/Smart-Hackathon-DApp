@@ -20,7 +20,7 @@ Header.propTypes = {
   children: PropTypes.object
 };
 Header.defaultProps = {
-  children: {}
+  children: []
 };
 
 export default Header;

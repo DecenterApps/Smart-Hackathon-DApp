@@ -33,6 +33,21 @@ body {
       padding: 20px;
     }
   }
+
+  &.hero {
+    height: calc(100vh - 200px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+    h1 {
+      color: #777;
+      font-size: 36px;
+      margin: 20px;
+      font-weight: normal;
+    }
+  }
 }
 
 a {

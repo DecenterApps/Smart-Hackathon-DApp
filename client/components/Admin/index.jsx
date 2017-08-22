@@ -10,7 +10,7 @@ require('./_index.scss');
 const Admin = ({ location, children }) => (
   <div>
     <AdminHeader />
-    <div className="container">
+    <div className="container white">
       <div className="tab-wrapper">
         <div className="left-section">
           <a href="#/admin/teams" className={location.pathname === '/admin/' || location.pathname === '/admin/teams' ? 'active' : ''}>Timovi</a>
