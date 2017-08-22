@@ -32,7 +32,7 @@ contract DecenterHackathon {
     event TeamRegistered(string teamName, address teamAddress);
     event JuryMemberAdded(string juryMemberName, address juryMemberAddress);
     event SponsorshipReceived(string sponsorName, uint amount);
-    event VoteReceived(string juryMemberName, address[] votes);
+    event VotesReceived(string juryMemberName, address[] votes);
     event PrizePaid(string teamName, uint amount);
 
     modifier onlyOwner {
@@ -50,7 +50,7 @@ contract DecenterHackathon {
         currentPeriod = Period.Registration;
     }
 
-    function goToNextPeriod() onlyOwner {
+    function switchToNextPeriod() onlyOwner {
         if(currentPeriod == Period.Final) {
             return;
         }
@@ -109,7 +109,7 @@ contract DecenterHackathon {
         }
 
         juryMemberNames[msg.sender] = "";
-        VoteReceived(juryMemberNames[msg.sender], _votes);
+        VotesReceived(juryMemberNames[msg.sender], _votes);
     }
 
     function payoutPrizes(address[] _sortedTeams) onlyOwner {
@@ -117,10 +117,10 @@ contract DecenterHackathon {
         require(_sortedTeams.length == teamAddresses.length);
 
         for(uint i = 0; i < _sortedTeams.length; i++) {
-            // All submitted sorted teams must be registered
+            // All submitted teams must be registered
             require(bytes(teams[_sortedTeams[i]].name).length > 0);
 
-            // The sorted teams must be sorted correctly
+            // Teams must be sorted correctly
             require(i == _sortedTeams.length - 1 || teams[_sortedTeams[i + 1]].score <= teams[_sortedTeams[i]].score);
         }
 
