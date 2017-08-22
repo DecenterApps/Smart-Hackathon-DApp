@@ -30,6 +30,7 @@ contract DecenterHackathon {
 
     event PeriodChanged(Period newPeriod);
     event TeamRegistered(string teamName, address teamAddress);
+    event JuryMemberAdded(string juryMemberName, address juryMemberAddress);
     event SponsorshipReceived(string sponsorName, uint amount);
     event VoteReceived(string juryMemberName, address[] votes);
     event PrizePaid(string teamName, uint amount);
@@ -78,6 +79,8 @@ contract DecenterHackathon {
 
         juryMembers.push(_ethAddress);
         juryMemberNames[_ethAddress] = _name;
+
+        JuryMemberAdded(_name, _ethAddress);
     }
 
     function contributeToPrizePool(string _name, string _siteUrl, string _logoUrl) payable {
