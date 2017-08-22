@@ -56,6 +56,7 @@ class AdminTeams extends Component {
                   <tr key={team.transactionHash}>
                     <th className="rewardable"><DollarIcon color={team.args.rewardEligible ? '#44ca44' : '#eee'} /></th>
                     <th>{team.args.teamName}</th>
+                    <td>{team.args.memberNames}</td>
                     <td>{team.args.teamAddress}</td>
                   </tr>
                 ))
