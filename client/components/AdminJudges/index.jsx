@@ -13,7 +13,7 @@ class AdminJudges extends Component {
     return (
       <div>
         {
-          !this.props.judges.people.length &&
+          !this.props.judges.people.length > 0 &&
           <div className="empty-section">
             <div className="">
               <h1>Nema sudija</h1>
@@ -22,7 +22,7 @@ class AdminJudges extends Component {
           </div>
         }
         {
-          this.props.judges.people.length &&
+          this.props.judges.people.length > 0 &&
           <table className="admin-table">
             <tr>
               <th>Name 1</th>
