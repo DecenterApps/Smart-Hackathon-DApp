@@ -1,13 +1,19 @@
-import actions from '../actions/modalActions';
+import React from 'react';
+import { TOGGLE_MODAL } from '../actions/types';
 
 const INITIAL_STATE = {
-  judgesOpen: false
+  currentOpen: false,
+  currentModal: () => <div>error</div>
 };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case actions.CLOSE_MODAL:
-      return { ...state, [action.payload.type]: actions.type.state };
+    case TOGGLE_MODAL:
+      return {
+        ...state,
+        currentModal: action.payload.modalComponent,
+        currentOpen: action.payload.state
+      };
 
     default:
       return state;
