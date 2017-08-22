@@ -4,7 +4,12 @@ import { hashHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import reducers from '../reducers/index';
 
-const store = createStore(reducers, applyMiddleware(thunk));
+
+const reduxDevToolsEnchancer = window.__REDUX_DEVTOOLS_EXTENSION__ &&
+  window.__REDUX_DEVTOOLS_EXTENSION__();
+const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+const store = createStoreWithMiddleware(reducers, reduxDevToolsEnchancer);
+
 const history = syncHistoryWithStore(hashHistory, store);
 
 module.exports = { history, store };

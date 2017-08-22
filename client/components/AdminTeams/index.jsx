@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import DollarIcon from '../Decorative/DollarIcon/index.jsx';
 import Loader from '../Decorative/Loader/index.jsx';
+import teamActions from '../../actions/teamActions';
 import OpenModalButton from '../../components/OpenModalButton/OpenModalButton';
 
 require('./_index.scss');
@@ -13,6 +14,9 @@ class AdminTeams extends Component {
     super(props);
 
     this.state = {};
+  }
+  componentWillMount() {
+    this.props.fetchTeams();
   }
   render() {
     return (
@@ -25,6 +29,14 @@ class AdminTeams extends Component {
         }
         {
           !this.props.teams.isFetching &&
+          this.props.teams.error &&
+          <div className="empty-section">
+            <h1>{this.props.teams.error.toString()}</h1>
+          </div>
+        }
+        {
+          !this.props.teams.isFetching &&
+          !this.props.teams.error &&
           !this.props.teams.teams.length > 0 &&
           <div className="empty-section">
             <div className="">
@@ -35,24 +47,19 @@ class AdminTeams extends Component {
         }
         {
           !this.props.teams.isFetching &&
+          !this.props.teams.error &&
           this.props.teams.teams.length > 0 &&
           <table className="admin-table">
             <tbody>
-              <tr>
-                <th className="rewardable"><DollarIcon color={true ? '#44ca44' : '#eee'} /></th>
-                <th>Name 1</th>
-                <td>Data</td>
-              </tr>
-              <tr>
-                <th className="rewardable"><DollarIcon color={false ? '#44ca44' : '#eee'} /></th>
-                <th>Name 1</th>
-                <td>Data</td>
-              </tr>
-              <tr>
-                <th className="rewardable"><DollarIcon color={false ? '#44ca44' : '#eee'} /></th>
-                <th>Name 1</th>
-                <td>Data</td>
-              </tr>
+              {
+                this.props.teams.teams.map((team) => (
+                  <tr key={team.transactionHash}>
+                    <th className="rewardable"><DollarIcon color={team.args.rewardEligible ? '#44ca44' : '#eee'} /></th>
+                    <th>{team.args.teamName}</th>
+                    <td>{team.args.teamAddress}</td>
+                  </tr>
+                ))
+              }
             </tbody>
           </table>
         }
@@ -64,8 +71,10 @@ class AdminTeams extends Component {
 AdminTeams.propTypes = {
   teams: PropTypes.shape({
     isFetching: PropTypes.bool.isRequired,
-    teams: PropTypes.array
-  })
+    teams: PropTypes.array,
+    error: PropTypes.object,
+  }),
+  fetchTeams: PropTypes.func.isRequired
 };
 
 AdminTeams.defaultProps = {
@@ -77,11 +86,10 @@ AdminTeams.defaultProps = {
 
 const mapStateToProps = state => state;
 const mapDispatchToProps = dispatch => bindActionCreators({
-
+  ...teamActions
 }, dispatch);
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(AdminTeams);
-

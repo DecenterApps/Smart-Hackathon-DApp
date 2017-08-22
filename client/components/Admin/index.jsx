@@ -13,9 +13,9 @@ const Admin = ({ children }) => (
     <div className="container white">
       <div className="tab-wrapper">
         <div className="left-section">
-          <a href="#/admin/teams" className={location.pathname === '/admin/' || location.pathname === '/admin/teams' ? 'active' : ''}>Timovi</a>
-          <a href="#/admin/sponsors" className={location.pathname === '/admin/sponsors' ? 'active' : ''}>Sponzori</a>
-          <a href="#/admin/judges" className={location.pathname === '/admin/judges' ? 'active' : ''}>Sudije</a>
+          <a href="#/admin/teams" className={location.hash === '#/admin/' || location.hash === '#/admin/teams' ? 'active' : ''}>Timovi</a>
+          <a href="#/admin/sponsors" className={location.hash === '#/admin/sponsors' ? 'active' : ''}>Sponzori</a>
+          <a href="#/admin/judges" className={location.hash === '#/admin/judges' ? 'active' : ''}>Sudije</a>
         </div>
         <div className="right-section">
           <OpenModalButton text="Dodaj" />

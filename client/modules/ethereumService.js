@@ -242,7 +242,7 @@ export const getTeams = () =>
 
 export const getJuries = () =>
   new Promise((resolve, reject) => {
-    hackathonContract.JuryMember({}, {
+    hackathonContract.JuryMemberAdded({}, {
       fromBlock: contract.startingBlock, toBlock: 'latest'
     })
       .get((error, events) => {
