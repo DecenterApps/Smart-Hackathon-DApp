@@ -1,7 +1,7 @@
 $highlight: #673AB7;
 
 .empty-section {
-  height: calc(100vh - 300px);
+  min-height: 150px;
   display: flex;
   flex-direction: column;
   justify-content: center;
