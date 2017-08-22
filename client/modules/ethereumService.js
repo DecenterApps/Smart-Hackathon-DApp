@@ -144,7 +144,7 @@ export const _goToNextPeriod = () =>
     });
   });
 
-export const _registerTeam = (name, teamAddress, rewardEligible) =>
+export const _registerTeam = (name, teamAddress, memberNames, rewardEligible) =>
   new Promise((resolve, reject) => {
     if (!web3.isAddress(teamAddress)) {
       return reject({
@@ -152,7 +152,7 @@ export const _registerTeam = (name, teamAddress, rewardEligible) =>
       });
     }
 
-    return hackathonContract.registerTeam(name.toString(), teamAddress, !!rewardEligible,
+    return hackathonContract.registerTeam(name, teamAddress, memberNames, !!rewardEligible,
       (error, result) => {
         if (error) {
           return reject({

@@ -1,9 +1,10 @@
-import { TEAMS_FETCH, TEAMS_SUCCESS, TEAMS_ERROR } from '../actions/types';
-
+import { TEAMS_FETCH, TEAMS_SUCCESS, TEAMS_ERROR, ADD_TEAM, ADD_TEAM_ERROR, ADD_TEAM_SUCCESS } from '../actions/types';
 
 const INITIAL_STATE = {
   isFetching: true,
-  teams: []
+  teams: [],
+  submitting: false,
+  addTeamError: false
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -26,6 +27,27 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         isFetching: false,
         error: action.error
+      };
+
+    case ADD_TEAM:
+      return {
+        ...state,
+        submitting: true
+      };
+
+    case ADD_TEAM_ERROR:
+      return {
+        ...state,
+        submitting: false,
+        addTeamError: action.payload.addTeamError
+      };
+
+    case ADD_TEAM_SUCCESS:
+      return {
+        ...state,
+        submitting: false,
+        addTeamError: false,
+        teams: [...state.teams, action.payload.team]
       };
 
     default:

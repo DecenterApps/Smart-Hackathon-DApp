@@ -5,9 +5,13 @@
   i {
     cursor: pointer;
     margin-right: 5px;
+    font-size: 30px;
   }
 }
 
 .modal-wrapper-body {
   padding: 6px 60px 60px 60px;
+
+  display: flex;
+  justify-content: center;
 }

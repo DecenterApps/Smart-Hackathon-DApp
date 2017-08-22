@@ -7,6 +7,7 @@ module.exports = {
     'jsx-a11y/href-no-hash': 'off',
     'jsx-a11y/anchor-is-valid': ['warn', { 'aspects': ['invalidHref'] }],
     'jsx-a11y/label-has-for': 0,
+    'jsx-a11y/no-autofocus': 0,
     'comma-dangle': 0,
     'react/forbid-prop-types': 0,
     'react/jsx-filename-extension': 0,
