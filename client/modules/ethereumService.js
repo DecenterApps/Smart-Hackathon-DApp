@@ -1,3 +1,4 @@
+/* eslint-disable */
 import contract from './contract.json';
 
 const networkIds = {
@@ -259,9 +260,22 @@ export const getSponsors = () =>
       });
   });
 
+export const getUserType = () =>
+  new Promise((resolve, reject) => {
+    hackathonContract.getUserType(getAccount(), (error, result) => {
+      if (error) {
+        return reject({
+          message: error,
+        });
+      }
+
+      return resolve(result);
+    });
+  });
+
 setTimeout(() => {
-  getSponsors()
-    .then(data => console.log(data))
-    .catch(error => console.error(error));
+  // getUserType()
+  //   .then(data => console.log(data))
+  //   .catch(error => console.error(error));
 }, 1000);
 

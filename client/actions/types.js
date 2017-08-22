@@ -1,2 +1,2 @@
-export const CLOSE_MODAL = 'close_modal';
-export const TEST = 'test';
+export const TOGGLE_MODAL = 'close_modal';
+export const PLACEHOLDER = 'placeholder';

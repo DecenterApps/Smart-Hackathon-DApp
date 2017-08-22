@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 require('./_index.scss');
 
 const Loader = ({ color, size }) => (
-  <span className="loader" style={{ 'background-color': color, height: size, width: size }} />
+  <span className="loader" style={{ backgroundColor: color, height: size, width: size }} />
 );
 
 Loader.propTypes = {
