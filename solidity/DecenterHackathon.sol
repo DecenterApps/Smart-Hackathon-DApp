@@ -8,6 +8,7 @@ contract DecenterHackathon {
 
     struct Team {
         string name;
+        string memberNames;
         uint score;
         bool rewardEligible;
     }
@@ -29,9 +30,9 @@ contract DecenterHackathon {
     uint public totalContribution;
 
     event PeriodChanged(Period newPeriod);
-    event TeamRegistered(string teamName, address teamAddress);
+    event TeamRegistered(string teamName, address teamAddress, string memberNames, bool rewardEligible);
     event JuryMemberAdded(string juryMemberName, address juryMemberAddress);
-    event SponsorshipReceived(string sponsorName, uint amount);
+    event SponsorshipReceived(string sponsorName, string sponsorSite, string sponsorLogoUrl, uint amount);
     event VotesReceived(string juryMemberName, address[] votes);
     event PrizePaid(string teamName, uint amount);
 
@@ -60,18 +61,19 @@ contract DecenterHackathon {
         PeriodChanged(currentPeriod);
     }
 
-    function registerTeam(string _name, address _teamAddress, bool rewardEligible) onlyOwner {
+    function registerTeam(string _name, address _teamAddress, string _memberNames, bool _rewardEligible) onlyOwner {
         require(currentPeriod == Period.Registration);
         require(bytes(teams[_teamAddress].name).length == 0);
 
         teams[_teamAddress] = Team({
             name: _name,
+            memberNames: _memberNames,
             score: 0,
-            rewardEligible: rewardEligible
+            rewardEligible: _rewardEligible
         });
 
         teamAddresses.push(_teamAddress);
-        TeamRegistered(_name, _teamAddress);
+        TeamRegistered(_name, _teamAddress, _memberNames, _rewardEligible);
     }
 
     function registerJuryMember(string _name, address _ethAddress) onlyOwner {
@@ -95,7 +97,7 @@ contract DecenterHackathon {
         }));
 
         totalContribution += msg.value;
-        SponsorshipReceived(_name, msg.value);
+        SponsorshipReceived(_name, _siteUrl, _logoUrl, msg.value);
     }
 
     function vote(address[] _votes) onlyJury {
