@@ -13,19 +13,19 @@ contract DecenterHackathon {
     }
 
     struct Sponsor {
+        string name;
         string siteUrl;
         string logoUrl;
         uint contribution;
     }
 
-    mapping(string => Sponsor) public sponsors;
     mapping(address => Team) public teams;
     mapping(address => string) juryMemberNames;
 
     address administrator;
+    Sponsor[] public sponsors;
     address[] public juryMembers;
-    address[] public allSponsors;
-    address[] public allTeams;
+    address[] public teamAddresses;
     uint public totalContribution;
 
     event PeriodChanged(Period newPeriod);
@@ -68,7 +68,7 @@ contract DecenterHackathon {
             rewardEligible: rewardEligible
         });
 
-        allTeams.push(_teamAddress);
+        teamAddresses.push(_teamAddress);
 
         TeamRegistered(_name, _teamAddress);
     }
@@ -84,18 +84,13 @@ contract DecenterHackathon {
         require(currentPeriod == Period.Registration);
         require(msg.value > 0);
 
-        // A single sponsor should be initialized only once
-        if (sponsors[_name].contribution == 0) {
-                sponsors[_name] = Sponsor({
-                siteUrl: _siteUrl,
-                logoUrl: _logoUrl,
-                contribution: 0
-            });
+        sponsors.push(Sponsor({
+            name: _name,
+            siteUrl: _siteUrl,
+            logoUrl: _logoUrl,
+            contribution: msg.value
+        }));
 
-            allSponsors.push(msg.sender);
-        }
-
-        sponsors[_name].contribution += msg.value;
         totalContribution += msg.value;
 
         SponsorshipReceived(_name, msg.value);
@@ -118,7 +113,7 @@ contract DecenterHackathon {
 
     function payoutPrizes(address[] _sortedTeams) onlyOwner {
         require(currentPeriod == Period.Final);
-        require(_sortedTeams.length == allTeams.length);
+        require(_sortedTeams.length == teamAddresses.length);
 
         for (uint i = 0; i < _sortedTeams.length - 1; i++) {
             // All submitted sorted teams must be registered
