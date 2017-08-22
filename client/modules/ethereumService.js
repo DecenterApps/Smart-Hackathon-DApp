@@ -1,3 +1,4 @@
+/* eslint-disable */
 import contract from './contract.json';
 
 const networkIds = {

@@ -1,15 +1,11 @@
 import { TOGGLE_MODAL } from './types';
-import JuryModal from '../components/Modals/JuryModal';
+import JudgeModal from '../components/Modals/JudgeModal';
 import teamModal from '../components/Modals/TeamModal';
 import sponsorModal from '../components/Modals/SponsorModal';
 
 const toggleModal = (routePath, state) => (
   (dispatch) => {
-    console.log('toggle modal');
     switch (routePath) {
-      case '/admin/general':
-        dispatch({ type: TOGGLE_MODAL, payload: { state, modalComponent: teamModal } });
-        return true;
       case '/admin/teams':
         dispatch({ type: TOGGLE_MODAL, payload: { state, modalComponent: teamModal } });
         return true;
@@ -17,7 +13,7 @@ const toggleModal = (routePath, state) => (
         dispatch({ type: TOGGLE_MODAL, payload: { state, modalComponent: sponsorModal } });
         return true;
       case '/admin/judges':
-        dispatch({ type: TOGGLE_MODAL, payload: { state, modalComponent: JuryModal } });
+        dispatch({ type: TOGGLE_MODAL, payload: { state, modalComponent: JudgeModal } });
         return true;
       default:
         return false;
