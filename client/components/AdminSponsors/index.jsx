@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import OpenModalButton from '../../components/OpenModalButton/OpenModalButton';
+import sponsorActions from '../../actions/sponsorActions';
+import Loader from '../Decorative/Loader/index.jsx';
 
 class AdminSponsors extends Component {
   constructor(props) {
@@ -9,26 +12,50 @@ class AdminSponsors extends Component {
 
     this.state = {};
   }
+  componentWillMount() {
+    this.props.fetchSponsors();
+  }
   render() {
     return (
       <div>
         {
+          this.props.sponsors.isFetching &&
+          <div className="empty-section">
+            <h1><Loader color="#777" />Učitavanje</h1>
+          </div>
+        }
+        {
+          !this.props.sponsors.isFetching &&
+          this.props.sponsors.error &&
+          <div className="empty-section">
+            <h1>{this.props.sponsors.error.toString()}</h1>
+          </div>
+        }
+        {
+          !this.props.sponsors.isFetching &&
           !this.props.sponsors.sponsors.length > 0 &&
           <div className="empty-section">
             <div className="">
               <h1>Nema sponzora</h1>
-              <button>Dodajte sponzora</button>
+              <OpenModalButton text="Dodajte Sponzora" />
             </div>
           </div>
         }
 
         {
+          !this.props.sponsors.isFetching &&
           this.props.sponsors.sponsors.length > 0 &&
           <table className="admin-table">
-            <tr>
-              <th>Sponsor name</th>
-              <td>Other data</td>
-            </tr>
+            <tbody>
+              {
+                this.props.sponsors.sponsors.map((sponsor) => (
+                  <tr key={sponsor.transactionHash}>
+                    <th>{sponsor.args.sponsorName}</th>
+                    <td>{web3.fromWei(sponsor.args.amount).toString()} ETH</td>
+                  </tr>
+                ))
+              }
+            </tbody>
           </table>
         }
       </div>
@@ -38,18 +65,22 @@ class AdminSponsors extends Component {
 
 AdminSponsors.propTypes = {
   sponsors: PropTypes.shape({
-    sponsors: PropTypes.array
-  })
+    sponsors: PropTypes.array,
+    isFetching: PropTypes.bool,
+    error: PropTypes.object,
+  }),
+  fetchSponsors: PropTypes.func.isRequired
 };
 AdminSponsors.defaultProps = {
   sponsors: {
     sponsors: []
-  }
+  },
+  isFetching: true
 };
 
 const mapStateToProps = state => state;
 const mapDispatchToProps = dispatch => bindActionCreators({
-
+  ...sponsorActions
 }, dispatch);
 
 export default connect(

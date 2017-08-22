@@ -54,6 +54,18 @@ export const getBlockNumber = () =>
 
 /* Events */
 
+export const JuryMemberAddedEvent = () =>
+  new Promise((resolve, reject) => {
+    hackathonContract.JuryMemberAdded({}, { fromBlock: 0, toBlock: 'latest' })
+      .watch((error, event) => {
+        if (error) {
+          return reject(error);
+        }
+
+        return resolve(event);
+      })
+  });
+
 export const PeriodChangedEvent = () =>
   new Promise((resolve, reject) => {
     hackathonContract.PeriodChanged({}, { fromBlock: 0, toBlock: 'latest' })
@@ -105,9 +117,9 @@ export const TeamRegisteredEvent = () =>
       });
   });
 
-export const VoteReceivedEvent = () =>
+export const VotesReceivedEvent = () =>
   new Promise((resolve, reject) => {
-    hackathonContract.VoteReceived({}, { fromBlock: 0, toBlock: 'latest' })
+    hackathonContract.VotesReceived({}, { fromBlock: 0, toBlock: 'latest' })
       .watch((error, event) => {
         if (error) {
           return reject(error);
@@ -230,7 +242,7 @@ export const getTeams = () =>
 
 export const getJuries = () =>
   new Promise((resolve, reject) => {
-    hackathonContract.JuryMember({}, {
+    hackathonContract.JuryMemberAdded({}, {
       fromBlock: contract.startingBlock, toBlock: 'latest'
     })
       .get((error, events) => {
