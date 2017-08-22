@@ -218,7 +218,9 @@ export const getTeams = () =>
     })
       .get((error, events) => {
         if (error) {
-          return reject(error);
+          return reject({
+            message: error,
+          });
         }
 
         return resolve(events);
@@ -232,7 +234,9 @@ export const getJuries = () =>
     })
       .get((error, events) => {
         if (error) {
-          return reject(error);
+          return reject({
+            message: error,
+          });
         }
 
         return resolve(events);
@@ -246,7 +250,9 @@ export const getSponsors = () => {
     })
       .get((error, events) => {
         if (error) {
-          return reject(error);
+          return reject({
+            message: error,
+          });
         }
 
         return resolve(events);
