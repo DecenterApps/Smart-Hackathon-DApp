@@ -1,0 +1,140 @@
+$highlight: #673AB7;
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.empty-section {
+  height: calc(100vh - 300px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  h1 {
+    color: #777;
+    font-size: 21px;
+    margin: 20px;
+    font-weight: normal;
+  }
+
+  button {
+    border:0;
+    outline: none;
+    background-color: $highlight;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+}
+
+.tab-wrapper {
+  border-bottom: 1px solid #eee;
+
+  a {
+    display: inline-block;
+    text-align: center;
+    padding: 20px;
+    margin: 0 10px;
+    border-bottom: 3px solid white;
+    color: #BFBFBF;
+    cursor: pointer;
+    &.active {
+      color: $highlight;
+      border-color: $highlight;
+    }
+  }
+}
+
+.tab-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 20px 0 0 0;
+  border-bottom: 1px solid #eee;
+
+  .left-section {
+    a {
+      user-select: none;
+      display: inline-block;
+      color: #BFBFBF;
+      text-align: center;
+      padding: 20px;
+      margin: 0 10px;
+      border-bottom: 3px solid white;
+      cursor: pointer;
+
+      &.active {
+        color: $highlight;
+        border-color: $highlight;
+      }
+    }
+  }
+
+  .right-section {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 40px;
+    color: #673AB7;
+  }
+}
+
+.admin-header {
+  padding: 20px;
+  h1 {
+    color: #777;
+    font-size: 21px;
+    margin: 20px;
+    font-weight: normal;
+  }
+
+  button {
+    border:0;
+    outline: none;
+    background-color: $highlight;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+}
+
+.admin-table {
+  width: 100%;
+  text-align: left;
+
+  th, td {
+    padding: 20px;
+
+    &.highlighted {
+      color: $highlight;
+    }
+
+    &.excluded {
+      width: 40px;
+      &:after {
+        background-color: black;
+        content: '$';
+        color: white;
+        display: inline-block;
+        border-radius: 50%;
+        height: 20px;
+        width: 20px;
+        text-align: center;
+        line-height: 20px;
+      }
+      &.is:after {
+        opacity: .1;
+      }
+    }
+  }
+}
