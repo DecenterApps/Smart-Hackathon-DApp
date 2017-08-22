@@ -31,10 +31,10 @@ const submitAddTeamsForm = (team) => (dispatch, getState) => {
   eth._registerTeam(team.name, team.address, team.teamMembers, team.excludeFromPrize)
     .then((res) => {
       dispatch({ type: ADD_TEAM_SUCCESS, payload: { team: res } });
+      toggleModal(getState().routing.locationBeforeTransitions.pathname, false);
     })
     .catch((error) => {
       dispatch({ type: ADD_TEAM_ERROR, payload: { addTeamError: error.message } });
-      toggleModal(getState().routing.locationBeforeTransitions.pathname, false);
     });
 };
 

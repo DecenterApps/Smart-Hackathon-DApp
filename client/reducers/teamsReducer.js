@@ -35,19 +35,19 @@ export default (state = INITIAL_STATE, action) => {
         submitting: true
       };
 
-    case ADD_TEAM_ERROR:
-      return {
-        ...state,
-        submitting: false,
-        addTeamError: action.payload.addTeamError
-      };
-
     case ADD_TEAM_SUCCESS:
       return {
         ...state,
         submitting: false,
         addTeamError: false,
         teams: [...state.teams, action.payload.team]
+      };
+
+    case ADD_TEAM_ERROR:
+      return {
+        ...state,
+        submitting: false,
+        addTeamError: action.payload.addTeamError
       };
 
     default:

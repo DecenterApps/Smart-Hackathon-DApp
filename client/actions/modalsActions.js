@@ -12,6 +12,7 @@ const toggleModal = (routePath, state) => (
         dispatch({ type: TOGGLE_MODAL, payload: { state, modalComponent: teamModal } });
         return true;
       case '/admin/sponsors':
+        if (state === false) dispatch(reset('sponsorsForm'));
         dispatch({ type: TOGGLE_MODAL, payload: { state, modalComponent: sponsorModal } });
         return true;
       case '/admin/judges':

@@ -1,8 +1,10 @@
 import React from 'react';
+import AdminSponsorsForm from '../../components/AdminSponsors/AdminSponsorsForm';
 
 const SponsorModal = () => (
-  <div>
-    <div>SPONSOR MODAL CONTENT</div>
+  <div className="form-wrapper">
+    <div className="form-name">Dodaj Sponzora</div>
+    <AdminSponsorsForm />
   </div>
 );
 

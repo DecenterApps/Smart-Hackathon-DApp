@@ -8,6 +8,10 @@ export const TEAMS_FETCH = 'teams_fetch';
 export const TEAMS_SUCCESS = 'teams_success';
 export const TEAMS_ERROR = 'teams_error';
 
+export const ADD_SPONSOR = 'add_sponsor';
+export const ADD_SPONSOR_SUCCESS = 'add_sponsor_success';
+export const ADD_SPONSOR_ERROR = 'add_sponsor_error';
+
 export const SPONSORS_FETCH = 'sponsors_fetch';
 export const SPONSORS_SUCCESS = 'sponsors_success';
 export const SPONSORS_ERROR = 'sponsors_error';
