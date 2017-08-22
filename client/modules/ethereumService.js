@@ -79,7 +79,7 @@ export const PrizePaidEvent = () =>
       });
   });
 
-export const SponsorshipReceivedEvent = () => {
+export const SponsorshipReceivedEvent = () =>
   new Promise((resolve, reject) => {
     hackathonContract.SponsorshipReceived({}, { fromBlock: 0, toBlock: 'latest' })
       .watch((error, event) => {
@@ -91,9 +91,8 @@ export const SponsorshipReceivedEvent = () => {
         return resolve(event);
       });
   });
-};
 
-export const TeamRegisteredEvent = () => {
+export const TeamRegisteredEvent = () =>
   new Promise((resolve, reject) => {
     hackathonContract.TeamRegistered({}, { fromBlock: 0, toBlock: 'latest' })
       .watch((error, event) => {
@@ -104,9 +103,8 @@ export const TeamRegisteredEvent = () => {
         return resolve(event);
       });
   });
-};
 
-export const VoteReceivedEvent = () => {
+export const VoteReceivedEvent = () =>
   new Promise((resolve, reject) => {
     hackathonContract.VoteReceived({}, { fromBlock: 0, toBlock: 'latest' })
       .watch((error, event) => {
@@ -117,4 +115,107 @@ export const VoteReceivedEvent = () => {
         return resolve(event);
       });
   });
-};
+
+/* Contract functions (prefixed by "_") */
+
+export const _goToNextPeriod = () =>
+  new Promise((resolve, reject) => {
+    hackathonContract.goToNextPeriod((error, result) => {
+      if (error) {
+        return reject({
+          message: error,
+        });
+      }
+
+      return resolve(result);
+    });
+  });
+
+export const _registerTeam = (name, teamAddress, rewardEligible) =>
+  new Promise((resolve, reject) => {
+    if (!web3.isAddress(teamAddress)) {
+      return reject({
+        message: 'Invalid team address.',
+      });
+    }
+
+    return hackathonContract.registerTeam(name.toString(), teamAddress, !!rewardEligible,
+      (error, result) => {
+        if (error) {
+          return reject({
+            message: error,
+          });
+        }
+
+        return resolve(result);
+      });
+  });
+
+export const _registerJuryMember = (juryMemberAddress) =>
+  new Promise((resolve, reject) => {
+    if (!web3.isAddress(juryMemberAddress)) {
+      return reject({
+        message: 'Invalid jury member address.',
+      });
+    }
+
+    return hackathonContract.registerJuryMember(juryMemberAddress, (error, result) => {
+      if (error) {
+        return reject({
+          message: error,
+        });
+      }
+
+      return resolve(result);
+    });
+  });
+
+export const _contributeToPrizePool = (name, amount, siteUrl, logoUrl) =>
+  new Promise((resolve, reject) => {
+    hackathonContract.contributeToPrizePool(
+      siteUrl.toString(),
+      logoUrl.toString(),
+      name.toString(),
+      { value: web3.toWei(amount, 'ether') },
+      (error, result) => {
+        if (error) {
+          return reject({
+            message: error,
+          });
+        }
+
+        return resolve(result);
+      });
+  });
+
+export const _vote = (votes) =>
+  new Promise((resolve, reject) => {
+    for (let i = 0; i < votes.length; i += 1) {
+      if (!web3.isAddress(votes[i])) {
+        return reject({
+          message: `Team at index ${i} has an invalid address.`,
+        });
+      }
+    }
+
+    return hackathonContract.vote(votes, (error, result) => {
+      if (error) {
+        return reject({
+          message: error,
+        });
+      }
+
+      return resolve(result);
+    });
+  });
+
+/* Getters for contract state */
+
+export const _getTeamAdresses = () =>
+  new Promise((resolve, reject) => {
+
+  });
+
+setTimeout(() => {
+}, 1000);
+
