@@ -112,7 +112,7 @@ $highlight: #673AB7;
   text-align: left;
 
   th, td {
-    padding: 20px;
+    padding: 20px 10px;
 
     &.highlighted {
       color: $highlight;
@@ -122,5 +122,12 @@ $highlight: #673AB7;
       width: 40px;
       line-height: 10px;
     }
+  }
+  th {
+    font-size: 16px;
+  }
+  td {
+    font-size: 14px;
+    color: #777;
   }
 }

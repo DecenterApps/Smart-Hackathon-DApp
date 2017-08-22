@@ -139,8 +139,8 @@ contract DecenterHackathon {
         }
     }
 
-    function getUserType(address _address) constant returns (string) {
-        if(_address == administrator) {
+    function getUserType() constant returns (string) {
+        if(msg.sender == administrator) {
             return "administrator";
         } else if(bytes(juryMemberNames[msg.sender]).length > 0) {
             return "jury";
