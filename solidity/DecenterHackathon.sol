@@ -51,8 +51,9 @@ contract DecenterHackathon {
     }
 
     function goToNextPeriod() onlyOwner {
-        if (currentPeriod == Period.Final)
+        if(currentPeriod == Period.Final) {
             return;
+        }
 
         currentPeriod = Period(uint(currentPeriod) + 1);
 
@@ -70,7 +71,6 @@ contract DecenterHackathon {
         });
 
         teamAddresses.push(_teamAddress);
-
         TeamRegistered(_name, _teamAddress);
     }
 
@@ -95,7 +95,6 @@ contract DecenterHackathon {
         }));
 
         totalContribution += msg.value;
-
         SponsorshipReceived(_name, msg.value);
     }
 
@@ -104,13 +103,12 @@ contract DecenterHackathon {
 
         uint _points = _votes.length;
 
-        for (uint i = 0; i < _votes.length; i++) {
+        for(uint i = 0; i < _votes.length; i++) {
             teams[_votes[i]].score += _points;
             _points--;
         }
 
         juryMemberNames[msg.sender] = "";
-
         VoteReceived(juryMemberNames[msg.sender], _votes);
     }
 
@@ -118,7 +116,7 @@ contract DecenterHackathon {
         require(currentPeriod == Period.Final);
         require(_sortedTeams.length == teamAddresses.length);
 
-        for (uint i = 0; i < _sortedTeams.length - 1; i++) {
+        for(uint i = 0; i < _sortedTeams.length; i++) {
             // All submitted sorted teams must be registered
             require(bytes(teams[_sortedTeams[i]].name).length > 0);
 
@@ -126,18 +124,25 @@ contract DecenterHackathon {
             require(i == _sortedTeams.length - 1 || teams[_sortedTeams[i + 1]].score <= teams[_sortedTeams[i]].score);
         }
 
-        uint _partOfPrizePool = 2;
+        uint prizePoolDivider = 2;
 
-        for (uint j = 0; j < _sortedTeams.length - 1; j++) {
-            uint _prizeAmount = totalContribution / _partOfPrizePool;
+        for(i = 0; i < _sortedTeams.length; i++) {
+            uint _prizeAmount = totalContribution / prizePoolDivider;
 
-            if (teams[_sortedTeams[j]].rewardEligible) {
-                _partOfPrizePool *= 2;
-
-                _sortedTeams[j].transfer(_prizeAmount);
-                PrizePaid(teams[_sortedTeams[j]].name, _prizeAmount);
+            if(teams[_sortedTeams[i]].rewardEligible) {
+                _sortedTeams[i].transfer(_prizeAmount);
+                prizePoolDivider *= 2;
+                PrizePaid(teams[_sortedTeams[i]].name, _prizeAmount);
             }
         }
+    }
+
+    function sendRemainingEtherToOwner() onlyOwner {
+        administrator.transfer(this.balance);
+    }
+
+    function getTeamAddresses() constant returns (address[]) {
+        return teamAddresses;
     }
 
     function restartPeriod() onlyOwner {
