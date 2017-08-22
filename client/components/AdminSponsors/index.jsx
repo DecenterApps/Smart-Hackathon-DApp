@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import OpenModalButton from '../../components/OpenModalButton/OpenModalButton';
 
 class AdminSponsors extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class AdminSponsors extends Component {
           <div className="empty-section">
             <div className="">
               <h1>Nema sponzora</h1>
-              <button>Dodajte sponzora</button>
+              <OpenModalButton text="Dodajte Sponzora" />
             </div>
           </div>
         }

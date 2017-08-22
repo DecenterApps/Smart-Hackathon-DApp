@@ -75,7 +75,14 @@ $highlight: #673AB7;
     align-items: center;
     justify-content: center;
     margin-right: 40px;
-    color: #673AB7;
+
+    button {
+      color: #673AB7;
+
+      &:hover {
+        color: lighten(#673AB7, 20);
+      }
+    }
   }
 }
 
