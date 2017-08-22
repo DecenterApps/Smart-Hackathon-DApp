@@ -4,9 +4,13 @@ import { connect } from 'react-redux';
 
 import Header from '../Header/index.jsx';
 
+require('./_index.scss');
+
 const AdminHeader = () => (
   <div>
-    <Header />
+    <Header>
+      <button className="header-button">Promeni fazu</button>
+    </Header>
   </div>
 );
 

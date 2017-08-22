@@ -3,19 +3,23 @@
   max-width: 1200px;
   margin: auto;
   padding: 30px 0;
+  display: flex;
+  justify-content: space-between;
 
-  h1 {
-    color: white;
-    line-height: 30px;
-    font-size: 24px;
-    margin: 0;
-  }
-  h2 {
-    color: white;
-    opacity: .7;
-    text-transform: uppercase;
-    font-size: 14px;
-    margin: 0;
-    font-weight: normal;
+  .title {
+    h1 {
+      color: white;
+      line-height: 30px;
+      font-size: 24px;
+      margin: 0;
+    }
+    h2 {
+      color: white;
+      opacity: .7;
+      text-transform: uppercase;
+      font-size: 14px;
+      margin: 0;
+      font-weight: normal;
+    }
   }
 }

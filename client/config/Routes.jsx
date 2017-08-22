@@ -4,7 +4,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import App from '../components/App/App.jsx';
 import Admin from '../components/Admin/index.jsx';
-import AdminGeneral from '../components/AdminGeneral/index.jsx';
 import AdminTeams from '../components/AdminTeams/index.jsx';
 import AdminSponsors from '../components/AdminSponsors/index.jsx';
 import AdminJudges from '../components/AdminJudges/index.jsx';
@@ -14,8 +13,7 @@ const myRouter = ({ store, history }) => (
     <Router history={history}>
       <Route path="/" component={App} />
       <Route path="/admin" component={Admin}>
-        <IndexRoute component={AdminGeneral} />
-        <Route path="general" component={AdminGeneral} />
+        <IndexRoute component={AdminTeams} />
         <Route path="teams" component={AdminTeams} />
         <Route path="sponsors" component={AdminSponsors} />
         <Route path="judges" component={AdminJudges} />

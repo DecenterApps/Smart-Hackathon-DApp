@@ -13,8 +13,7 @@ const Admin = ({ location, children }) => (
     <div className="container">
       <div className="tab-wrapper">
         <div className="left-section">
-          <a href="#/admin/general" className={location.pathname === '/admin/general' ? 'active' : ''}>Menadžment</a>
-          <a href="#/admin/teams" className={location.pathname === '/admin/teams' ? 'active' : ''}>Timovi</a>
+          <a href="#/admin/teams" className={location.pathname === '/admin/' || location.pathname === '/admin/teams' ? 'active' : ''}>Timovi</a>
           <a href="#/admin/sponsors" className={location.pathname === '/admin/sponsors' ? 'active' : ''}>Sponzori</a>
           <a href="#/admin/judges" className={location.pathname === '/admin/judges' ? 'active' : ''}>Sudije</a>
         </div>
