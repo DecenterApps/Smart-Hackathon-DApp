@@ -58,3 +58,13 @@ a {
     text-decoration: none;
   }
 };
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  &:focus {
+    outline: 0;
+  }
+}

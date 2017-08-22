@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
 import DollarIcon from '../Decorative/DollarIcon/index.jsx';
 import Loader from '../Decorative/Loader/index.jsx';
+import OpenModalButton from '../../components/OpenModalButton/OpenModalButton';
 
 require('./_index.scss');
 
@@ -29,7 +29,7 @@ class AdminTeams extends Component {
           <div className="empty-section">
             <div className="">
               <h1>Nema timova</h1>
-              <button>Dodajte tim</button>
+              <OpenModalButton text="Dodajte tim" />
             </div>
           </div>
         }
@@ -67,6 +67,7 @@ AdminTeams.propTypes = {
     teams: PropTypes.array
   })
 };
+
 AdminTeams.defaultProps = {
   teams: {
     isFetching: true,
