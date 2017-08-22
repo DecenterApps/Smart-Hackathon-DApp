@@ -1,26 +1,59 @@
-import React from 'react';
-import { bindActionCreators } from 'redux';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import PropTypes from 'prop-types';
+import { fetchPhase } from '../../actions/userActions';
 import Header from '../Header/index.jsx';
+import CubeLoader from '../CubeLoader/CubeLoader';
 
 require('./_index.scss');
 
-const AdminHeader = () => (
-  <div>
-    <Header>
-      <button className="header-button">Promeni fazu</button>
-    </Header>
-  </div>
-);
+const mapPhases = (phase) => {
+  const phases = ['Registracija', 'Takmicenje', 'Glasanje', 'Kraj'];
+  return phases[phase];
+};
 
-const mapStateToProps = state => state;
-const mapDispatchToProps = dispatch => bindActionCreators({
+class AdminHeader extends Component {
+  constructor(props) {
+    super(props);
 
-}, dispatch);
+    this.state = {};
+  }
+  componentWillMount() {
+    this.props.$fetchPhase();
+  }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(AdminHeader);
+  render() {
+    return (
+      <div>
+        <Header>
+          <span className="admin-header-period">
+            <span className="period">Period:</span>
+            { this.props.isFetching && <CubeLoader /> }
+            { !this.props.isFetching && !this.props.phaseError && mapPhases(this.props.phase) }
+            {
+              !this.props.isFetching &&
+              this.props.phaseError &&
+              <span>{this.props.phaseError}</span>
+            }
+          </span>
+        </Header>
+      </div>
+    );
+  }
+}
+
+AdminHeader.propTypes = {
+  phase: PropTypes.number.isRequired,
+  $fetchPhase: PropTypes.func.isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  phaseError: PropTypes.string.isRequired
+};
+
+const mapStateToProps = (state) => ({
+  phase: state.user.phase,
+  isFetching: state.user.isFetching,
+  phaseError: state.user.phaseError
+});
+
+export default connect(mapStateToProps, { $fetchPhase: fetchPhase })(AdminHeader);
 

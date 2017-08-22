@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 require('./_index.scss');
 
-
 const Header = ({ children }) => (
   <div className="header">
     <div className="title">
@@ -19,6 +18,7 @@ const Header = ({ children }) => (
 Header.propTypes = {
   children: PropTypes.object
 };
+
 Header.defaultProps = {
   children: []
 };

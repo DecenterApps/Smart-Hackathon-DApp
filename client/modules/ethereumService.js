@@ -240,6 +240,22 @@ export const getTeams = () =>
       });
   });
 
+export const getPhase = () =>
+  new Promise((resolve, reject) => {
+    hackathonContract.PeriodChanged({}, {
+      fromBlock: contract.startingBlock, toBlock: 'latest'
+    })
+      .get((error, events) => {
+        if (error) {
+          return reject({
+            message: error,
+          });
+        }
+
+        return resolve(events);
+      });
+  });
+
 export const getJuries = () =>
   new Promise((resolve, reject) => {
     hackathonContract.JuryMemberAdded({}, {

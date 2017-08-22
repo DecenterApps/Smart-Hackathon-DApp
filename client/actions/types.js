@@ -23,3 +23,7 @@ export const ADD_JUDGE_ERROR = 'add_judge_error';
 export const JUDGES_FETCH = 'judges_fetch';
 export const JUDGES_SUCCESS = 'judges_success';
 export const JUDGES_ERROR = 'judges_error';
+
+export const PHASE_FETCH = 'phase_fetch';
+export const PHASE_FETCH_SUCCESS = 'phase_fetch_success';
+export const PHASE_FETCH_ERROR = 'phase_fetch_error';
