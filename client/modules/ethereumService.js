@@ -243,7 +243,7 @@ export const getJuries = () =>
       });
   });
 
-export const getSponsors = () => {
+export const getSponsors = () =>
   new Promise((resolve, reject) => {
     hackathonContract.SponsorshipReceived({}, {
       fromBlock: contract.startingBlock, toBlock: 'latest',
@@ -258,11 +258,10 @@ export const getSponsors = () => {
         return resolve(events);
       });
   });
-};
 
 setTimeout(() => {
-  // getTeams()
-  //   .then(data => console.log(data))
-  //   .catch(error => console.error(error));
+  getSponsors()
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
 }, 1000);
 
