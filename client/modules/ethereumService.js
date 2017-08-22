@@ -209,8 +209,12 @@ export const _vote = (votes) =>
     });
   });
 
-
 /* Getters for contract state */
+
+export const _getTeamAdresses = () =>
+  new Promise((resolve, reject) => {
+
+  });
 
 setTimeout(() => {
 }, 1000);
