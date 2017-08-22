@@ -1,22 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Modal, ModalBody } from 'react-modal-bootstrap';
+import { Modal } from 'react-modal-bootstrap';
 import { toggleModal } from '../../actions/modalsActions';
 
-const ModalWrapper = ({ isOpen, $toggleModal, currentModal, location }) => (
-  <Modal isOpen={isOpen} onRequestHide={$toggleModal}>
-    <div
-      role="button"
-      tabIndex="0"
-      className="right-section"
-      onClick={() => $toggleModal(location.pathname, false)}
-    >
-      HEADER
+require('./modalWrapper.scss');
+
+const ModalWrapper = ({ isOpen, $toggleModal, currentModal, location, $style }) => (
+  <Modal isOpen={isOpen} onRequestHide={$toggleModal} dialogStyles={$style}>
+    <div className="modal-header">
+      <i
+        role="button"
+        tabIndex={0}
+        className="material-icons"
+        onClick={() => $toggleModal(location.pathname, false)}
+      >
+        close
+      </i>
     </div>
-    <ModalBody>
+    <div className="modal-wrapper-body">
       { currentModal() }
-    </ModalBody>
+    </div>
   </Modal>
 );
 
@@ -24,6 +28,7 @@ ModalWrapper.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   $toggleModal: PropTypes.func.isRequired,
   currentModal: PropTypes.func.isRequired,
+  $style: PropTypes.object.isRequired,
   location: PropTypes.shape({
     pathname: PropTypes.string
   }).isRequired
@@ -32,7 +37,8 @@ ModalWrapper.propTypes = {
 const mapStateToProps = (state) => ({
   isOpen: state.modals.currentOpen,
   currentModal: state.modals.currentModal,
-  location: state.routing.locationBeforeTransitions
+  location: state.routing.locationBeforeTransitions,
+  $style: { open: { top: 95 } }
 });
 
 export default connect(mapStateToProps, { $toggleModal: toggleModal })(ModalWrapper);
