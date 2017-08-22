@@ -13,7 +13,7 @@ class AdminSponsors extends Component {
     return (
       <div>
         {
-          !this.props.sponsors.sponsors.length &&
+          !this.props.sponsors.sponsors.length > 0 &&
           <div className="empty-section">
             <div className="">
               <h1>Nema sponzora</h1>
@@ -21,8 +21,9 @@ class AdminSponsors extends Component {
             </div>
           </div>
         }
+
         {
-          this.props.sponsors.sponsors.length &&
+          this.props.sponsors.sponsors.length > 0 &&
           <table className="admin-table">
             <tr>
               <th>Sponsor name</th>
