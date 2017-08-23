@@ -16,7 +16,7 @@ const Header = ({ children }) => (
 );
 
 Header.propTypes = {
-  children: PropTypes.object
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired
 };
 
 Header.defaultProps = {

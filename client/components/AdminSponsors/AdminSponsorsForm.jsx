@@ -3,7 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import formGroup from '../FormComonent/FormComponent';
 import { sponsorsFormValidator, submitAddSponsorsForm } from '../../actions/sponsorActions';
-import CubeLoader from '../CubeLoader/CubeLoader';
+import CubeLoader from '../Decorative/CubeLoader/CubeLoader';
 
 const styles = require('../FormComonent/forms.scss');
 

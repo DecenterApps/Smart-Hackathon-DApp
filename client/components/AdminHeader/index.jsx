@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchPhase } from '../../actions/userActions';
 import Header from '../Header/index.jsx';
-import CubeLoader from '../CubeLoader/CubeLoader';
+import CubeLoader from '../Decorative/CubeLoader/CubeLoader';
 
 require('./_index.scss');
 
@@ -46,7 +46,7 @@ AdminHeader.propTypes = {
   phase: PropTypes.number.isRequired,
   $fetchPhase: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
-  phaseError: PropTypes.string.isRequired
+  phaseError: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
 };
 
 const mapStateToProps = (state) => ({
