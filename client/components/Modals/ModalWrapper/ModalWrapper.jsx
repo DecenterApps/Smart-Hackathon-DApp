@@ -7,13 +7,13 @@ import CloseIcon from '../../Decorative/CloseIcon/CloseIcon';
 
 require('./modalWrapper.scss');
 
-const ModalWrapper = ({ isOpen, $toggleModal, currentModal, location, $style }) => (
+const ModalWrapper = ({ isOpen, $toggleModal, currentModal, $style }) => (
   <Modal isOpen={isOpen} onRequestHide={$toggleModal} dialogStyles={$style}>
     <div className="modal-header">
       <span
         role="button"
         tabIndex={0}
-        onClick={() => $toggleModal(location.pathname, false)}
+        onClick={() => $toggleModal(location.hash, false)}
       >
         <CloseIcon />
       </span>
@@ -28,16 +28,12 @@ ModalWrapper.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   $toggleModal: PropTypes.func.isRequired,
   currentModal: PropTypes.func.isRequired,
-  $style: PropTypes.object.isRequired,
-  location: PropTypes.shape({
-    pathname: PropTypes.string
-  }).isRequired
+  $style: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({
   isOpen: state.modals.currentOpen,
   currentModal: state.modals.currentModal,
-  location: state.routing.locationBeforeTransitions,
   $style: { open: { top: 95 } }
 });
 

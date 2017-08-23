@@ -14,13 +14,13 @@ const judgesFormValidator = (values) => {
   return errors;
 };
 
-const submitAddJudgesForm = (judge) => (dispatch, getState) => {
+const submitAddJudgesForm = (judge) => (dispatch) => {
   dispatch({ type: ADD_JUDGE });
 
   eth._registerJuryMember(judge.name, judge.address)
     .then((res) => {
       dispatch({ type: ADD_JUDGE_SUCCESS, payload: { judge: res } });
-      toggleModal(getState().routing.locationBeforeTransitions.pathname, false);
+      toggleModal(location.hash, false);
     })
     .catch((error) => {
       dispatch({ type: ADD_JUDGE_ERROR, payload: { addJudgeError: error.message } });

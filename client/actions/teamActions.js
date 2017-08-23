@@ -34,13 +34,13 @@ const teamsFormValidator = (values) => {
   return errors;
 };
 
-const submitAddTeamsForm = (team) => (dispatch, getState) => {
+const submitAddTeamsForm = (team) => (dispatch) => {
   dispatch({ type: ADD_TEAM });
 
   eth._registerTeam(team.name, team.address, team.teamMembers, team.excludeFromPrize)
     .then((res) => {
       dispatch({ type: ADD_TEAM_SUCCESS, payload: { team: res } });
-      toggleModal(getState().routing.locationBeforeTransitions.pathname, false);
+      toggleModal(location.hash, false);
     })
     .catch((error) => {
       dispatch({ type: ADD_TEAM_ERROR, payload: { addTeamError: error.message } });

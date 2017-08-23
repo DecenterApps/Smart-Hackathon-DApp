@@ -73,7 +73,7 @@ AdminTeams.propTypes = {
   teams: PropTypes.shape({
     isFetching: PropTypes.bool.isRequired,
     teams: PropTypes.array,
-    error: PropTypes.object,
+    error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]).isRequired,
   }),
   fetchTeams: PropTypes.func.isRequired
 };

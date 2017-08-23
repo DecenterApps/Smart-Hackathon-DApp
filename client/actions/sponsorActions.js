@@ -38,9 +38,9 @@ const sponsorsFormValidator = (values) => {
   return errors;
 };
 
-const submitAddSponsorsForm = (sponsor) => (dispatch, getState) => {
+const submitAddSponsorsForm = (sponsor) => (dispatch) => {
   dispatch({ type: ADD_SPONSOR });
-  console.log(sponsor, 'SPONSOR');
+
   eth._contributeToPrizePool(
     sponsor.name,
     parseFloat(sponsor.amount),
@@ -49,7 +49,7 @@ const submitAddSponsorsForm = (sponsor) => (dispatch, getState) => {
   )
     .then((res) => {
       dispatch({ type: ADD_SPONSOR_SUCCESS, payload: { sponsor: res } });
-      toggleModal(getState().routing.locationBeforeTransitions.pathname, false);
+      toggleModal(location.hash, false);
     })
     .catch((error) => {
       dispatch({ type: ADD_SPONSOR_ERROR, payload: { addSponsorError: error.message } });

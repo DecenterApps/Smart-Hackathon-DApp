@@ -1,386 +1,318 @@
 {
   "abi": [
     {
-      "constant": true,
-      "inputs": [],
-      "name": "currentPeriod",
-      "outputs": [
+      "constant":true,
+      "inputs":[
+
+      ],
+      "name":"currentPeriod",
+      "outputs":[
         {
-          "name": "",
-          "type": "uint8"
+          "name":"",
+          "type":"uint8"
         }
       ],
-      "payable": false,
-      "type": "function"
+      "payable":false,
+      "type":"function"
     },
     {
-      "constant": true,
-      "inputs": [],
-      "name": "totalContribution",
-      "outputs": [
+      "constant":true,
+      "inputs":[
+
+      ],
+      "name":"totalContribution",
+      "outputs":[
         {
-          "name": "",
-          "type": "uint256"
+          "name":"",
+          "type":"uint256"
         }
       ],
-      "payable": false,
-      "type": "function"
+      "payable":false,
+      "type":"function"
     },
     {
-      "constant": false,
-      "inputs": [
+      "constant":false,
+      "inputs":[
         {
-          "name": "_name",
-          "type": "string"
+          "name":"_name",
+          "type":"string"
         },
         {
-          "name": "_siteUrl",
-          "type": "string"
+          "name":"_siteUrl",
+          "type":"string"
         },
         {
-          "name": "_logoUrl",
-          "type": "string"
+          "name":"_logoUrl",
+          "type":"string"
         }
       ],
-      "name": "contributeToPrizePool",
-      "outputs": [],
-      "payable": true,
-      "type": "function"
+      "name":"contributeToPrizePool",
+      "outputs":[
+
+      ],
+      "payable":true,
+      "type":"function"
     },
     {
-      "constant": true,
-      "inputs": [
-        {
-          "name": "",
-          "type": "uint256"
-        }
+      "constant":false,
+      "inputs":[
+
       ],
-      "name": "teamAddresses",
-      "outputs": [
-        {
-          "name": "",
-          "type": "address"
-        }
+      "name":"sendRemainingEtherToOwner",
+      "outputs":[
+
       ],
-      "payable": false,
-      "type": "function"
+      "payable":false,
+      "type":"function"
     },
     {
-      "constant": false,
-      "inputs": [],
-      "name": "sendRemainingEtherToOwner",
-      "outputs": [],
-      "payable": false,
-      "type": "function"
+      "constant":false,
+      "inputs":[
+        {
+          "name":"_name",
+          "type":"string"
+        },
+        {
+          "name":"_teamAddress",
+          "type":"address"
+        },
+        {
+          "name":"_memberNames",
+          "type":"string"
+        },
+        {
+          "name":"_rewardEligible",
+          "type":"bool"
+        }
+      ],
+      "name":"registerTeam",
+      "outputs":[
+
+      ],
+      "payable":false,
+      "type":"function"
     },
     {
-      "constant": false,
-      "inputs": [
+      "constant":false,
+      "inputs":[
         {
-          "name": "_name",
-          "type": "string"
+          "name":"_name",
+          "type":"string"
         },
         {
-          "name": "_teamAddress",
-          "type": "address"
-        },
-        {
-          "name": "_memberNames",
-          "type": "string"
-        },
-        {
-          "name": "_rewardEligible",
-          "type": "bool"
+          "name":"_ethAddress",
+          "type":"address"
         }
       ],
-      "name": "registerTeam",
-      "outputs": [],
-      "payable": false,
-      "type": "function"
+      "name":"registerJuryMember",
+      "outputs":[
+
+      ],
+      "payable":false,
+      "type":"function"
     },
     {
-      "constant": false,
-      "inputs": [
+      "constant":false,
+      "inputs":[
         {
-          "name": "_name",
-          "type": "string"
-        },
-        {
-          "name": "_ethAddress",
-          "type": "address"
+          "name":"_sortedTeams",
+          "type":"address[]"
         }
       ],
-      "name": "registerJuryMember",
-      "outputs": [],
-      "payable": false,
-      "type": "function"
+      "name":"payoutPrizes",
+      "outputs":[
+
+      ],
+      "payable":false,
+      "type":"function"
     },
     {
-      "constant": false,
-      "inputs": [
+      "constant":true,
+      "inputs":[
         {
-          "name": "_sortedTeams",
-          "type": "address[]"
+          "name":"_address",
+          "type":"address"
         }
       ],
-      "name": "payoutPrizes",
-      "outputs": [],
-      "payable": false,
-      "type": "function"
+      "name":"getUserType",
+      "outputs":[
+        {
+          "name":"",
+          "type":"string"
+        }
+      ],
+      "payable":false,
+      "type":"function"
     },
     {
-      "constant": true,
-      "inputs": [
-        {
-          "name": "_address",
-          "type": "address"
-        }
+      "constant":false,
+      "inputs":[
+
       ],
-      "name": "getUserType",
-      "outputs": [
-        {
-          "name": "",
-          "type": "string"
-        }
+      "name":"switchToNextPeriod",
+      "outputs":[
+
       ],
-      "payable": false,
-      "type": "function"
+      "payable":false,
+      "type":"function"
     },
     {
-      "constant": true,
-      "inputs": [
-        {
-          "name": "",
-          "type": "uint256"
-        }
+      "constant":false,
+      "inputs":[
+
       ],
-      "name": "sponsors",
-      "outputs": [
-        {
-          "name": "name",
-          "type": "string"
-        },
-        {
-          "name": "siteUrl",
-          "type": "string"
-        },
-        {
-          "name": "logoUrl",
-          "type": "string"
-        },
-        {
-          "name": "contribution",
-          "type": "uint256"
-        }
+      "name":"restartPeriod",
+      "outputs":[
+
       ],
-      "payable": false,
-      "type": "function"
+      "payable":false,
+      "type":"function"
     },
     {
-      "constant": true,
-      "inputs": [
+      "constant":false,
+      "inputs":[
         {
-          "name": "",
-          "type": "uint256"
+          "name":"_votes",
+          "type":"address[]"
         }
       ],
-      "name": "juryMembers",
-      "outputs": [
+      "name":"vote",
+      "outputs":[
+
+      ],
+      "payable":false,
+      "type":"function"
+    },
+    {
+      "inputs":[
+
+      ],
+      "payable":false,
+      "type":"constructor"
+    },
+    {
+      "anonymous":false,
+      "inputs":[
         {
-          "name": "",
-          "type": "address"
+          "indexed":false,
+          "name":"newPeriod",
+          "type":"uint8"
         }
       ],
-      "payable": false,
-      "type": "function"
+      "name":"PeriodChanged",
+      "type":"event"
     },
     {
-      "constant": false,
-      "inputs": [],
-      "name": "switchToNextPeriod",
-      "outputs": [],
-      "payable": false,
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [],
-      "name": "restartPeriod",
-      "outputs": [],
-      "payable": false,
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [
+      "anonymous":false,
+      "inputs":[
         {
-          "name": "",
-          "type": "address"
+          "indexed":false,
+          "name":"teamName",
+          "type":"string"
+        },
+        {
+          "indexed":false,
+          "name":"teamAddress",
+          "type":"address"
+        },
+        {
+          "indexed":false,
+          "name":"memberNames",
+          "type":"string"
+        },
+        {
+          "indexed":false,
+          "name":"rewardEligible",
+          "type":"bool"
         }
       ],
-      "name": "teams",
-      "outputs": [
-        {
-          "name": "name",
-          "type": "string"
-        },
-        {
-          "name": "memberNames",
-          "type": "string"
-        },
-        {
-          "name": "score",
-          "type": "uint256"
-        },
-        {
-          "name": "rewardEligible",
-          "type": "bool"
-        }
-      ],
-      "payable": false,
-      "type": "function"
+      "name":"TeamRegistered",
+      "type":"event"
     },
     {
-      "constant": false,
-      "inputs": [
+      "anonymous":false,
+      "inputs":[
         {
-          "name": "_votes",
-          "type": "address[]"
+          "indexed":false,
+          "name":"juryMemberName",
+          "type":"string"
+        },
+        {
+          "indexed":false,
+          "name":"juryMemberAddress",
+          "type":"address"
         }
       ],
-      "name": "vote",
-      "outputs": [],
-      "payable": false,
-      "type": "function"
+      "name":"JuryMemberAdded",
+      "type":"event"
     },
     {
-      "inputs": [],
-      "payable": false,
-      "type": "constructor"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
+      "anonymous":false,
+      "inputs":[
         {
-          "indexed": false,
-          "name": "newPeriod",
-          "type": "uint8"
+          "indexed":false,
+          "name":"sponsorName",
+          "type":"string"
+        },
+        {
+          "indexed":false,
+          "name":"sponsorSite",
+          "type":"string"
+        },
+        {
+          "indexed":false,
+          "name":"sponsorLogoUrl",
+          "type":"string"
+        },
+        {
+          "indexed":false,
+          "name":"amount",
+          "type":"uint256"
         }
       ],
-      "name": "PeriodChanged",
-      "type": "event"
+      "name":"SponsorshipReceived",
+      "type":"event"
     },
     {
-      "anonymous": false,
-      "inputs": [
+      "anonymous":false,
+      "inputs":[
         {
-          "indexed": false,
-          "name": "teamName",
-          "type": "string"
+          "indexed":false,
+          "name":"juryMemberName",
+          "type":"string"
         },
         {
-          "indexed": false,
-          "name": "teamAddress",
-          "type": "address"
+          "indexed":false,
+          "name":"teamAddress",
+          "type":"address"
         },
         {
-          "indexed": false,
-          "name": "memberNames",
-          "type": "string"
-        },
-        {
-          "indexed": false,
-          "name": "rewardEligible",
-          "type": "bool"
+          "indexed":false,
+          "name":"points",
+          "type":"uint256"
         }
       ],
-      "name": "TeamRegistered",
-      "type": "event"
+      "name":"VoteReceived",
+      "type":"event"
     },
     {
-      "anonymous": false,
-      "inputs": [
+      "anonymous":false,
+      "inputs":[
         {
-          "indexed": false,
-          "name": "juryMemberName",
-          "type": "string"
+          "indexed":false,
+          "name":"teamName",
+          "type":"string"
         },
         {
-          "indexed": false,
-          "name": "juryMemberAddress",
-          "type": "address"
+          "indexed":false,
+          "name":"amount",
+          "type":"uint256"
         }
       ],
-      "name": "JuryMemberAdded",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "name": "sponsorName",
-          "type": "string"
-        },
-        {
-          "indexed": false,
-          "name": "sponsorSite",
-          "type": "string"
-        },
-        {
-          "indexed": false,
-          "name": "sponsorLogoUrl",
-          "type": "string"
-        },
-        {
-          "indexed": false,
-          "name": "amount",
-          "type": "uint256"
-        }
-      ],
-      "name": "SponsorshipReceived",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "name": "juryMemberName",
-          "type": "string"
-        },
-        {
-          "indexed": false,
-          "name": "teamAddress",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "name": "points",
-          "type": "uint256"
-        }
-      ],
-      "name": "VoteReceived",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "name": "teamName",
-          "type": "string"
-        },
-        {
-          "indexed": false,
-          "name": "amount",
-          "type": "uint256"
-        }
-      ],
-      "name": "PrizePaid",
-      "type": "event"
+      "name":"PrizePaid",
+      "type":"event"
     }
   ],
-  "contractAddress": "0x035454b747d987Bf29320a9f0AE7De824255dE8c",
+  "contractAddress": "0x41a570D9D6A7B4EC755fcf7750b39Da3589BdA19",
   "startingBlock": 200000
 }
