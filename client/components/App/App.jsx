@@ -4,8 +4,6 @@ import Footer from '../Footer/Footer';
 
 import Header from '../Header/index.jsx';
 
-console.log(eth);
-
 const styles = require('./app.scss');
 
 const App = () => (

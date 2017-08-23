@@ -12,8 +12,7 @@ let hackathonContract;
 
 window.onload = () => {
   hackathonContract = web3.eth.contract(contract.abi).at(contract.contractAddress);
-  console.log(hackathonContract);
-  console.log('###########');
+  // console.log(hackathonContract);
 };
 
 export const getWeb3Status = () =>
@@ -292,9 +291,10 @@ export const getUserType = () =>
   new Promise((resolve, reject) => {
     hackathonContract.getUserType(getAccount(), (error, result) => {
       if (error) {
-        return reject({
-          message: error,
-        });
+        console.log(error);
+        // return reject({
+        //   message: error,
+        // });
       }
 
       return resolve(result);
@@ -302,8 +302,8 @@ export const getUserType = () =>
   });
 
 setTimeout(() => {
-  // getUserType()
-  //   .then(data => console.log(data))
-  //   .catch(error => console.error(error));
+  getUserType()
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
 }, 1000);
 

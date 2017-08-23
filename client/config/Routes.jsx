@@ -11,20 +11,43 @@ import AdminJudges from '../components/Admin/AdminJudges/index.jsx';
 import AdminChangePhase from '../components/Admin/AdminChangePhase/AdminChangePhase';
 
 const myRouter = ({ store, history }) => (
-  <Provider store={store}>
-    <Router history={history}>
-      <Route path="/" component={App} />
-      <Route path="/admin" component={Admin}>
-        <IndexRoute component={AdminTeams} />
-        <Route path="teams" component={AdminTeams} />
-        <Route path="sponsors" component={AdminSponsors} />
-        <Route path="judges" component={AdminJudges} />
-        <Route path="change-period" component={AdminChangePhase} />
-      </Route>
-      <Route path="/jury" component={Jury} />
-      <Route path="*" component={App} />
-    </Router>
-  </Provider>
+  <div>
+    {
+      store.getState().user.isDetermined &&
+      store.getState().user.type === 'admin' &&
+      <Provider store={store}>
+        <Router history={history}>
+          <Route path="/" component={Admin}>
+            <IndexRoute component={AdminTeams} />
+            <Route path="teams" component={AdminTeams} />
+            <Route path="sponsors" component={AdminSponsors} />
+            <Route path="judges" component={AdminJudges} />
+          </Route>
+          <Route path="*" component={Admin} />
+        </Router>
+      </Provider>
+    }
+    {
+      store.getState().user.isDetermined &&
+      store.getState().user.type === 'other' &&
+      <Provider store={store}>
+        <Router history={history}>
+          <Route path="/" component={App} />
+          <Route path="*" component={App} />
+        </Router>
+      </Provider>
+    }
+    {
+      store.getState().user.isDetermined &&
+      store.getState().user.type === 'jury' &&
+      <Provider store={store}>
+        <Router history={history}>
+          <Route path="/" component={Jury} />
+          <Route path="*" component={App} />
+        </Router>
+      </Provider>
+    }
+  </div>
 );
 
 myRouter.propTypes = {
