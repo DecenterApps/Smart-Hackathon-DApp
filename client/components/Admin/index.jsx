@@ -1,9 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import AdminHeader from '../Header/AdminHeader/index.jsx';
 import ModalWrapper from '../Modals/ModalWrapper/ModalWrapper';
 import OpenModalButton from '../../components/OpenModalButton/OpenModalButton';
+import Footer from '../Footer/Footer';
 
 require('./_index.scss');
 
@@ -24,6 +24,7 @@ const Admin = ({ children }) => (
       { children }
       <ModalWrapper />
     </div>
+    <Footer />
   </div>
 );
 

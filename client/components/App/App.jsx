@@ -1,5 +1,6 @@
 import React from 'react';
 import * as eth from '../../modules/ethereumService';
+import Footer from '../Footer/Footer';
 
 import Header from '../Header/index.jsx';
 
@@ -13,6 +14,8 @@ const App = () => (
     <div className="container white hero">
       <h1 className="hero">Takmičenje još nije počelo</h1>
     </div>
+
+    <Footer />
   </div>
 );
 
