@@ -23,6 +23,7 @@ const isURL = (str) => {
 const sponsorsFormValidator = (values) => {
   const errors = {};
 
+  if (Object.keys(values).length === 0) return {};
   if (!values.name) errors.name = 'Obavezno';
   if (!values.amount) errors.amount = 'Obavezno';
   if (!values.logoUrl) errors.logoUrl = 'Obavezno';
@@ -30,14 +31,16 @@ const sponsorsFormValidator = (values) => {
 
   errors.logoUrl = !isUriImage(values.logoUrl);
   errors.websiteUrl = !isURL(values.websiteUrl);
-  errors.amount = isNaN(parseFloat(values.amount));
+  const commaError = values.amount && values.amount.indexOf(',') > 0;
+  const nanError = isNaN(parseFloat(values.amount));
+  errors.amount = commaError || nanError;
 
   return errors;
 };
 
 const submitAddSponsorsForm = (sponsor) => (dispatch, getState) => {
   dispatch({ type: ADD_SPONSOR });
-
+  console.log(sponsor, 'SPONSOR');
   eth._contributeToPrizePool(
     sponsor.name,
     parseFloat(sponsor.amount),
