@@ -7,7 +7,7 @@ import CubeLoader from '../../Decorative/CubeLoader/CubeLoader';
 
 const styles = require('../../FormComonent/forms.scss');
 
-let SponsorsTeamsForm = ({ handleSubmit, pristine, submittingForm, invalid, addSponsorError }) => ( // eslint-disable-line
+let SponsorsTeamsForm = ({ handleSubmit, pristine, submittingForm, invalid, addSponsorError, submitText, submitTextSubmitting }) => ( // eslint-disable-line
   <form className={styles['authentication-form']} onSubmit={handleSubmit}>
     <Field
       name="name"
@@ -57,10 +57,15 @@ let SponsorsTeamsForm = ({ handleSubmit, pristine, submittingForm, invalid, addS
       disabled={pristine || submittingForm || invalid}
     >
       { submittingForm && <CubeLoader /> }
-      { submittingForm ? 'Dodaje se' : 'Dodaj' }
+      { submittingForm ? submitTextSubmitting : submitText }
     </button>
   </form>
 );
+
+SponsorsTeamsForm.defaultProps = {
+  submitTextSubmitting: 'Dodaje se',
+  submitText: 'Dodaj',
+};
 
 const mapStateToProps = (state) => ({
   submittingForm: state.sponsors.submitting,
