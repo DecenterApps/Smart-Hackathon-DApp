@@ -34,6 +34,7 @@ const checkUser = () => (dispatch) => {
   dispatch({ type: USER_CHECKING });
   eth.getUserType()
     .then((res) => {
+      console.log(res);
       dispatch({
         type: USER_FOUND,
         userType: res

@@ -1,4 +1,12 @@
-import { JUDGES_FETCH, JUDGES_SUCCESS, JUDGES_ERROR, ADD_JUDGE, ADD_JUDGE_SUCCESS, ADD_JUDGE_ERROR } from './types';
+import {
+  NEW_JUDGE,
+  JUDGES_FETCH,
+  JUDGES_SUCCESS,
+  JUDGES_ERROR,
+  ADD_JUDGE,
+  ADD_JUDGE_SUCCESS,
+  ADD_JUDGE_ERROR
+} from './types';
 import { toggleModal } from './modalsActions';
 
 import * as eth from '../modules/ethereumService';
@@ -31,7 +39,6 @@ const fetchJudges = () => (dispatch) => {
   dispatch({ type: JUDGES_FETCH });
   eth.getJuries()
     .then((res) => {
-      console.log(res);
       dispatch({
         type: JUDGES_SUCCESS,
         judges: res
@@ -46,6 +53,21 @@ const fetchJudges = () => (dispatch) => {
     });
 };
 
+const judgeEventListener = () => (dispatch) => {
+  eth.JuryMemberAddedEvent()
+    .then(data => {
+      dispatch({
+        type: NEW_JUDGE,
+        event: data,
+      });
+    })
+    .catch(error => {
+      console.log(error);
+    });
+};
+
 module.exports = {
-  fetchJudges, judgesFormValidator, submitAddJudgesForm
+  fetchJudges,
+  judgesFormValidator,
+  submitAddJudgesForm
 };
