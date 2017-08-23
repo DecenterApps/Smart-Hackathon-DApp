@@ -4,7 +4,8 @@ const INITIAL_STATE = {
   isFetching: true,
   teams: [],
   submitting: false,
-  addTeamError: false
+  addTeamError: false,
+  error: false
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -19,7 +20,8 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isFetching: false,
-        teams: action.teams
+        teams: action.teams,
+        error: false,
       };
 
     case TEAMS_ERROR:
