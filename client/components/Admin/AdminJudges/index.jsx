@@ -68,7 +68,7 @@ AdminJudges.propTypes = {
   judges: PropTypes.shape({
     judges: PropTypes.array,
     isFetching: PropTypes.bool,
-    error: PropTypes.object,
+    error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   }),
   fetchJudges: PropTypes.func.isRequired,
 };
