@@ -1,0 +1,31 @@
+.table-header{
+  padding: 26px 21px 10px 21px;
+  display: flex;
+
+  .title{
+    font-size: 20px;
+    color: #212121;
+    margin-bottom: 8px;
+    line-height: 20px;
+  }
+
+  .subtitle {
+    color: #757575;
+    font-size: 14px;
+    line-height: 14px;
+  }
+
+  .submit-button{
+    margin-left: auto;
+    width: 100px;
+    height: 38px;
+    background-color: #673AB7;
+    border-radius: 2px;
+    font-size: 13px;
+    color: #fff;
+
+    &:hover {
+      background-color: darken(#673AB7, 5);
+    }
+  }
+}

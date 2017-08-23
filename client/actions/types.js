@@ -10,6 +10,8 @@ export const USER_FOUND = 'user_found';
 export const TEAMS_FETCH = 'teams_fetch';
 export const TEAMS_SUCCESS = 'teams_success';
 export const TEAMS_ERROR = 'teams_error';
+export const TEAM_UP = 'team_up';
+export const TEAM_DOWN = 'team_down';
 
 export const ADD_SPONSOR = 'add_sponsor';
 export const ADD_SPONSOR_SUCCESS = 'add_sponsor_success';

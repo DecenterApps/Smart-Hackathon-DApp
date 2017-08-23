@@ -1,4 +1,13 @@
-import { TEAMS_FETCH, TEAMS_SUCCESS, TEAMS_ERROR, ADD_TEAM, ADD_TEAM_ERROR, ADD_TEAM_SUCCESS } from '../actions/types';
+import {
+  TEAM_UP,
+  TEAM_DOWN,
+  TEAMS_FETCH,
+  TEAMS_SUCCESS,
+  TEAMS_ERROR,
+  ADD_TEAM,
+  ADD_TEAM_ERROR,
+  ADD_TEAM_SUCCESS
+} from '../actions/types';
 
 const INITIAL_STATE = {
   isFetching: true,
@@ -48,6 +57,28 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         submitting: false,
         addTeamError: action.payload.addTeamError
+      };
+
+    case TEAM_UP:
+      return {
+        ...state,
+        teams: [
+          ...state.teams.slice(0, action.index - 1),
+          state.teams[action.index],
+          state.teams[action.index - 1],
+          ...state.teams.slice(action.index + 1),
+        ]
+      };
+
+    case TEAM_DOWN:
+      return {
+        ...state,
+        teams: [
+          ...state.teams.slice(0, action.index),
+          state.teams[action.index + 1],
+          state.teams[action.index],
+          ...state.teams.slice(action.index + 2),
+        ]
       };
 
     default:

@@ -125,9 +125,24 @@ $highlight: #673AB7;
   }
   th {
     font-size: 16px;
+
+    &.order {
+      font-size: 14px;
+      color: #95989A;
+      font-weight: normal;
+    }
+
   }
   td {
     font-size: 14px;
     color: #777;
+  }
+
+  .clickable {
+    cursor: pointer;
+
+    &:active{
+      opacity: 0.8;
+    }
   }
 }
