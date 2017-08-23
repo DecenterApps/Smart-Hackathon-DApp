@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Modal } from 'react-modal-bootstrap';
-import { toggleModal } from '../../../actions/modalsActions';
+import toggleModal from '../../../actions/modalsActions';
 import CloseIcon from '../../Decorative/CloseIcon/CloseIcon';
 
 require('./modalWrapper.scss');

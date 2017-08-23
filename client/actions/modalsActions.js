@@ -4,7 +4,7 @@ import JudgeModal from '../components/Modals/JudgeModal';
 import teamModal from '../components/Modals/TeamModal';
 import sponsorModal from '../components/Modals/SponsorModal';
 
-const toggleModal = (routePath, state) => (
+export default (routePath, state) => (
   (dispatch) => {
     switch (routePath) {
       case '#/admin/teams':
@@ -24,5 +24,3 @@ const toggleModal = (routePath, state) => (
     }
   }
 );
-
-module.exports = { toggleModal };

@@ -51,7 +51,6 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         submitting: false,
         addTeamError: false,
-        teams: [...state.teams, action.payload.team]
       };
 
     case ADD_TEAM_ERROR:

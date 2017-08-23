@@ -50,9 +50,9 @@ export default (state = INITIAL_STATE, action) => {
 
     case ADD_JUDGE_SUCCESS:
       return {
+        ...state,
         submitting: false,
         addJudgeError: false,
-        sponsors: [...state.judges, action.payload.judges]
       };
 
     case ADD_JUDGE_ERROR:

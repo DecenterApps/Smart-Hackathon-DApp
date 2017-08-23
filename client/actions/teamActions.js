@@ -8,7 +8,7 @@ import {
   ADD_TEAM_ERROR,
   ADD_TEAM_SUCCESS
 } from './types';
-import { toggleModal } from './modalsActions';
+import toggleModal from './modalsActions';
 
 import * as eth from '../modules/ethereumService';
 
@@ -40,7 +40,7 @@ const submitAddTeamsForm = (team) => (dispatch) => {
   eth._registerTeam(team.name, team.address, team.teamMembers, team.excludeFromPrize)
     .then((res) => {
       dispatch({ type: ADD_TEAM_SUCCESS, payload: { team: res } });
-      toggleModal(location.hash, false);
+      dispatch(toggleModal(location.hash, false));
     })
     .catch((error) => {
       dispatch({ type: ADD_TEAM_ERROR, payload: { addTeamError: error.message } });
@@ -55,7 +55,12 @@ const fetchTeams = () => (dispatch) => {
       dispatch({ type: TEAMS_SUCCESS, teams: res });
     })
     .catch((error) => {
-      dispatch({ type: TEAMS_ERROR, error });
+      console.log(error);
+      const errorMessage = error.message ? error.message : error;
+      dispatch({
+        type: TEAMS_ERROR,
+        error: errorMessage
+      });
     });
 };
 

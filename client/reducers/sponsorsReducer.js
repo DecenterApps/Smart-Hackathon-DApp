@@ -38,9 +38,9 @@ export default (state = INITIAL_STATE, action) => {
 
     case ADD_SPONSOR_SUCCESS:
       return {
+        ...state,
         submitting: false,
         addSponsorError: false,
-        sponsors: [...state.sponsors, action.payload.sponsor]
       };
 
     case ADD_SPONSOR_ERROR:

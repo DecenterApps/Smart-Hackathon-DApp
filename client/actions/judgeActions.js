@@ -7,7 +7,7 @@ import {
   ADD_JUDGE_SUCCESS,
   ADD_JUDGE_ERROR
 } from './types';
-import { toggleModal } from './modalsActions';
+import toggleModal from './modalsActions';
 
 import * as eth from '../modules/ethereumService';
 
@@ -28,7 +28,7 @@ const submitAddJudgesForm = (judge) => (dispatch) => {
   eth._registerJuryMember(judge.name, judge.address)
     .then((res) => {
       dispatch({ type: ADD_JUDGE_SUCCESS, payload: { judge: res } });
-      toggleModal(location.hash, false);
+      dispatch(toggleModal(location.hash, false));
     })
     .catch((error) => {
       dispatch({ type: ADD_JUDGE_ERROR, payload: { addJudgeError: error.message } });
@@ -46,9 +46,10 @@ const fetchJudges = () => (dispatch) => {
     })
     .catch((error) => {
       console.log(error);
+      const errorMessage = error.message ? error.message : error;
       dispatch({
         type: JUDGES_ERROR,
-        error
+        error: errorMessage
       });
     });
 };
@@ -69,5 +70,6 @@ const judgeEventListener = () => (dispatch) => {
 module.exports = {
   fetchJudges,
   judgesFormValidator,
-  submitAddJudgesForm
+  submitAddJudgesForm,
+  judgeEventListener,
 };
