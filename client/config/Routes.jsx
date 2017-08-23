@@ -7,6 +7,7 @@ import Admin from '../components/Admin/index.jsx';
 import AdminTeams from '../components/Admin/AdminTeams/index.jsx';
 import AdminSponsors from '../components/Admin/AdminSponsors/index.jsx';
 import AdminJudges from '../components/Admin/AdminJudges/index.jsx';
+import AdminChangePhase from '../components/Admin/AdminChangePhase/AdminChangePhase';
 
 const myRouter = ({ store, history }) => (
   <Provider store={store}>
@@ -17,6 +18,7 @@ const myRouter = ({ store, history }) => (
         <Route path="teams" component={AdminTeams} />
         <Route path="sponsors" component={AdminSponsors} />
         <Route path="judges" component={AdminJudges} />
+        <Route path="change-period" component={AdminChangePhase} />
       </Route>
       <Route path="*" component={App} />
     </Router>

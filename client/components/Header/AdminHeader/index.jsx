@@ -7,11 +7,6 @@ import CubeLoader from '../../Decorative/CubeLoader/CubeLoader';
 
 require('./_index.scss');
 
-const mapPhases = (phase) => {
-  const phases = ['Registracija', 'Takmicenje', 'Glasanje', 'Kraj'];
-  return phases[phase];
-};
-
 class AdminHeader extends Component {
   constructor(props) {
     super(props);
@@ -29,7 +24,12 @@ class AdminHeader extends Component {
           <span className="admin-header-period">
             <span className="period">Period:</span>
             { this.props.isFetching && <CubeLoader /> }
-            { !this.props.isFetching && !this.props.phaseError && mapPhases(this.props.phase) }
+
+            {
+              !this.props.isFetching && !this.props.phaseError &&
+              <span>{this.props.phases[this.props.phase]}</span>
+            }
+
             {
               !this.props.isFetching &&
               this.props.phaseError &&
@@ -47,12 +47,14 @@ AdminHeader.propTypes = {
   $fetchPhase: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
   phaseError: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
+  phases: PropTypes.array.isRequired
 };
 
 const mapStateToProps = (state) => ({
   phase: state.user.phase,
   isFetching: state.user.isFetching,
-  phaseError: state.user.phaseError
+  phaseError: state.user.phaseError,
+  phases: state.user.phases
 });
 
 export default connect(mapStateToProps, { $fetchPhase: fetchPhase })(AdminHeader);

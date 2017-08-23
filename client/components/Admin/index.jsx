@@ -17,9 +17,10 @@ const Admin = ({ children }) => (
           <Link to="admin/teams" className={location.hash === '#/admin/' || location.hash === '#/admin' || location.hash === '#/admin/teams' ? 'active' : ''}>Timovi</Link>
           <Link to="admin/sponsors" className={location.hash === '#/admin/sponsors' ? 'active' : ''}>Sponzori</Link>
           <Link to="admin/judges" className={location.hash === '#/admin/judges' ? 'active' : ''}>Sudije</Link>
+          <Link to="admin/change-period" className={location.hash === '#/admin/change-period' ? 'active' : ''}>Promeni period</Link>
         </div>
         <div className="right-section">
-          <OpenModalButton text="Dodaj" />
+          {location.hash !== '#/admin/change-period' && <OpenModalButton text="Dodaj" /> }
         </div>
       </div>
       { children }
