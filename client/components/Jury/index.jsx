@@ -78,16 +78,22 @@ class Jury extends Component {
                     <th className="order">{i + 1}.</th>
                     <th>{team.args.teamName}</th>
                     <td>{team.args.memberNames}</td>
-                    <td>
-                      <span onClick={() => this.props.moveTeamUp(i)} role="button" tabIndex="-1">
-                        <img className="clickable" src={arrowup} alt="Move a team up" />
-                      </span>
-                    </td>
-                    <td>
-                      <span onClick={() => this.props.moveTeamDown(i)} role="button" tabIndex="-1">
-                        <img className="clickable" src={arrowdown} alt="Move a team down" />
-                      </span>
-                    </td>
+                    <span
+                      className="arrows"
+                      onClick={() => this.props.moveTeamDown(i)}
+                      role="button"
+                      tabIndex="-1"
+                    >
+                      <img className="clickable" src={arrowdown} alt="Move a team down" />
+                    </span>
+                    <span
+                      className="arrows"
+                      onClick={() => this.props.moveTeamUp(i)}
+                      role="button"
+                      tabIndex="-1"
+                    >
+                      <img className="clickable" src={arrowup} alt="Move a team up" />
+                    </span>
                   </tr>
                 </tbody>
               </table>
