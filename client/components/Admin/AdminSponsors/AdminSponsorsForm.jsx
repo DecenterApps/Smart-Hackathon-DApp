@@ -12,7 +12,7 @@ let SponsorsTeamsForm = ({ handleSubmit, pristine, submittingForm, invalid, addS
     <Field
       name="name"
       component={formGroup}
-      placeholder="Ime"
+      placeholder="Ime sponzora"
       type="text"
       wrapperClassName="form-item-wrapper"
       inputClassName="form-item"
@@ -22,7 +22,7 @@ let SponsorsTeamsForm = ({ handleSubmit, pristine, submittingForm, invalid, addS
     <Field
       name="amount"
       component={formGroup}
-      placeholder="Kolicina donacije (decimala ide iza tacke)"
+      placeholder="Kolicina ETH (decimala ide iza tacke)"
       type="text"
       wrapperClassName="form-item-wrapper"
       inputClassName="form-item"
