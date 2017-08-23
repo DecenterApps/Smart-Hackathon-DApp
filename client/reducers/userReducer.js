@@ -1,9 +1,12 @@
-import { PHASE_FETCH, PHASE_FETCH_SUCCESS, PHASE_FETCH_ERROR } from '../actions/types';
+import { PHASE_FETCH, PHASE_FETCH_SUCCESS, PHASE_FETCH_ERROR, CHANGE_PHASE, CHANGE_PHASE_SUCCESS, CHANGE_PHASE_ERROR } from '../actions/types';
 
 const INITIAL_STATE = {
+  phases: ['Registracija', 'Takmicenje', 'Glasanje', 'Kraj'],
   phase: 0,
   isFetching: false,
-  phaseError: false
+  phaseError: false,
+  changingError: false,
+  changingPhase: false,
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -26,7 +29,28 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isFetching: false,
-        phaseError: 'FAILED FETCHING'
+        phaseError: 'Došlo je do greške'
+      };
+
+    case CHANGE_PHASE:
+      return {
+        ...state,
+        changingPhase: true
+      };
+
+    case CHANGE_PHASE_SUCCESS:
+      return {
+        ...state,
+        changingPhase: false,
+        phase: action.payload.phase,
+        changingError: false
+      };
+
+    case CHANGE_PHASE_ERROR:
+      return {
+        ...state,
+        changingPhase: false,
+        changingError: 'Došlo je do greške pri promeni perioda'
       };
 
     default:

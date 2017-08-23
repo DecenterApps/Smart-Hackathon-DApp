@@ -131,9 +131,9 @@ export const VotesReceivedEvent = () =>
 
 /* Contract functions (prefixed by "_") */
 
-export const _goToNextPeriod = () =>
+export const _switchToNextPeriod = () =>
   new Promise((resolve, reject) => {
-    hackathonContract.goToNextPeriod((error, result) => {
+    hackathonContract.switchToNextPeriod((error, result) => {
       if (error) {
         return reject({
           message: error,

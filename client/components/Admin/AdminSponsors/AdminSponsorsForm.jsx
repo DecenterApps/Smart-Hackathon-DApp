@@ -20,16 +20,6 @@ let SponsorsTeamsForm = ({ handleSubmit, pristine, submittingForm, invalid, addS
     />
 
     <Field
-      name="address"
-      component={formGroup}
-      placeholder="Ethereum adresa"
-      type="text"
-      wrapperClassName="form-item-wrapper"
-      inputClassName="form-item"
-      errorClassName="form-item-error"
-    />
-
-    <Field
       name="amount"
       component={formGroup}
       placeholder="Kolicina donacije (decimala ide iza tacke)"

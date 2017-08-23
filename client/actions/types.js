@@ -27,3 +27,7 @@ export const JUDGES_ERROR = 'judges_error';
 export const PHASE_FETCH = 'phase_fetch';
 export const PHASE_FETCH_SUCCESS = 'phase_fetch_success';
 export const PHASE_FETCH_ERROR = 'phase_fetch_error';
+
+export const CHANGE_PHASE = 'change_phase';
+export const CHANGE_PHASE_SUCCESS = 'change_phase_success';
+export const CHANGE_PHASE_ERROR = 'change_phase_error';

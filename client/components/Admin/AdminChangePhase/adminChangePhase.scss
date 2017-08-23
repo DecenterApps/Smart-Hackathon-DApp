@@ -1,0 +1,36 @@
+.admin-change-phase {
+  padding: 50px 10px;
+  text-align: center;
+  font-size: 20px;
+
+  span {
+    margin-right: 10px;
+  }
+
+  button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background: #673AB7;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 3px;
+
+    &:hover {
+      background: lighten(#673AB7, 15);
+    }
+
+    &:disabled {
+      user-select: none;
+      cursor: not-allowed;
+      background: lighten(#673AB7, 30);
+    }
+  }
+
+  .change-error {
+    margin-top: 15px;
+    font-size: 16px;
+    color: #F57170;
+  }
+}
