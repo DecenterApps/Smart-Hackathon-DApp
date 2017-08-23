@@ -22,17 +22,7 @@ let SponsorsTeamsForm = ({ handleSubmit, pristine, submittingForm, invalid, addS
     <Field
       name="amount"
       component={formGroup}
-      placeholder="Kolicina ETH (decimala ide iza tacke)"
-      type="text"
-      wrapperClassName="form-item-wrapper"
-      inputClassName="form-item"
-      errorClassName="form-item-error"
-    />
-
-    <Field
-      name="logoUrl"
-      component={formGroup}
-      placeholder="Logo URL"
+      placeholder="Iznos u ETH"
       type="text"
       wrapperClassName="form-item-wrapper"
       inputClassName="form-item"
@@ -43,6 +33,16 @@ let SponsorsTeamsForm = ({ handleSubmit, pristine, submittingForm, invalid, addS
       name="websiteUrl"
       component={formGroup}
       placeholder="URL sajta"
+      type="text"
+      wrapperClassName="form-item-wrapper"
+      inputClassName="form-item"
+      errorClassName="form-item-error"
+    />
+
+    <Field
+      name="logoUrl"
+      component={formGroup}
+      placeholder="Logo URL"
       type="text"
       wrapperClassName="form-item-wrapper"
       inputClassName="form-item"
