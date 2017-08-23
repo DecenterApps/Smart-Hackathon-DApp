@@ -158,11 +158,11 @@ contract DecenterHackathon {
         administrator.transfer(this.balance);
     }
 
-    // Public function that returns user type for the sender's address
-    function getUserType() constant returns (string) {
-        if(msg.sender == administrator) {
+    // Public function that returns user type for the given address
+    function getUserType(address _address) constant returns (string) {
+        if(_address == administrator) {
             return "administrator";
-        } else if(bytes(juryMemberNames[msg.sender]).length > 0) {
+        } else if(bytes(juryMemberNames[_address]).length > 0) {
             return "jury";
         } else {
             return "other";
