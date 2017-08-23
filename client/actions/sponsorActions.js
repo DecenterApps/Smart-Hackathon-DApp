@@ -29,12 +29,10 @@ const sponsorsFormValidator = (values) => {
   const errors = {};
 
   if (!values.name) errors.name = 'Obavezno';
-  if (!values.address) errors.address = 'Obavezno';
   if (!values.amount) errors.amount = 'Obavezno';
   if (!values.logoUrl) errors.logoUrl = 'Obavezno';
   if (!values.websiteUrl) errors.websiteUrl = 'Obavezno';
 
-  errors.address = !web3.isAddress(values.address);
   errors.logoUrl = !isUriImage(values.logoUrl);
   errors.websiteUrl = !isURL(values.websiteUrl);
   errors.amount = isNaN(parseFloat(values.amount));
