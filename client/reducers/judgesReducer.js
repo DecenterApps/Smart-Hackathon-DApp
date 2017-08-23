@@ -1,6 +1,6 @@
 import {
   JUDGES_FETCH, JUDGES_SUCCESS, JUDGES_ERROR, ADD_JUDGE, ADD_JUDGE_SUCCESS,
-  ADD_JUDGE_ERROR
+  ADD_JUDGE_ERROR, NEW_JUDGE
 } from '../actions/types';
 
 
@@ -31,6 +31,15 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         isFetching: false,
         error: action.error
+      };
+
+    case NEW_JUDGE:
+      return {
+        ...state,
+        judges: [
+          ...state.judges,
+          action.event
+        ]
       };
 
     case ADD_JUDGE:

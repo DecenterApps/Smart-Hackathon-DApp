@@ -14,6 +14,7 @@ class AdminJudges extends Component {
   }
   componentWillMount() {
     this.props.fetchJudges();
+    // this.props.judgeEventListener();
   }
   render() {
     return (
@@ -71,6 +72,7 @@ AdminJudges.propTypes = {
     error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   }),
   fetchJudges: PropTypes.func.isRequired,
+  // judgeEventListener: PropTypes.func.isRequired,
 };
 AdminJudges.defaultProps = {
   judges: {

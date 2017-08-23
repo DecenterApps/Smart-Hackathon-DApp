@@ -62,7 +62,7 @@ export const JuryMemberAddedEvent = () =>
         }
 
         return resolve(event);
-      })
+      });
   });
 
 export const PeriodChangedEvent = () =>
@@ -241,18 +241,15 @@ export const getTeams = () =>
 
 export const getPhase = () =>
   new Promise((resolve, reject) => {
-    hackathonContract.PeriodChanged({}, {
-      fromBlock: contract.startingBlock, toBlock: 'latest'
-    })
-      .get((error, events) => {
-        if (error) {
-          return reject({
-            message: error,
-          });
-        }
+    hackathonContract.currentPeriod((error, data) => {
+      if (error) {
+        return reject({
+          message: error,
+        });
+      }
 
-        return resolve(events);
-      });
+      return resolve(data.toString(10));
+    });
   });
 
 export const getJuries = () =>
@@ -299,3 +296,8 @@ export const getUserType = () =>
       return resolve(result);
     });
   });
+
+// setTimeout(() => {
+//   getPhase()
+//     .then(data => console.log(data.toString(10)));
+// }, 1000);
