@@ -22,6 +22,7 @@ const myRouter = ({ store, history }) => (
             <Route path="teams" component={AdminTeams} />
             <Route path="sponsors" component={AdminSponsors} />
             <Route path="judges" component={AdminJudges} />
+            <Route path="change-period" component={AdminChangePhase} />
           </Route>
           <Route path="*" component={Admin} />
         </Router>
