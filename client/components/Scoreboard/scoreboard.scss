@@ -1,3 +1,67 @@
 .scoreboard {
+  .container {
+    padding: 0;
+  }
 
+  .container-title {
+    padding: 30px;
+    font-size: 20px;
+    border-bottom: 1px solid #dadada;
+  }
+
+  .teams {
+    .team {
+      padding: 15px 0;
+      border-bottom: 1px solid #dadada;
+      display: flex;
+      align-items: center;
+
+      span {
+        width: 100%;
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .rank {
+        font-size: 14px;
+        max-width: 50px;
+        text-align: center;
+        color: #95989A;
+      }
+
+      .medal {
+        text-align: center;
+        max-width: 55px;
+      }
+
+      .team-name-wrapper {
+        max-width: 220px;
+
+        .rewardable {
+          width: auto;
+          position: relative;
+          top: 5px;
+          margin-right: 10px;
+        }
+
+        .team-name {
+          width: auto;
+          max-width: 175px;
+          font-size: 14px;
+        }
+      }
+
+      .members {
+        color: #757575;
+        max-width: 411px;
+        font-size: 12px;
+      }
+    }
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
 }

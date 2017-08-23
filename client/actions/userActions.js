@@ -8,7 +8,8 @@ const fetchPhase = () => (dispatch) => {
 
   eth.getPhase()
     .then((res) => {
-      dispatch({ type: PHASE_FETCH_SUCCESS, payload: { phase: res.length } });
+      const phase = parseFloat(res[res.length - 1].args.newPeriod.toString());
+      dispatch({ type: PHASE_FETCH_SUCCESS, payload: { phase } });
     })
     .catch((error) => {
       dispatch({ type: PHASE_FETCH_ERROR, payload: { error } });
@@ -20,7 +21,8 @@ const changePhase = () => (dispatch) => {
 
   eth._switchToNextPeriod()
     .then((res) => {
-      dispatch({ type: CHANGE_PHASE_SUCCESS, payload: { phase: res } });
+      const phase = parseFloat(res[res.length - 1].args.newPeriod.toString());
+      dispatch({ type: CHANGE_PHASE_SUCCESS, payload: { phase } });
     })
     .catch((error) => {
       dispatch({ type: CHANGE_PHASE_ERROR, payload: { error: error.message } });
