@@ -26,13 +26,13 @@ contract DecenterHackathon {
     uint public totalContribution;
     Period public currentPeriod;
 
-    mapping(address => Team) public teams;
+    mapping(address => Team) teams;
     mapping(address => JuryMember) juryMembers;
 
     address administrator;
-    address[] public teamAddresses;
-    address[] public juryMemberAddresses;
-    Sponsor[] public sponsors;
+    address[] teamAddresses;
+    address[] juryMemberAddresses;
+    Sponsor[] sponsors;
 
     event PeriodChanged(Period newPeriod);
     event TeamRegistered(string teamName, address teamAddress, string memberNames, bool rewardEligible);
@@ -112,7 +112,7 @@ contract DecenterHackathon {
         SponsorshipReceived(_name, _siteUrl, _logoUrl, msg.value);
     }
 
-    // Jury members can vote during voting period.
+    // Jury members can vote during voting period
     // The _votes parameter should be an array of team addresses, sorted by score from highest to lowest based on jury member's preferences
     function vote(address[] _votes) onlyJury {
         require(currentPeriod == Period.Voting);
@@ -128,7 +128,6 @@ contract DecenterHackathon {
 
             teams[teamAddress].score += _points;
 
-
             VoteReceived(juryMembers[msg.sender].name, teamAddress, _points);
             _points--;
         }
@@ -137,7 +136,7 @@ contract DecenterHackathon {
         juryMembers[msg.sender].hasVoted = true;
     }
 
-    // Administrator can initiate prize payout during final period.
+    // Administrator can initiate prize payout during final period
     // The _sortedTeams parameter should be an array of correctly sorted teams by score, from highest to lowest
     function payoutPrizes(address[] _sortedTeams) onlyOwner {
         require(currentPeriod == Period.Final);
