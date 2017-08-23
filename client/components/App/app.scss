@@ -69,3 +69,67 @@ button {
     outline: 0;
   }
 }
+.app {
+  text-align: center;
+
+  .form-wrapper {
+    display: inline-block;
+    max-width: 390px;
+
+    .form-item {
+      background: transparent;
+      border-radius: 3px;
+      border: 2px solid #fff;
+      padding: 16px 20px;
+      text-align: left;
+      color: white;
+
+      $gray: #D4D4D4;
+
+      &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: $gray;
+      }
+      &::-moz-placeholder { /* Firefox 19+ */
+        color: $gray;
+      }
+      &:-ms-input-placeholder { /* IE 10+ */
+        color: $gray;
+      }
+      &:-moz-placeholder { /* Firefox 18- */
+        color: $gray;
+      }
+    }
+
+    .form-item-error {
+      border-color: #F57170;
+      outline-color: #F57170;
+    }
+
+    .submit-button {
+      background: white;
+      color: #FF9800;
+      font-weight: 700;
+
+      .sk-cube-grid .sk-cube {
+        background-color: #FF9800;
+      }
+
+      &:hover:not(:disabled) {
+        color: lighten(#FF9800, 15);
+      }
+
+      &:disabled {
+        user-select: none;
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
+    }
+  }
+
+  .form-name {
+    color: #fff;
+    font-size: 34px;
+    font-weight: 700;
+    margin: 80px 0 40px 0;
+  }
+}
