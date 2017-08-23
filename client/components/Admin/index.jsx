@@ -52,6 +52,13 @@ class Admin extends Component {
           this.props.user.type !== 'administrator' &&
           <Redirect to="/" />
         }
+
+        {
+          this.props.user.isDetermined &&
+          this.props.user.type === 'administrator' &&
+          (location.hash === '#/admin/' || location.hash === '#/admin') &&
+          <Redirect to="/admin/teams" />
+        }
       </div>
     );
   }
