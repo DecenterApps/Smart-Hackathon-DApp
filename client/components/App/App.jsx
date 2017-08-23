@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Footer from '../Footer/Footer';
-import AdminHeader from '../Header/index.jsx';
+import AdminHeader from '../Header/AdminHeader/index';
 import AdminSponsorsForm from '../Admin/AdminSponsors/AdminSponsorsForm';
 import * as userActions from '../../actions/userActions';
 
