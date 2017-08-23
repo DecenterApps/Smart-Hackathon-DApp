@@ -4,8 +4,6 @@ import Footer from '../Footer/Footer';
 import AdminHeader from '../Header/AdminHeader';
 import AdminSponsorsForm from '../Admin/AdminSponsors/AdminSponsorsForm';
 
-console.log(eth);
-
 const styles = require('./app.scss');
 
 const App = () => (

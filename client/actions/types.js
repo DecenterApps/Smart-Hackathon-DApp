@@ -4,6 +4,9 @@ export const ADD_TEAM = 'add_team';
 export const ADD_TEAM_SUCCESS = 'add_team_success';
 export const ADD_TEAM_ERROR = 'add_team_error';
 
+export const USER_CHECKING = 'user_checking';
+export const USER_FOUND = 'user_found';
+
 export const TEAMS_FETCH = 'teams_fetch';
 export const TEAMS_SUCCESS = 'teams_success';
 export const TEAMS_ERROR = 'teams_error';

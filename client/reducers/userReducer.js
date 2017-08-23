@@ -1,6 +1,10 @@
-import { PHASE_FETCH, PHASE_FETCH_SUCCESS, PHASE_FETCH_ERROR, CHANGE_PHASE, CHANGE_PHASE_SUCCESS, CHANGE_PHASE_ERROR } from '../actions/types';
+import { USER_CHECKING, USER_FOUND, PHASE_FETCH, PHASE_FETCH_SUCCESS, PHASE_FETCH_ERROR,
+  CHANGE_PHASE, CHANGE_PHASE_SUCCESS, CHANGE_PHASE_ERROR } from '../actions/types';
+
 
 const INITIAL_STATE = {
+  isDetermined: false,
+  type: 'other',
   phases: ['Registracija', 'Takmicenje', 'Glasanje', 'Kraj'],
   phase: 0,
   isFetching: false,
@@ -11,6 +15,17 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case USER_CHECKING:
+      return {
+        ...state,
+        isDetermined: false,
+      };
+    case USER_FOUND:
+      return {
+        ...state,
+        isDetermined: true,
+        type: action.userType,
+      };
     case PHASE_FETCH:
       return {
         ...state,
