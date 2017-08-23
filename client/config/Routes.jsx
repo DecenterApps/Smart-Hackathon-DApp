@@ -3,6 +3,7 @@ import { Router, Route, IndexRoute } from 'react-router';
 import React from 'react';
 import PropTypes from 'prop-types';
 import App from '../components/App/App.jsx';
+import Jury from '../components/Jury/index.jsx';
 import Admin from '../components/Admin/index.jsx';
 import AdminTeams from '../components/Admin/AdminTeams/index.jsx';
 import AdminSponsors from '../components/Admin/AdminSponsors/index.jsx';
@@ -20,6 +21,7 @@ const myRouter = ({ store, history }) => (
         <Route path="judges" component={AdminJudges} />
         <Route path="change-period" component={AdminChangePhase} />
       </Route>
+      <Route path="/jury" component={Jury} />
       <Route path="*" component={App} />
     </Router>
   </Provider>
