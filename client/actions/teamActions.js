@@ -1,4 +1,13 @@
-import { TEAMS_FETCH, TEAMS_SUCCESS, TEAMS_ERROR, ADD_TEAM, ADD_TEAM_ERROR, ADD_TEAM_SUCCESS } from './types';
+import {
+  TEAM_UP,
+  TEAM_DOWN,
+  TEAMS_FETCH,
+  TEAMS_SUCCESS,
+  TEAMS_ERROR,
+  ADD_TEAM,
+  ADD_TEAM_ERROR,
+  ADD_TEAM_SUCCESS
+} from './types';
 import { toggleModal } from './modalsActions';
 
 import * as eth from '../modules/ethereumService';
@@ -50,6 +59,47 @@ const fetchTeams = () => (dispatch) => {
     });
 };
 
+const moveTeamUp = (index) => {
+  if (index === 0) {
+    return {
+      type: '',
+    };
+  }
+
+  return {
+    type: TEAM_UP,
+    index
+  };
+};
+
+const moveTeamDown = (index) => (dispatch, getState) => {
+  if (index === getState().teams.teams.length - 1) {
+    return dispatch({
+      type: ''
+    });
+  }
+
+  return dispatch({
+    type: TEAM_DOWN,
+    index
+  });
+};
+
+const vote = (votes) => dispatch => {
+  eth._vote(votes)
+    .then(data => {
+
+    })
+    .catch(error => {
+
+    });
+};
+
 module.exports = {
-  fetchTeams, teamsFormValidator, submitAddTeamsForm
+  fetchTeams,
+  teamsFormValidator,
+  submitAddTeamsForm,
+  moveTeamUp,
+  moveTeamDown,
+  vote,
 };

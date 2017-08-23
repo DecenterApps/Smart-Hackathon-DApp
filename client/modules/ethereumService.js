@@ -291,19 +291,11 @@ export const getUserType = () =>
   new Promise((resolve, reject) => {
     hackathonContract.getUserType(getAccount(), (error, result) => {
       if (error) {
-        console.log(error);
-        // return reject({
-        //   message: error,
-        // });
+        return reject({
+          message: error,
+        });
       }
 
       return resolve(result);
     });
   });
-
-setTimeout(() => {
-  getUserType()
-    .then(data => console.log(data))
-    .catch(error => console.error(error));
-}, 1000);
-
