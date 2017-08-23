@@ -46,8 +46,4 @@ const checkUser = () => (dispatch) => {
     });
 };
 
-export default {
-  checkUser,
-  fetchPhase,
-  changePhase,
-};
+module.exports = { checkUser, fetchPhase, changePhase };
