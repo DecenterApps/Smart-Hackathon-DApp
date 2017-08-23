@@ -7,6 +7,7 @@ contract DecenterHackathon {
         string memberNames;
         uint score;
         bool rewardEligible;
+        bool submittedByAdmin;
     }
 
     struct JuryMember {
@@ -76,7 +77,8 @@ contract DecenterHackathon {
             name: _name,
             memberNames: _memberNames,
             score: 0,
-            rewardEligible: _rewardEligible
+            rewardEligible: _rewardEligible,
+            submittedByAdmin: false
         });
 
         teamAddresses.push(_teamAddress);
@@ -148,12 +150,18 @@ contract DecenterHackathon {
 
             // Teams must be sorted correctly
             require(i == _sortedTeams.length - 1 || teams[_sortedTeams[i + 1]].score <= teams[_sortedTeams[i]].score);
+
+            teams[_sortedTeams[i]].submittedByAdmin = true;
         }
 
         // Prizes are paid based on logarithmic scale, where first teams receives 1/2 of the prize pool, second 1/4 and so on
         uint prizePoolDivider = 2;
 
         for(i = 0; i < _sortedTeams.length; i++) {
+            // Make sure all teams are included in _sortedTeams array
+            // (i.e. the array should contain unique elements)
+            require(teams[_sortedTeams[i]].submittedByAdmin);
+
             uint _prizeAmount = totalContribution / prizePoolDivider;
 
             if(teams[_sortedTeams[i]].rewardEligible) {
