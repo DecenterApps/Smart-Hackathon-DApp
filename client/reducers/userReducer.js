@@ -18,7 +18,8 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isFetching: false,
-        phase: action.payload.phase
+        phase: action.payload.phase,
+        phaseError: false
       };
 
     case PHASE_FETCH_ERROR:

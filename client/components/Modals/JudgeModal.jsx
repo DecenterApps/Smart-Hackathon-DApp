@@ -3,7 +3,7 @@ import AdminJudgesForm from '../AdminJudges/AdminJudgesForm';
 
 const JudgeModal = () => (
   <div className="form-wrapper">
-    <div className="form-name">Dodaj Sponzora</div>
+    <div className="form-name">Dodaj Sudiju</div>
     <AdminJudgesForm />
   </div>
 );
