@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import Routes from './config/Routes.jsx';
 import initWeb3 from './config/initWeb3';
 import { history, store } from './config/storeGenerator';
+import ParticlesJson from './external/particlesConfig.json';
+
+particlesJS("particles-js", ParticlesJson); // eslint-disable-line
 
 const startApp = () => {
   initWeb3();
