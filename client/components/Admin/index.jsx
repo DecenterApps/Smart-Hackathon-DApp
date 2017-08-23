@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import AdminHeader from '../AdminHeader/index.jsx';
-import ModalWrapper from '../ModalWrapper/ModalWrapper';
+import AdminHeader from '../Header/AdminHeader/index.jsx';
+import ModalWrapper from '../Modals/ModalWrapper/ModalWrapper';
 import OpenModalButton from '../../components/OpenModalButton/OpenModalButton';
 
 require('./_index.scss');

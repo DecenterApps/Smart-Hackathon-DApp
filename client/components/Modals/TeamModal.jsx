@@ -1,5 +1,5 @@
 import React from 'react';
-import AdminTeamsForm from '../AdminTeams/AdminTeamsForm';
+import AdminTeamsForm from '../Admin/AdminTeams/AdminTeamsForm';
 
 const TeamModal = () => (
   <div className="form-wrapper">

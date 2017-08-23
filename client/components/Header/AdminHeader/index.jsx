@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchPhase } from '../../actions/userActions';
-import Header from '../Header/index.jsx';
-import CubeLoader from '../Decorative/CubeLoader/CubeLoader';
+import { fetchPhase } from '../../../actions/userActions';
+import Header from '../index.jsx';
+import CubeLoader from '../../Decorative/CubeLoader/CubeLoader';
 
 require('./_index.scss');
 

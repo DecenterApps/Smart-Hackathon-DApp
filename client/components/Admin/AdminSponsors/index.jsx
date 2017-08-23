@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import OpenModalButton from '../../components/OpenModalButton/OpenModalButton';
-import sponsorActions from '../../actions/sponsorActions';
-import Loader from '../Decorative/Loader/index.jsx';
+import OpenModalButton from '../../OpenModalButton/OpenModalButton';
+import sponsorActions from '../../../actions/sponsorActions';
+import Loader from '../../Decorative/Loader/index.jsx';
 
 class AdminSponsors extends Component {
   constructor(props) {

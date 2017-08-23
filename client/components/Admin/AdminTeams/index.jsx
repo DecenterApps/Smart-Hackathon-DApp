@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import DollarIcon from '../Decorative/DollarIcon/index.jsx';
-import Loader from '../Decorative/Loader/index.jsx';
-import teamActions from '../../actions/teamActions';
-import OpenModalButton from '../../components/OpenModalButton/OpenModalButton';
+import DollarIcon from '../../Decorative/DollarIcon/index.jsx';
+import Loader from '../../Decorative/Loader/index.jsx';
+import teamActions from '../../../actions/teamActions';
+import OpenModalButton from '../../OpenModalButton/OpenModalButton';
 
 require('./_index.scss');
 

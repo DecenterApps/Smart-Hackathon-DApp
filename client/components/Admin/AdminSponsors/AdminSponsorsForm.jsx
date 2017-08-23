@@ -1,11 +1,11 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import formGroup from '../FormComonent/FormComponent';
-import { sponsorsFormValidator, submitAddSponsorsForm } from '../../actions/sponsorActions';
-import CubeLoader from '../Decorative/CubeLoader/CubeLoader';
+import formGroup from '../../FormComonent/FormComponent';
+import { sponsorsFormValidator, submitAddSponsorsForm } from '../../../actions/sponsorActions';
+import CubeLoader from '../../Decorative/CubeLoader/CubeLoader';
 
-const styles = require('../FormComonent/forms.scss');
+const styles = require('../../FormComonent/forms.scss');
 
 let SponsorsTeamsForm = ({ handleSubmit, pristine, submittingForm, invalid, addSponsorError }) => ( // eslint-disable-line
   <form className={styles['authentication-form']} onSubmit={handleSubmit}>

@@ -4,9 +4,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import App from '../components/App/App.jsx';
 import Admin from '../components/Admin/index.jsx';
-import AdminTeams from '../components/AdminTeams/index.jsx';
-import AdminSponsors from '../components/AdminSponsors/index.jsx';
-import AdminJudges from '../components/AdminJudges/index.jsx';
+import AdminTeams from '../components/Admin/AdminTeams/index.jsx';
+import AdminSponsors from '../components/Admin/AdminSponsors/index.jsx';
+import AdminJudges from '../components/Admin/AdminJudges/index.jsx';
 
 const myRouter = ({ store, history }) => (
   <Provider store={store}>

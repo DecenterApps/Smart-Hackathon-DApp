@@ -1,5 +1,5 @@
 import React from 'react';
-import AdminJudgesForm from '../AdminJudges/AdminJudgesForm';
+import AdminJudgesForm from '../Admin/AdminJudges/AdminJudgesForm';
 
 const JudgeModal = () => (
   <div className="form-wrapper">
