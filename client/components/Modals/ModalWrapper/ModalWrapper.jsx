@@ -3,20 +3,20 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Modal } from 'react-modal-bootstrap';
 import { toggleModal } from '../../../actions/modalsActions';
+import CloseIcon from '../../Decorative/CloseIcon/CloseIcon';
 
 require('./modalWrapper.scss');
 
 const ModalWrapper = ({ isOpen, $toggleModal, currentModal, location, $style }) => (
   <Modal isOpen={isOpen} onRequestHide={$toggleModal} dialogStyles={$style}>
     <div className="modal-header">
-      <i
+      <span
         role="button"
         tabIndex={0}
-        className="material-icons"
         onClick={() => $toggleModal(location.pathname, false)}
       >
-        close
-      </i>
+        <CloseIcon />
+      </span>
     </div>
     <div className="modal-wrapper-body">
       { currentModal() }

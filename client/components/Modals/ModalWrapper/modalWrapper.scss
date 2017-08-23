@@ -2,10 +2,10 @@
   justify-content: flex-end;
   border-bottom: 0;
 
-  i {
+  span {
+    display: flex;
     cursor: pointer;
-    margin-right: 5px;
-    font-size: 30px;
+    margin: 5px 10px 0 0;
   }
 }
 
