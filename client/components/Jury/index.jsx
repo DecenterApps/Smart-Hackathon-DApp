@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import * as teamActions from '../../actions/teamActions';
 
 import Header from '../Header/';
+import Loader from '../Decorative/Loader/';
 import arrowup from './assets/001-arrows.png';
 import arrowdown from './assets/002-arrows-1.png';
 
@@ -44,12 +45,36 @@ class Jury extends Component {
             </div>
             <button onClick={this.voteForTeams} className="submit-button">SUBMIT</button>
           </div>
-          <table className="admin-table">
-            <tbody>
-              {
-                this.props.teams &&
-                this.props.teams.teams.map((team, i) => (
-                  <tr key={team.transactionHash}>
+          {
+            this.props.teams.isFetching &&
+            <div className="empty-section">
+              <h1><Loader color="#777" />Učitavanje</h1>
+            </div>
+          }
+          {
+            !this.props.teams.isFetching &&
+            this.props.teams.error &&
+            <div className="empty-section">
+              <h1>{this.props.teams.error.toString()}</h1>
+            </div>
+          }
+          {
+            !this.props.teams.isFetching &&
+            !this.props.teams.error &&
+            !this.props.teams.teams.length > 0 &&
+            <div className="empty-section">
+              <div className="">
+                <h1>Nema timova</h1>
+              </div>
+            </div>
+          }
+
+          {
+            this.props.teams &&
+            this.props.teams.teams.map((team, i) => (
+              <table key={team.transactionHash} className="admin-table">
+                <tbody>
+                  <tr>
                     <th className="order">{i + 1}.</th>
                     <th>{team.args.teamName}</th>
                     <td>{team.args.memberNames}</td>
@@ -64,10 +89,10 @@ class Jury extends Component {
                       </span>
                     </td>
                   </tr>
-                ))
-              }
-            </tbody>
-          </table>
+                </tbody>
+              </table>
+            ))
+          }
         </div>
       </div>
     );
