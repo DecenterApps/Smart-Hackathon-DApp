@@ -16,10 +16,7 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case USER_CHECKING:
-      return {
-        ...state,
-        isDetermined: false,
-      };
+      return state;
     case USER_FOUND:
       return {
         ...state,

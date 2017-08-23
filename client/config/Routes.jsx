@@ -1,5 +1,5 @@
 import { Provider } from 'react-redux';
-import { Router, Route, IndexRoute } from 'react-router';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import React from 'react';
 import PropTypes from 'prop-types';
 import App from '../components/App/App.jsx';
@@ -11,50 +11,25 @@ import AdminJudges from '../components/Admin/AdminJudges/index.jsx';
 import AdminChangePhase from '../components/Admin/AdminChangePhase/AdminChangePhase';
 import Scoreboard from '../components/Scoreboard/Scoreboard';
 
-const myRouter = ({ store, history }) => (
-  <div>
-    {
-      store.getState().user.isDetermined &&
-      store.getState().user.type === 'admin' &&
-      <Provider store={store}>
-        <Router history={history}>
-          <Route path="/" component={Admin}>
-            <IndexRoute component={AdminTeams} />
-            <Route path="teams" component={AdminTeams} />
-            <Route path="sponsors" component={AdminSponsors} />
-            <Route path="judges" component={AdminJudges} />
-            <Route path="change-period" component={AdminChangePhase} />
-          </Route>
-          <Route path="*" component={Admin} />
-        </Router>
-      </Provider>
-    }
-    {
-      store.getState().user.isDetermined &&
-      store.getState().user.type === 'other' &&
-      <Provider store={store}>
-        <Router history={history}>
-          <Route path="/" component={App} />
-          <Route path="*" component={App} />
-        </Router>
-      </Provider>
-    }
-    {
-      store.getState().user.isDetermined &&
-      store.getState().user.type === 'jury' &&
-      <Provider store={store}>
-        <Router history={history}>
-          <Route path="/" component={Jury} />
-          <Route path="*" component={App} />
-        </Router>
-      </Provider>
-    }
-  </div>
+const Routes = ({ store }) => (
+  <Provider store={store}>
+    <HashRouter>
+      <Switch>
+        <Route exact path="/" component={App} />
+        <Route path="/jury" component={Jury} />
+        <Admin>
+          <Route path="/admin/teams" component={AdminTeams} />
+          <Route path="/admin/sponsors" component={AdminSponsors} />
+          <Route path="/admin/judges" component={AdminJudges} />
+          <Route path="/admin/change-period" component={AdminChangePhase} />
+        </Admin>
+      </Switch>
+    </HashRouter>
+  </Provider>
 );
 
-myRouter.propTypes = {
+Routes.propTypes = {
   store: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired
 };
 
-export default myRouter;
+export default Routes;
