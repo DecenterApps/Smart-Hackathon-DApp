@@ -9,6 +9,11 @@ contract DecenterHackathon {
         bool rewardEligible;
     }
 
+    struct JuryMember {
+        string name;
+        bool hasVoted;
+    }
+
     struct Sponsor {
         string name;
         string siteUrl;
@@ -22,11 +27,11 @@ contract DecenterHackathon {
     Period public currentPeriod;
 
     mapping(address => Team) public teams;
-    mapping(address => string) juryMemberNames;
+    mapping(address => JuryMember) juryMembers;
 
     address administrator;
     address[] public teamAddresses;
-    address[] public juryMembers;
+    address[] public juryMemberAddresses;
     Sponsor[] public sponsors;
 
     event PeriodChanged(Period newPeriod);
@@ -42,7 +47,7 @@ contract DecenterHackathon {
     }
 
     modifier onlyJury {
-        require(bytes(juryMemberNames[msg.sender]).length > 0);
+        require(bytes(juryMembers[msg.sender].name).length > 0);
         _;
     }
 
@@ -82,8 +87,11 @@ contract DecenterHackathon {
     function registerJuryMember(string _name, address _ethAddress) onlyOwner {
         require(currentPeriod == Period.Registration);
 
-        juryMembers.push(_ethAddress);
-        juryMemberNames[_ethAddress] = _name;
+        juryMemberAddresses.push(_ethAddress);
+        juryMembers[_ethAddress] = JuryMember({
+            name: _name,
+            hasVoted: false
+        });
 
         JuryMemberAdded(_name, _ethAddress);
     }
@@ -108,21 +116,25 @@ contract DecenterHackathon {
     // The _votes parameter should be an array of team addresses, sorted by score from highest to lowest based on jury member's preferences
     function vote(address[] _votes) onlyJury {
         require(currentPeriod == Period.Voting);
+        require(juryMembers[msg.sender].hasVoted == false);
 
         uint _points = _votes.length;
 
         for(uint i = 0; i < _votes.length; i++) {
+            address teamAddress = _votes[i];
+
             // All submitted teams must be registered
-            require(bytes(teams[_votes[i]].name).length > 0);
+            require(bytes(teams[teamAddress].name).length > 0);
 
-            teams[_votes[i]].score += _points;
+            teams[teamAddress].score += _points;
 
-            VoteReceived(juryMemberNames[msg.sender], _votes[i], _points);
+
+            VoteReceived(juryMembers[msg.sender].name, teamAddress, _points);
             _points--;
         }
 
         // This will prevent jury members from voting more than once
-        juryMemberNames[msg.sender] = "";
+        juryMembers[msg.sender].hasVoted = true;
     }
 
     // Administrator can initiate prize payout during final period.
@@ -162,7 +174,7 @@ contract DecenterHackathon {
     function getUserType(address _address) constant returns (string) {
         if(_address == administrator) {
             return "administrator";
-        } else if(bytes(juryMemberNames[_address]).length > 0) {
+        } else if(bytes(juryMembers[_address].name) > 0) {
             return "jury";
         } else {
             return "other";
