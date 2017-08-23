@@ -67,7 +67,7 @@ AdminSponsors.propTypes = {
   sponsors: PropTypes.shape({
     sponsors: PropTypes.array,
     isFetching: PropTypes.bool,
-    error: PropTypes.object,
+    error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   }),
   fetchSponsors: PropTypes.func.isRequired
 };
