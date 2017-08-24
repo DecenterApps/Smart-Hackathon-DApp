@@ -14,7 +14,7 @@ const AdminOptions = ({
     <div className="admin-change-phase">
       {
         phase < lastPhaseIndex &&
-        <span>Go to next period:</span>
+        <span>Switch to the next period:</span>
       }
 
       {
