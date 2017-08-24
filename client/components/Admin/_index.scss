@@ -118,9 +118,16 @@ $highlight: #673AB7;
   }
 }
 
-.admin-table {
+.display-table {
   width: 100%;
   text-align: left;
+
+  tr {
+    border-top: 1px solid #eee;
+    &:last-child {
+      border-bottom: 1px solid #eee;
+    }
+  }
 
   th, td {
     padding: 20px 10px;
@@ -132,6 +139,8 @@ $highlight: #673AB7;
     &.rewardable {
       width: 40px;
       line-height: 10px;
+      padding-left: 20px;
+      padding-right: 20px;
     }
   }
   th {

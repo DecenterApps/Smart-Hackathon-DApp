@@ -47,7 +47,7 @@ class AdminJudges extends Component {
           !this.props.judges.isFetching &&
           !this.props.judges.error &&
           this.props.judges.judges.length > 0 &&
-          <table className="admin-table">
+          <table className="display-table">
             <tbody>
               {
                 this.props.judges.judges.map((judge) => (

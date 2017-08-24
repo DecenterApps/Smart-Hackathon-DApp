@@ -79,7 +79,7 @@ class Jury extends Component {
               {
                 this.props.teams &&
                 this.props.teams.teams.map((team, i) => (
-                  <table key={team.transactionHash} className="admin-table">
+                  <table key={team.transactionHash} className="display-table">
                     <tbody>
                       <tr>
                         <th className="order">{i + 1}.</th>
