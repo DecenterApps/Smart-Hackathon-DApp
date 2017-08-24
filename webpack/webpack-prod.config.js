@@ -33,10 +33,13 @@ module.exports = {
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: ['css-loader?modules&importLoaders=2&sourceMap&minimize=true', 'sass-loader?outputStyle=expanded&sourceMap=true&sourceMapContents=true', 'autoprefixer-loader?browsers=last 2 version']
+          use: ['css-loader?modules&importLoaders=2&localIdentName=[local]&sourceMap&minimize=true', 'sass-loader?outputStyle=expanded&sourceMap=true&sourceMapContents=true', 'autoprefixer-loader?browsers=last 2 version']
         })
       }
     ]
+  },
+  resolve: {
+    extensions: ['.js', '.jsx']
   },
   plugins: [
     new CleanPlugin([path.resolve('dist')], { root: path.resolve(__dirname, '../') }),
