@@ -25,7 +25,7 @@ const changePhase = () => (dispatch) => {
       dispatch({ type: CHANGE_PHASE_SUCCESS, payload: { phase } });
     })
     .catch((error) => {
-      dispatch({ type: CHANGE_PHASE_ERROR, payload: { error: error.message } });
+      dispatch({ type: CHANGE_PHASE_ERROR, payload: { error: error.message.toString() } });
     });
 };
 

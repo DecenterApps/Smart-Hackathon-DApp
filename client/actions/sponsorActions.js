@@ -58,7 +58,7 @@ const submitAddSponsorsForm = (sponsor) => (dispatch) => {
       dispatch(toggleModal(location.hash, false));
     })
     .catch((error) => {
-      dispatch({ type: ADD_SPONSOR_ERROR, payload: { addSponsorError: error.message } });
+      dispatch({ type: ADD_SPONSOR_ERROR, payload: { addSponsorError: error.message.toString() } });
     });
 };
 
@@ -73,7 +73,7 @@ const fetchSponsors = () => (dispatch) => {
     })
     .catch((error) => {
       console.log(error);
-      const errorMessage = error.message ? error.message : error;
+      const errorMessage = error.message ? error.message.toString() : error;
       dispatch({
         type: SPONSORS_ERROR,
         error: errorMessage

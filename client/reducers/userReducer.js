@@ -5,7 +5,7 @@ import { USER_CHECKING, USER_FOUND, PHASE_FETCH, PHASE_FETCH_SUCCESS, PHASE_FETC
 const INITIAL_STATE = {
   isDetermined: false,
   type: 'other',
-  phases: ['Registration', 'Competition', 'Voting', 'End'],
+  phases: ['Registration', 'Competition', 'Voting', 'Verification', 'End'],
   phase: 0,
   isFetching: false,
   phaseError: false,

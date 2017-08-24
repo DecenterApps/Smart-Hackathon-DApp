@@ -42,7 +42,7 @@ const submitAddTeamsForm = (team) => (dispatch) => {
       dispatch(toggleModal(location.hash, false));
     })
     .catch((error) => {
-      dispatch({ type: ADD_TEAM_ERROR, payload: { addTeamError: error.message } });
+      dispatch({ type: ADD_TEAM_ERROR, payload: { addTeamError: error.message.toString() } });
     });
 };
 
@@ -55,7 +55,7 @@ const fetchTeams = () => (dispatch) => {
     })
     .catch((error) => {
       console.log(error);
-      const errorMessage = error.message ? error.message : error;
+      const errorMessage = error.message ? error.message.toString() : error;
       dispatch({
         type: TEAMS_ERROR,
         error: errorMessage
