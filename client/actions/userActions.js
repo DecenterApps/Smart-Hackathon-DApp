@@ -8,7 +8,7 @@ import * as eth from '../modules/ethereumService';
 
 const payoutTeams = (sortedTeams) => (dispatch) => {
   dispatch({ type: SUBMIT_PAYOUT });
-
+  /*
   let sorted = true;
 
   for (let i = 0; i < sortedTeams.length - 1; i += 1) {
@@ -21,6 +21,7 @@ const payoutTeams = (sortedTeams) => (dispatch) => {
   if (!sorted) {
     dispatch({ type: SUBMIT_PAYOUT_ERROR });
   }
+  */
 
   const teamAddresses = sortedTeams.map((elem) => (elem.address));
 
@@ -28,7 +29,8 @@ const payoutTeams = (sortedTeams) => (dispatch) => {
     .then(() => {
       dispatch({ type: SUBMIT_PAYOUT_SUCCESS });
     })
-    .catch(() => {
+    .catch((error) => {
+      console.log(error);
       dispatch({ type: SUBMIT_PAYOUT_ERROR });
     });
 };

@@ -253,7 +253,8 @@ export const _vote = (votes) =>
 
 export const _payoutPrizes = (teamAddresses) =>
   new Promise((resolve, reject) => {
-    hackathonContract.contributeToPrizePool(
+    console.log(teamAddresses);
+    hackathonContract.payoutPrizes(
       teamAddresses,
       (error, result) => {
       if (error) {
