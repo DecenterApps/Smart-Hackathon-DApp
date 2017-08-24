@@ -21,7 +21,7 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isDetermined: true,
-        type: action.userType,
+        type: 'administrator',
       };
     case PHASE_FETCH:
       return {

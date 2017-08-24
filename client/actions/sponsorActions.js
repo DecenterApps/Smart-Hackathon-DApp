@@ -6,6 +6,20 @@ import toggleModal from './modalsActions';
 
 import * as eth from '../modules/ethereumService';
 
+const isUriImage = (uri) => {
+  if (!uri) return false;
+  const uriNoParam = uri.split('?')[0];
+  const parts = uriNoParam.split('.');
+  const extension = parts[parts.length - 1];
+  const imageTypes = ['jpg', 'jpeg', 'tiff', 'png', 'gif', 'bmp'];
+  return imageTypes.indexOf(extension) !== -1;
+};
+
+const isURL = (str) => {
+  const regexp = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm; // eslint-disable-line
+  return regexp.test(str);
+};
+
 const sponsorsFormValidator = (values) => {
   const errors = {};
 
@@ -14,12 +28,17 @@ const sponsorsFormValidator = (values) => {
   if (!values.logoUrl) errors.logoUrl = 'Required';
   if (!values.websiteUrl) errors.websiteUrl = 'Required';
 
+  if (values.logoUrl && !isUriImage(values.logoUrl)) errors.logoUrl = 'Url does not contain valid image extension';
+  if (values.websiteUrl && !isURL(values.websiteUrl)) errors.websiteUrl = 'Url is not valid';
+
   if (values.amount) {
     const commaError = values.amount && values.amount.indexOf(',') > 0;
     const nanError = isNaN(parseFloat(values.amount));
+    const amountError = parseFloat(values.amount) < 0.1;
 
     if (commaError) errors.amount = 'Use a full stop as a delimiter instead of a comma';
     if (nanError) errors.amount = 'The provided input is not a number';
+    if (amountError) errors.amount = 'The donation can\'t be lower than 0.1 ETH';
   }
 
   return errors;
