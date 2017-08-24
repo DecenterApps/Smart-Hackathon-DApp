@@ -20,8 +20,8 @@ class Landing extends Component {
   }
   componentWillMount() {
     this.props.checkUser();
-    this.props.fetchTeams();
     this.props.fetchSponsors();
+    this.props.fetchTeamScores();
   }
   render() {
     return (
@@ -131,7 +131,7 @@ Landing.propTypes = {
     sponsors: PropTypes.array,
   }),
   checkUser: PropTypes.func.isRequired,
-  fetchTeams: PropTypes.func.isRequired,
+  fetchTeamScores: PropTypes.func.isRequired,
   fetchSponsors: PropTypes.func.isRequired,
 };
 

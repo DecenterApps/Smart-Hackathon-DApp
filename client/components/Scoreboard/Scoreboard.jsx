@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import DollarIcon from '../Decorative/DollarIcon/index';
 import Loader from '../Decorative/Loader/index';
-import { fetchTeams } from '../../actions/teamActions';
+import { fetchTeamScores } from '../../actions/teamActions';
 
 require('./scoreboard.scss');
 
@@ -12,9 +12,6 @@ class Scoreboard extends Component {
     super(props);
 
     this.state = {};
-  }
-  componentWillMount() {
-    this.props.$fetchTeams();
   }
 
   render() {
@@ -69,7 +66,6 @@ class Scoreboard extends Component {
 Scoreboard.propTypes = {
   teams: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
-  $fetchTeams: PropTypes.func.isRequired,
   teamsFetchError: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]).isRequired
 };
 
@@ -79,4 +75,4 @@ const mapStateToProps = (state) => ({
   teamsFetchError: state.teams.error
 });
 
-export default connect(mapStateToProps, { $fetchTeams: fetchTeams })(Scoreboard);
+export default connect(mapStateToProps, { })(Scoreboard);
