@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import * as teamActions from '../../actions/teamActions';
 import userActions from '../../actions/userActions';
 
-import Header from '../Header/';
+import HeaderStatus from '../Header/HeaderStatus/index';
 import Loader from '../Decorative/Loader/';
 import arrowup from './assets/001-arrows.png';
 import arrowdown from './assets/002-arrows-1.png';
@@ -43,7 +43,7 @@ class Jury extends Component {
           this.props.user.isDetermined &&
           this.props.user.type === 'jury' &&
           <div>
-            <Header />
+            <HeaderStatus />
             <div className="container white">
               <div className="table-header">
                 <div className="title-wrapper">

@@ -12,14 +12,18 @@
     h1 {
       color: white;
       line-height: 30px;
-      font-size: 24px;
+      font-size: 26px;
       margin: 0;
+
+      &:hover a {
+        color: darkgray;
+      }
     }
     h2 {
       color: white;
       opacity: .7;
       text-transform: uppercase;
-      font-size: 14px;
+      font-size: 16px;
       margin: 0;
       font-weight: normal;
     }
