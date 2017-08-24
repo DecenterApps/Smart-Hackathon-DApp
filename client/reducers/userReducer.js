@@ -1,7 +1,7 @@
 import {
   USER_CHECKING, USER_FOUND, PHASE_FETCH, PHASE_FETCH_SUCCESS, PHASE_FETCH_ERROR,
   CHANGE_PHASE, CHANGE_PHASE_SUCCESS, CHANGE_PHASE_ERROR,
-  SUBMIT_PAYOUT, SUBMIT_PAYOUT_SUCCESS, SUBMIT_PAYOUT_ERROR
+  SUBMIT_PAYOUT, SUBMIT_PAYOUT_SUCCESS, SUBMIT_PAYOUT_ERROR, UPDATE_PHASE
 } from '../actions/types';
 
 
@@ -59,8 +59,13 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         changingPhase: false,
-        phase: action.payload.phase,
         changingError: false
+      };
+
+    case UPDATE_PHASE:
+      return {
+        ...state,
+        phase: action.payload.phase,
       };
 
     case CHANGE_PHASE_ERROR:
