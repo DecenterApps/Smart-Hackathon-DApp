@@ -1,6 +1,6 @@
 import {
   NEW_SPONSOR, SPONSORS_FETCH, SPONSORS_SUCCESS, SPONSORS_ERROR, ADD_SPONSOR, ADD_SPONSOR_SUCCESS,
-  ADD_SPONSOR_ERROR, NEW_JUDGE
+  ADD_SPONSOR_ERROR
 } from './types';
 import toggleModal from './modalsActions';
 
@@ -82,16 +82,14 @@ const fetchSponsors = () => (dispatch) => {
 };
 
 const sponsorEventListener = () => (dispatch) => {
-  eth.SponsorshipReceivedEvent()
-    .then(data => {
+  eth.SponsorshipReceivedEvent((error, data) => {
+    if (!error) {
       dispatch({
-        type: NEW_JUDGE,
+        type: NEW_SPONSOR,
         event: data,
       });
-    })
-    .catch(error => {
-      console.log(error);
-    });
+    }
+  });
 };
 
 module.exports = {

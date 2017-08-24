@@ -1,5 +1,7 @@
-import { PHASE_FETCH, PHASE_FETCH_SUCCESS, PHASE_FETCH_ERROR, CHANGE_PHASE,
-  CHANGE_PHASE_SUCCESS, CHANGE_PHASE_ERROR, USER_CHECKING, USER_FOUND } from './types';
+import {
+  PHASE_FETCH, PHASE_FETCH_SUCCESS, PHASE_FETCH_ERROR, CHANGE_PHASE,
+  CHANGE_PHASE_SUCCESS, CHANGE_PHASE_ERROR, USER_CHECKING, USER_FOUND
+} from './types';
 
 import * as eth from '../modules/ethereumService';
 
@@ -29,7 +31,6 @@ const changePhase = () => (dispatch) => {
     });
 };
 
-
 const checkUser = () => (dispatch) => {
   dispatch({ type: USER_CHECKING });
   eth.getUserTypeWithTimeout()
@@ -45,4 +46,25 @@ const checkUser = () => (dispatch) => {
     });
 };
 
-module.exports = { checkUser, fetchPhase, changePhase };
+const periodChangedListener = () => (dispatch) => {
+  eth.PeriodChangedEvent((error, event) => {
+    if (!error) {
+      console.log(event);
+      const phase = parseFloat(event.args.newPeriod.toString());
+      console.log(phase);
+      dispatch({
+        type: CHANGE_PHASE_SUCCESS,
+        payload: {
+          phase,
+        }
+      });
+    }
+  });
+};
+
+module.exports = {
+  periodChangedListener,
+  checkUser,
+  fetchPhase,
+  changePhase
+};

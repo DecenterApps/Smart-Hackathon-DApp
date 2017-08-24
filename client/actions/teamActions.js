@@ -65,17 +65,15 @@ const fetchTeams = () => (dispatch) => {
 };
 
 const teamsEventListener = () => (dispatch) => {
-  eth.TeamRegisteredEvent()
-    .then(data => {
+  eth.TeamRegisteredEvent((error, data) => {
+    if (!error) {
       console.log(data);
       dispatch({
         type: NEW_TEAM,
         event: data,
       });
-    })
-    .catch(error => {
-      console.log(error);
-    });
+    }
+  });
 };
 
 const moveTeamUp = (index) => {

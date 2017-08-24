@@ -53,116 +53,110 @@ export const getBlockNumber = () =>
 
 /* Events */
 
-export const JuryMemberAddedEvent = () =>
-  new Promise((resolve, reject) => {
-    getBlockNumber()
-      .then(latestBlock => {
-        hackathonContract.JuryMemberAdded({}, { fromBlock: latestBlock, toBlock: 'latest' })
-          .watch((error, event) => {
-            if (error) {
-              return reject(error);
-            }
+export const JuryMemberAddedEvent = (callback) => {
+  getBlockNumber()
+    .then(latestBlock => {
+      hackathonContract.JuryMemberAdded({}, { fromBlock: latestBlock, toBlock: 'latest' })
+        .watch((error, event) => {
+          if (error) {
+            return callback(error, null);
+          }
 
-            return resolve(event);
-          });
-      })
-      .catch(error => {
-        return reject(error);
-      });
-  });
+          return callback(null, event);
+        });
+    })
+    .catch(error => {
+      return callback(error, null);
+    });
+};
 
-export const PeriodChangedEvent = () =>
-  new Promise((resolve, reject) => {
-    getBlockNumber()
-      .then(latestBlock => {
-        hackathonContract.PeriodChanged({}, { fromBlock: latestBlock, toBlock: 'latest' })
-          .watch((error, event) => {
-            if (error) {
-              return reject(error);
-            }
+export const PeriodChangedEvent = (callback) => {
+  getBlockNumber()
+    .then(latestBlock => {
+      hackathonContract.PeriodChanged({}, { fromBlock: latestBlock, toBlock: 'latest' })
+        .watch((error, event) => {
+          if (error) {
+            return callback(error, null);
+          }
 
-            console.log(`Period changed event: ${event}`);
-            return resolve(event);
-          });
-      })
-      .catch(error => {
-        return reject(error);
-      });
-  });
+          console.log(`Period changed event: ${event}`);
+          return callback(null, event);
+        });
+    })
+    .catch(error => {
+      return callback(error, null);
+    });
+};
 
-export const PrizePaidEvent = () =>
-  new Promise((resolve, reject) => {
-    getBlockNumber()
-      .then(latestBlock => {
-        hackathonContract.PrizePaid({}, { fromBlock: latestBlock, toBlock: 'latest' })
-          .watch((error, event) => {
-            if (error) {
-              return reject(error);
-            }
+export const PrizePaidEvent = (callback) => {
+  getBlockNumber()
+    .then(latestBlock => {
+      hackathonContract.PrizePaid({}, { fromBlock: latestBlock, toBlock: 'latest' })
+        .watch((error, event) => {
+          if (error) {
+            return callback(error, null);
+          }
 
-            console.log(`Prize paid event: ${event}`);
-            return resolve(event);
-          });
-      })
-      .catch(error => {
-        reject(error);
-      })
-  });
+          console.log(`Prize paid event: ${event}`);
+          return callback(null, event);
+        });
+    })
+    .catch(error => {
+      callback(error, null);
+    });
+};
 
-export const SponsorshipReceivedEvent = () =>
-  new Promise((resolve, reject) => {
-    getBlockNumber()
-      .then(latestBlock => {
-        hackathonContract.SponsorshipReceived({}, { fromBlock: latestBlock, toBlock: 'latest' })
-          .watch((error, event) => {
-            if (error) {
-              return reject(error);
-            }
+export const SponsorshipReceivedEvent = (callback) => {
+  getBlockNumber()
+    .then(latestBlock => {
+      hackathonContract.SponsorshipReceived({}, { fromBlock: latestBlock, toBlock: 'latest' })
+        .watch((error, event) => {
+          if (error) {
+            return callback(error, null);
+          }
 
-            console.log(`Sponsorship received event: ${event}`);
-            return resolve(event);
-          });
-      })
-      .catch(error => {
-        reject(error);
-      })
-  });
+          console.log(`Sponsorship received event: ${event}`);
+          return callback(null, event);
+        });
+    })
+    .catch(error => {
+      callback(error, null);
+    });
+};
 
-export const TeamRegisteredEvent = () =>
-  new Promise((resolve, reject) => {
-    getBlockNumber()
-      .then(latestBlock => {
-        hackathonContract.TeamRegistered({}, { fromBlock: latestBlock, toBlock: 'latest' })
-          .watch((error, event) => {
-            if (error) {
-              return reject(error);
-            }
+export const TeamRegisteredEvent = (callback) => {
+  getBlockNumber()
+    .then(latestBlock => {
+      hackathonContract.TeamRegistered({}, { fromBlock: latestBlock, toBlock: 'latest' })
+        .watch((error, event) => {
+          if (error) {
+            return callback(error, null);
+          }
 
-            return resolve(event);
-          });
-      })
-      .catch(error => {
-        reject(error);
-      })
-  });
+          return callback(null, event);
+        });
+    })
+    .catch(error => {
+      callback(error, null);
+    });
+};
 
-export const VotesReceivedEvent = () =>
-  new Promise((resolve, reject) => {
-    getBlockNumber()
-      .then(latestBlock => {
-        hackathonContract.VotesReceived({}, { fromBlock: latestBlock, toBlock: 'latest' })
-          .watch((error, event) => {
-            if (error) {
-              return reject(error);
-            }
+export const VotesReceivedEvent = (callback) => {
+  getBlockNumber()
+    .then(latestBlock => {
+      hackathonContract.VotesReceived({}, { fromBlock: latestBlock, toBlock: 'latest' })
+        .watch((error, event) => {
+          if (error) {
+            return callback(error, null);
+          }
 
-            return resolve(event);
-          });
-      })
-      .catch(error => {
-        reject(error);
-      });
-  });
+          return callback(null, event);
+        });
+    })
+    .catch(error => {
+      callback(error, null);
+    });
+};
 
 /* Contract functions (prefixed by "_") */
 
@@ -338,12 +332,12 @@ export const getUserTypeWithTimeout = () =>
     if (getAccount()) {
       getUserType()
         .then((res) => resolve(res))
-        .catch((error) => reject(error))
+        .catch((error) => reject(error));
     } else {
       setTimeout(() => {
         getUserType()
           .then((res) => resolve(res))
-          .catch((error) => reject(error))
+          .catch((error) => reject(error));
       }, 500);
     }
   });
