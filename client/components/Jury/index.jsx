@@ -80,33 +80,37 @@ class Jury extends Component {
 
               {
                 this.props.teams &&
-                this.props.teams.teams.map((team, i) => (
-                  <table key={team.transactionHash} className="display-table">
-                    <tbody>
-                      <tr>
-                        <th className="order">{i + 1}.</th>
-                        <th>{team.args.teamName}</th>
-                        <td>{team.args.memberNames}</td>
-                        <span
-                          className="arrows"
-                          onClick={() => this.props.moveTeamDown(i)}
-                          role="button"
-                          tabIndex="-1"
-                        >
-                          <img className="clickable" src={arrowdown} alt="Move a team down" />
-                        </span>
-                        <span
-                          className="arrows"
-                          onClick={() => this.props.moveTeamUp(i)}
-                          role="button"
-                          tabIndex="-1"
-                        >
-                          <img className="clickable" src={arrowup} alt="Move a team up" />
-                        </span>
-                      </tr>
-                    </tbody>
-                  </table>
-                ))
+                <table className="display-table">
+                  <tbody>
+                    {
+                      this.props.teams.teams.map((team, i) => (
+                        <tr key={team.transactionHash}>
+                          <th className="order">{i + 1}.</th>
+                          <th>{team.args.teamName}</th>
+                          <td>{team.args.memberNames}</td>
+                          <td>
+                            <span
+                              className="arrows"
+                              onClick={() => this.props.moveTeamDown(i)}
+                              role="button"
+                              tabIndex="-1"
+                            >
+                              <img className="clickable" src={arrowdown} alt="Move a team down" />
+                            </span>
+                            <span
+                              className="arrows"
+                              onClick={() => this.props.moveTeamUp(i)}
+                              role="button"
+                              tabIndex="-1"
+                            >
+                              <img className="clickable" src={arrowup} alt="Move a team up" />
+                            </span>
+                          </td>
+                        </tr>
+                      ))
+                    }
+                  </tbody>
+                </table>
               }
             </div>
           </div>

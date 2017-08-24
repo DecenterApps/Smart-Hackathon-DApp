@@ -1,7 +1,7 @@
 import {
   PHASE_FETCH, PHASE_FETCH_SUCCESS, PHASE_FETCH_ERROR, CHANGE_PHASE,
   CHANGE_PHASE_SUCCESS, CHANGE_PHASE_ERROR, USER_CHECKING, USER_FOUND,
-  SUBMIT_PAYOUT, SUBMIT_PAYOUT_ERROR, SUBMIT_PAYOUT_SUCCESS
+  SUBMIT_PAYOUT, SUBMIT_PAYOUT_ERROR, SUBMIT_PAYOUT_SUCCESS, UPDATE_PHASE
 } from './types';
 
 import * as eth from '../modules/ethereumService';
@@ -51,10 +51,10 @@ const changePhase = () => (dispatch) => {
 
   eth._switchToNextPeriod()
     .then((res) => {
-      const phase = parseFloat(res[res.length - 1].args.newPeriod.toString());
-      dispatch({ type: CHANGE_PHASE_SUCCESS, payload: { phase } });
+      dispatch({ type: CHANGE_PHASE_SUCCESS, });
     })
     .catch((error) => {
+      console.error(error);
       dispatch({ type: CHANGE_PHASE_ERROR, payload: { error: error.message.toString() } });
     });
 };
@@ -81,7 +81,7 @@ const periodChangedListener = () => (dispatch) => {
       const phase = parseFloat(event.args.newPeriod.toString());
       console.log(phase);
       dispatch({
-        type: CHANGE_PHASE_SUCCESS,
+        type: UPDATE_PHASE,
         payload: {
           phase,
         }

@@ -66,13 +66,13 @@ const fetchTeams = () => (dispatch) => {
 
 const fetchTeamScores = () => (dispatch) => {
   eth.getTeamScores()
-    .then((res) => {
+    .then((events) => {
       let result = {};
 
-      for (let i = i; i < res.length; i++) {
-        let teamAddress = res[i].args.teamAddress;
-        let juryMemberName = res[i].args.juryMemberName;
-        let points = res[i].args.points;
+      for (let i = i; i < events.length; i++) {
+        let teamAddress = events[i].args.teamAddress;
+        let juryMemberName = events[i].args.juryMemberName;
+        let points = events[i].args.points;
 
         if (result[teamAddress] !== undefined) {
           result[teamAddress].totalScore += points;
@@ -80,11 +80,12 @@ const fetchTeamScores = () => (dispatch) => {
         } else {
           result[teamAddress] = {
             totalScore: points,
-            scoreBreakdown: {juryMemberName: points}
+            scoreBreakdown: { juryMemberName: points }
           };
         }
-
       }
+
+      console.log(events, result);
     })
     .catch((error) => {
       console.log(error);
@@ -142,6 +143,7 @@ const vote = (votes) => dispatch => {
 };
 
 module.exports = {
+  fetchTeamScores,
   teamsEventListener,
   fetchTeams,
   teamsFormValidator,
