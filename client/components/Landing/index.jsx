@@ -94,7 +94,7 @@ class Landing extends Component {
                  <h2>
                    Total prize pool: { this.props.sponsors.ethPrize } ETH
                    {
-                     this.props.sponsors.ethPrize &&
+                     this.props.sponsors.eurPrize &&
                      <span> ({ this.props.sponsors.eurPrize } EUR)</span>
                    }
                  </h2>
