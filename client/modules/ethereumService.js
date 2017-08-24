@@ -373,6 +373,19 @@ export const getUserTypeWithTimeout = () =>
     }
   });
 
+export const getPrizePoolSize = () =>
+  new Promise((resolve, reject) => {
+    hackathonContract.getPrizePoolSize((error, result) => {
+      if (error) {
+        return reject({
+          message: error,
+        });
+      }
+
+      return resolve(result);
+    })
+  });
+
 // setTimeout(() => {
 //   getPhase()
 //     .then(data => console.log(data.toString(10)));

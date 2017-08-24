@@ -22,6 +22,7 @@ class Landing extends Component {
     this.props.checkUser();
     this.props.fetchTeams();
     this.props.fetchSponsors();
+    this.props.fetchPrizePoolSize();
   }
   render() {
     return (
@@ -33,7 +34,8 @@ class Landing extends Component {
               <h1>Welcome to Startit Blockchain Hackathon</h1>
               <p>
                 The competition has not started yet.
-                <br />If you are a competitor, please make sure your details below are correct, especially Ethereum address!
+                <br />If you are a competitor, please make sure your details below are correct,
+                especially Ethereum address!
                 <br />
                 You can also <Link to="/sponsor">contribute</Link> to the prize pool.
               </p>
@@ -87,6 +89,16 @@ class Landing extends Component {
               this.props.user.phase === 3) &&
              this.props.sponsors.sponsors.length > 0 &&
              <div className="sponsors-wrapper">
+               {
+                 this.props.sponsors.ethPrize &&
+                 <h2>
+                   Total prize pool: { this.props.sponsors.ethPrize } ETH
+                   {
+                     this.props.sponsors.ethPrize &&
+                     <span> ({ this.props.sponsors.eurPrize } EUR)</span>
+                   }
+                 </h2>
+               }
                <h2>Sponsors: </h2>
                {
                  this.props.sponsors.sponsors.map((sponsor) => (
@@ -128,10 +140,13 @@ Landing.propTypes = {
   }),
   sponsors: PropTypes.shape({
     sponsors: PropTypes.array,
+    ethPrize: PropTypes.string,
+    eurPrize: PropTypes.string,
   }),
   checkUser: PropTypes.func.isRequired,
   fetchTeams: PropTypes.func.isRequired,
   fetchSponsors: PropTypes.func.isRequired,
+  fetchPrizePoolSize: PropTypes.func.isRequired,
 };
 
 Landing.defaultProps = {

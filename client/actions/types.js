@@ -22,6 +22,8 @@ export const SPONSORS_FETCH = 'sponsors_fetch';
 export const SPONSORS_SUCCESS = 'sponsors_success';
 export const SPONSORS_ERROR = 'sponsors_error';
 export const NEW_SPONSOR = 'new_sponsors';
+export const SPONSORS_PRIZE_ETH = 'sponsors_prize_eth';
+export const SPONSORS_PRIZE_EUR = 'sponsors_prize_eur';
 
 export const ADD_JUDGE = 'add_judge';
 export const ADD_JUDGE_SUCCESS = 'add_judge_success';
