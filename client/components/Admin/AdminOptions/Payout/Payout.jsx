@@ -68,7 +68,7 @@ class Payout extends Component {
           !this.props.teams.error &&
           this.props.teams.teams.length > 0 &&
           <div className="pay-button-wrapper">
-            Payout teams:
+            Payout reward to teams:
             <button onClick={this.payoutTeams} disabled={this.props.user.submittingPayout}>
               {this.props.user.submittingPayout && <CubeLoader />}
               {this.props.user.submittingPayout ? 'Paying Out' : 'Payout'}
@@ -87,34 +87,42 @@ class Payout extends Component {
           !this.props.teams.isFetching &&
           !this.props.teams.error &&
           this.props.teams.teams.length > 0 &&
-          <div className="admin-table table">
-            {
-              this.props.teams.teams.map((team, i) => (
-                <div key={team.transactionHash} className="tr">
-                  <div className="td team-rank">{i + 1}.</div>
-                  <div className="td team-name">{team.args.teamName}</div>
-                  <div className="td">{team.args.teamAddress}</div>
-                  <div className="td team-points">{team.args.totalScore}</div>
-                  <div
-                    className="td arrows"
-                    onClick={() => this.props.moveTeamDown(i)}
-                    role="button"
-                    tabIndex="-1"
-                  >
-                    <img className="clickable" src={arrowdown} alt="Move a team down" />
-                  </div>
-                  <div
-                    className="td arrows"
-                    onClick={() => this.props.moveTeamUp(i)}
-                    role="button"
-                    tabIndex="-1"
-                  >
-                    <img className="clickable" src={arrowup} alt="Move a team up" />
-                  </div>
-                </div>
-              ))
-            }
-          </div>
+            <div>
+              <div className="table-header">
+                <span>Scoreboard</span>
+                <span className="tip">
+                  * You can switch the teams with the same number of points
+                </span>
+              </div>
+              <div className="admin-table table">
+                {
+                  this.props.teams.teams.map((team, i) => (
+                    <div key={team.transactionHash} className="tr">
+                      <div className="td team-rank">{i + 1}.</div>
+                      <div className="td team-name">{team.args.teamName}</div>
+                      <div className="td team-address">{team.args.teamAddress}</div>
+                      <div className="td team-points">{team.args.totalScore} PTS</div>
+                      <div
+                        className="td arrows"
+                        onClick={() => this.props.moveTeamDown(i)}
+                        role="button"
+                        tabIndex="-1"
+                      >
+                        <img className="clickable" src={arrowdown} alt="Move a team down" />
+                      </div>
+                      <div
+                        className="td arrows"
+                        onClick={() => this.props.moveTeamUp(i)}
+                        role="button"
+                        tabIndex="-1"
+                      >
+                        <img className="clickable" src={arrowup} alt="Move a team up" />
+                      </div>
+                    </div>
+                  ))
+                }
+              </div>
+            </div>
         }
       </div>
     );

@@ -5,6 +5,7 @@ import DollarIcon from '../Decorative/DollarIcon/index';
 import Loader from '../Decorative/Loader/index';
 import { fetchTeamScores } from '../../actions/teamActions';
 import MedalIcon from '../Decorative/MedalIcon/MedalIcon';
+import EthereumIcon from '../Decorative/EthereumIcon/EthereumIcon';
 
 require('./scoreboard.scss');
 
@@ -22,6 +23,13 @@ class Scoreboard extends Component {
           {
             !this.props.isFetching &&
             !this.props.teamsFetchError &&
+            <div className="scoreboard-regular-header">
+              Scoreboard
+            </div>
+          }
+          {
+            !this.props.isFetching &&
+            this.props.teamsFetchError &&
             !this.props.teams.length > 0 &&
             <div className="empty-section">
               Error occurred
@@ -36,6 +44,9 @@ class Scoreboard extends Component {
           }
 
           {
+            !this.props.isFetching &&
+            !this.props.teamsFetchError &&
+            this.props.teams.length > 0 &&
             <div className="table teams">
               {
                 this.props.teams.map((team, index) => (
@@ -57,7 +68,7 @@ class Scoreboard extends Component {
                     <div
                       className="td total-points tooltips"
                     >
-                      <div>{team.args.totalScore}</div>
+                      <div>{team.args.totalScore} PTS</div>
                       <span
                         className="tooltip-wrapper"
                         style={{ height: (team.args.scoreBreakdown.length * 31) + 'px' }}
@@ -72,8 +83,14 @@ class Scoreboard extends Component {
                     </div>
 
                     <span className="td reward-amount">
-                      {parseFloat(this.props.sponsors.ethPrize) / (2 ** (index + 1))}
-                      <span>ETH</span>
+                      <span className="reward-amount-eth">
+                        {
+                          team.args.rewardEligible ?
+                            parseFloat(web3.fromWei(this.props.sponsors.ethPrize).toString())
+                            / (2 ** (index + 1)) : 0
+                        }
+                      </span>
+                      <span className="eth-icon-wrapper"><EthereumIcon /></span>
                     </span>
                   </div>
                 ))

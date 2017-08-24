@@ -1,11 +1,10 @@
 .payout-wrapper {
-  padding: 0 20px 20px 20px;
   border-top: 1px solid #d0d0d0;
-  padding-top: 20px;
 
   .payout-error {
     color: #F57170;
     font-size: 16px;
+    margin-left: 20px;
   }
 
   button {
@@ -33,20 +32,46 @@
   .pay-button-wrapper {
     font-size: 18px;
     font-weight: 700;
+    margin: 20px;
+  }
+
+  .table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #d0d0d0;
+    font-size: 20px;
+    padding: 30px;
+
+    .tip {
+      font-size: 14px;
+    }
   }
 
   .table {
-    margin-top: 20px;
-    border-top: 1px solid #d0d0d0;
     border-bottom: 0;
+    margin-bottom: 0;
 
-    .arrows, .team-rank {
+    .team-name {
+      flex-grow: 0.5;
+    }
+
+    .arrows, .team-rank, .team-points {
       flex-grow: 0.2;
       justify-content: center;
     }
 
-    .team-name {
-      flex-grow: 0.4;
+    .team-points {
+      flex-grow: 0.6;
+    }
+
+    .arrows {
+      cursor: pointer;
+      flex-grow: 0.2;
+    }
+
+    .team-address {
+      justify-content: flex-start;
     }
   }
 }
