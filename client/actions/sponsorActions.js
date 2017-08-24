@@ -90,14 +90,12 @@ const fetchPrizePoolSize = () => (dispatch) => {
         type: SPONSORS_PRIZE_ETH,
         prize
       });
-      fetch('https://www.bitstamp.net/api/v2/ticker/etheur/', {
+      fetch('https://api.kraken.com/0/public/Ticker?pair=xethzeur', {
         method: 'get'
       })
         .then(response => response.json())
         .then((data) => {
-          console.log(data.last);
-          console.log(data.last * prize);
-          let eurPrize = data.last * prize;
+          let eurPrize = data.result.XETHZEUR.c[0] * prize;
           eurPrize = eurPrize.toFixed(2);
           dispatch({
             type: SPONSORS_PRIZE_EUR,
