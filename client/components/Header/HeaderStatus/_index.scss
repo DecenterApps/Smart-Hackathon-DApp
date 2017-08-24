@@ -1,0 +1,28 @@
+.admin-header-period {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  color: white;
+  font-size: 18px;
+  text-transform: uppercase;
+
+  .period {
+    margin-right: 10px;
+  }
+}
+
+.user-type-view-link a {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  margin-right: 25px;
+  text-transform: uppercase;
+  font-size: 18px;
+  background: #842e77;
+  padding: 12px;
+  color: white;
+  border-radius: 3px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

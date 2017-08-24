@@ -32,7 +32,7 @@ const changePhase = () => (dispatch) => {
 
 const checkUser = () => (dispatch) => {
   dispatch({ type: USER_CHECKING });
-  eth.getUserType()
+  eth.getUserTypeWithTimeout()
     .then((res) => {
       console.log(res);
       dispatch({
@@ -42,10 +42,6 @@ const checkUser = () => (dispatch) => {
     })
     .catch((error) => {
       console.log(error);
-      dispatch({
-        type: USER_FOUND,
-        userType: 'other'
-      });
     });
 };
 

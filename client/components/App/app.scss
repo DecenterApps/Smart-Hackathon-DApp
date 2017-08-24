@@ -54,6 +54,7 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+  transition: 0.2s;
 
   &:focus, &:hover, &:link {
     text-decoration: none;
@@ -156,4 +157,42 @@ button {
     font-size: 34px;
     font-weight: 700;
   }
+}
+
+.table {
+  display: flex;
+  flex-flow: column nowrap;
+  font-size: 14px;
+  line-height: 1.5;
+  flex: 1 1 auto;
+  color: #777;
+}
+
+.th {
+  text-align: left;
+}
+
+.th > .td {
+  white-space: normal;
+  justify-content: center;
+}
+
+.tr {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  border-bottom: 1px solid #d0d0d0;
+}
+
+.td {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  flex-grow: 1;
+  flex-basis: 0;
+  padding: 20px 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  white-space: nowrap;
 }

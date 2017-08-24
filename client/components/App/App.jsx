@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Footer from '../Footer/Footer';
-import AdminHeader from '../Header/AdminHeader/index';
+import AdminHeader from '../Header/HeaderStatus/index';
 import AdminSponsorsForm from '../Admin/AdminSponsors/AdminSponsorsForm';
-import * as userActions from '../../actions/userActions';
+import { checkUser } from '../../actions/userActions';
+import Scoreboard from '../Scoreboard/Scoreboard';
 
 const styles = require('./app.scss');
 
@@ -17,7 +17,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.props.checkUser();
+    this.props.$checkUser();
   }
 
   render() {
@@ -37,15 +37,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-  checkUser: PropTypes.func.isRequired,
+  $checkUser: PropTypes.func.isRequired
 };
-const mapStateToProps = state => state;
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  ...userActions
-}, dispatch);
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(App);
+export default connect(null, { $checkUser: checkUser })(App);

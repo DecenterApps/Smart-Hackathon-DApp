@@ -50,7 +50,7 @@ class AdminTeams extends Component {
           !this.props.teams.isFetching &&
           !this.props.teams.error &&
           this.props.teams.teams.length > 0 &&
-          <table className="admin-table">
+          <table className="display-table">
             <tbody>
               {
                 this.props.teams.teams.map((team) => (
