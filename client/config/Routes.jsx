@@ -12,21 +12,27 @@ import AdminJudges from '../components/Admin/AdminJudges/index.jsx';
 import AdminChangePhase from '../components/Admin/AdminChangePhase/AdminChangePhase';
 import Scoreboard from '../components/Scoreboard/Scoreboard';
 import Landing from '../components/Landing/index.jsx';
+import HeaderStatus from '../components/Header/HeaderStatus/index';
+import Footer from '../components/Footer/Footer';
 
 const Routes = ({ store }) => (
   <Provider store={store}>
     <HashRouter>
-      <Switch>
-        <Route exact path="/" component={Landing} />
-        <Route path="/jury" component={Jury} />
-        <Route path="/sponsor" component={Sponsor} />
-        <Admin>
-          <Route path="/admin/teams" component={AdminTeams} />
-          <Route path="/admin/sponsors" component={AdminSponsors} />
-          <Route path="/admin/judges" component={AdminJudges} />
-          <Route path="/admin/change-period" component={AdminChangePhase} />
-        </Admin>
-      </Switch>
+      <div>
+        <HeaderStatus />
+        <Switch>
+          <Route exact path="/" component={Landing} />
+          <Route path="/jury" component={Jury} />
+          <Route path="/sponsor" component={Sponsor} />
+          <Admin>
+            <Route path="/admin/teams" component={AdminTeams} />
+            <Route path="/admin/sponsors" component={AdminSponsors} />
+            <Route path="/admin/judges" component={AdminJudges} />
+            <Route path="/admin/change-period" component={AdminChangePhase} />
+          </Admin>
+        </Switch>
+        <Footer />
+      </div>
     </HashRouter>
   </Provider>
 );

@@ -6,10 +6,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as userActions from '../../actions/userActions';
 import AdminSponsorsForm from '../Admin/AdminSponsors/AdminSponsorsForm';
-import Footer from '../Footer/Footer';
-
-import Header from '../Header/';
-import Loader from '../Decorative/Loader/';
 
 require('./_index.scss');
 
@@ -31,8 +27,6 @@ class Sponsor extends Component {
           <div className="form-name">Contribute to prize pool</div>
           <AdminSponsorsForm submitText="Contribute" submitTextSubmitting="Contributing" />
         </div>
-
-        <Footer />
       </div>
     );
   }
