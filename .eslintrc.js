@@ -17,6 +17,9 @@ module.exports = {
     'no-new': 0,
     'no-underscore-dangle': 0,
     'prefer-template': 0,
+    'keyword-spacing': 0,
+    'no-plusplus': 0,
+    'prefer-const': 0
   },
   'plugins': [
     'react', 'import'
