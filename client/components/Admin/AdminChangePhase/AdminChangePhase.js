@@ -13,7 +13,7 @@ const AdminChangePhase = ({
     {
       phase < lastPhaseIndex &&
       <span>
-        Promeni na sledeci period:
+        Go to next period:
       </span>
     }
 
@@ -21,7 +21,7 @@ const AdminChangePhase = ({
       phase < lastPhaseIndex &&
       <button onClick={$changePhase} disabled={changingPhase}>
         {changingPhase && <CubeLoader />}
-        {changingPhase ? 'Menja se' : 'Promeni'}
+        {changingPhase ? 'Changing' : 'Change'}
       </button>
     }
 
@@ -30,7 +30,7 @@ const AdminChangePhase = ({
       changingError && <div className="change-error">{changingError}</div>
     }
 
-    { phase === lastPhaseIndex && <div>U toku je poslednji period koji ne može da se promeni</div>}
+    { phase === lastPhaseIndex && <div>The last period is active. It can not be changed</div>}
   </div>
 );
 

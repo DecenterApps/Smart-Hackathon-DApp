@@ -31,13 +31,26 @@ class Admin extends Component {
             <div className="container white">
               <div className="tab-wrapper">
                 <div className="left-section">
-                  <Link to="/admin/teams" className={location.hash === '#/admin/' || location.hash === '#/admin' || location.hash === '#/admin/teams' ? 'active' : ''}>Timovi</Link>
-                  <Link to="/admin/sponsors" className={location.hash === '#/admin/sponsors' ? 'active' : ''}>Sponzori</Link>
-                  <Link to="/admin/judges" className={location.hash === '#/admin/judges' ? 'active' : ''}>Sudije</Link>
-                  <Link to="/admin/change-period" className={location.hash === '#/admin/change-period' ? 'active' : ''}>Promeni period</Link>
+                  <Link to="/admin/teams" className={location.hash === '#/admin/' || location.hash === '#/admin' || location.hash === '#/admin/teams' ? 'active' : ''}>Teams</Link>
+                  <Link to="/admin/sponsors" className={location.hash === '#/admin/sponsors' ? 'active' : ''}>Sponsors</Link>
+                  <Link to="/admin/judges" className={location.hash === '#/admin/judges' ? 'active' : ''}>Judges</Link>
+                  <Link to="/admin/change-period" className={location.hash === '#/admin/change-period' ? 'active' : ''}>Change period</Link>
                 </div>
+
                 <div className="right-section">
-                  {location.hash !== '#/admin/change-period' && <OpenModalButton text="Dodaj" /> }
+                  {
+                    (location.hash === '#/admin/' || location.hash === '#/admin' || location.hash === '#/admin/teams') &&
+                    this.props.teams.teams.length > 0 &&
+                    <OpenModalButton text="Add team" showIcon />
+                  }
+                  {
+                    (location.hash === '#/admin/sponsors') && this.props.sponsors.sponsors.length > 0 &&
+                    <OpenModalButton text="Add sponsor" showIcon />
+                  }
+                  {
+                    (location.hash === '#/admin/judges') && this.props.judges.judges.length > 0 &&
+                    <OpenModalButton text="Add Judge" showIcon />
+                  }
                 </div>
               </div>
               { this.props.children }
@@ -65,6 +78,9 @@ class Admin extends Component {
 }
 
 Admin.propTypes = {
+  teams: PropTypes.object.isRequired,
+  sponsors: PropTypes.object.isRequired,
+  judges: PropTypes.object.isRequired,
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
   user: PropTypes.object.isRequired,
   checkUser: PropTypes.func.isRequired,

@@ -39,7 +39,7 @@ class Scoreboard extends Component {
           {
             this.props.isFetching &&
             <div className="empty-section">
-              <h1><Loader color="#777" />Učitavanje</h1>
+              <h1><Loader color="#777" />Loading</h1>
             </div>
           }
 

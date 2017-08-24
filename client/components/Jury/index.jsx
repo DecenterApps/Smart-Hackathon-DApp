@@ -55,7 +55,7 @@ class Jury extends Component {
               {
                 this.props.teams.isFetching &&
                 <div className="empty-section">
-                  <h1><Loader color="#777" />Učitavanje</h1>
+                  <h1><Loader color="#777" />Loading</h1>
                 </div>
               }
               {
@@ -71,7 +71,7 @@ class Jury extends Component {
                 !this.props.teams.teams.length > 0 &&
                 <div className="empty-section">
                   <div className="">
-                    <h1>Nema timova</h1>
+                    <h1>No teams</h1>
                   </div>
                 </div>
               }

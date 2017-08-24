@@ -77,10 +77,21 @@ $highlight: #673AB7;
     margin-right: 40px;
 
     button {
-      color: #673AB7;
+      color: $highlight;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        margin-right: 7px;
+        fill: $highlight;
+      }
 
       &:hover {
-        color: lighten(#673AB7, 20);
+        color: lighten($highlight, 20);
+        svg {
+          fill: lighten($highlight, 20);
+        }
       }
     }
   }

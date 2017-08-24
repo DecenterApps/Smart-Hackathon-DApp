@@ -22,7 +22,7 @@ class AdminJudges extends Component {
         {
           this.props.judges.isFetching &&
           <div className="empty-section">
-            <h1><Loader color="#777" />Učitavanje</h1>
+            <h1><Loader color="#777" />Loading</h1>
           </div>
         }
         {
@@ -38,8 +38,8 @@ class AdminJudges extends Component {
           !this.props.judges.judges.length > 0 &&
           <div className="empty-section">
             <div className="">
-              <h1>Nema sudija</h1>
-              <OpenModalButton text="Dodajte Sudiju" />
+              <h1>No judges</h1>
+              <OpenModalButton text="Add judge" />
             </div>
           </div>
         }

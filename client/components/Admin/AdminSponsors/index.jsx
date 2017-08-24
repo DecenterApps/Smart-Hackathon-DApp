@@ -21,7 +21,7 @@ class AdminSponsors extends Component {
         {
           this.props.sponsors.isFetching &&
           <div className="empty-section">
-            <h1><Loader color="#777" />Učitavanje</h1>
+            <h1><Loader color="#777" />Loading</h1>
           </div>
         }
         {
@@ -36,8 +36,8 @@ class AdminSponsors extends Component {
           !this.props.sponsors.sponsors.length > 0 &&
           <div className="empty-section">
             <div className="">
-              <h1>Nema sponzora</h1>
-              <OpenModalButton text="Dodajte Sponzora" />
+              <h1>No sponsors</h1>
+              <OpenModalButton text="Add sponsor" />
             </div>
           </div>
         }

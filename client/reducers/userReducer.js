@@ -5,7 +5,7 @@ import { USER_CHECKING, USER_FOUND, PHASE_FETCH, PHASE_FETCH_SUCCESS, PHASE_FETC
 const INITIAL_STATE = {
   isDetermined: false,
   type: 'other',
-  phases: ['Registracija', 'Takmicenje', 'Glasanje', 'Kraj'],
+  phases: ['Registration', 'Competition', 'Voting', 'End'],
   phase: 0,
   isFetching: false,
   phaseError: false,
@@ -41,7 +41,7 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isFetching: false,
-        phaseError: 'Došlo je do greške'
+        phaseError: 'Error occurred'
       };
 
     case CHANGE_PHASE:
@@ -62,7 +62,7 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         changingPhase: false,
-        changingError: 'Došlo je do greške pri promeni perioda'
+        changingError: 'Error occurred while changing period'
       };
 
     default:

@@ -24,7 +24,7 @@ class AdminTeams extends Component {
         {
           this.props.teams.isFetching &&
           <div className="empty-section">
-            <h1><Loader color="#777" />Učitavanje</h1>
+            <h1><Loader color="#777" />Loading</h1>
           </div>
         }
         {
@@ -40,8 +40,8 @@ class AdminTeams extends Component {
           !this.props.teams.teams.length > 0 &&
           <div className="empty-section">
             <div className="">
-              <h1>Nema timova</h1>
-              <OpenModalButton text="Dodajte tim" />
+              <h1>No teams</h1>
+              <OpenModalButton text="Add team" />
             </div>
           </div>
         }
