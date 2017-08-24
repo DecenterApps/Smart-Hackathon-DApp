@@ -32,7 +32,10 @@ class Landing extends Component {
             <div>
               <h1>Welcome to Startit Blockchain Hackathon</h1>
               <p>
-                The competition has not started yet. <br/> If you are a competitor, please make sure your details below are correct, especially Ethereum address! <br/>You can also <Link to="/sponsor">contribute</Link> to the prize pool.
+                The competition has not started yet.
+                <br />If you are a competitor, please make sure your details below are correct, especially Ethereum address!
+                <br />
+                You can also <Link to="/sponsor">contribute</Link> to the prize pool.
               </p>
             </div>
           }
@@ -46,7 +49,7 @@ class Landing extends Component {
             (this.props.user.phase === 2 ||
              this.props.user.phase === 3) &&
              <div>
-               <h1>The judges are voting. </h1>
+               <h1>The judges are voting, please be patient. </h1>
              </div>
           }
           {
