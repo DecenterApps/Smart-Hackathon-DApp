@@ -197,6 +197,11 @@ contract DecenterHackathon {
         }
     }
 
+    // Returns total prize pool size
+    function getPrizePoolSize() constant returns (uint) {
+        return this.balance;
+    }
+
     function restartPeriod() onlyOwner {
         currentPeriod = Period.Registration;
     }
