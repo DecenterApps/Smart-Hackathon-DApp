@@ -31,7 +31,7 @@ const submitAddJudgesForm = (judge) => (dispatch) => {
       dispatch(toggleModal(location.hash, false));
     })
     .catch((error) => {
-      dispatch({ type: ADD_JUDGE_ERROR, payload: { addJudgeError: error.message } });
+      dispatch({ type: ADD_JUDGE_ERROR, payload: { addJudgeError: error.message.toString() } });
     });
 };
 
@@ -46,7 +46,7 @@ const fetchJudges = () => (dispatch) => {
     })
     .catch((error) => {
       console.log(error);
-      const errorMessage = error.message ? error.message : error;
+      const errorMessage = error.message ? error.message.toString() : error;
       dispatch({
         type: JUDGES_ERROR,
         error: errorMessage

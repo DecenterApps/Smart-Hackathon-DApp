@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
-import AdminHeader from '../Header/HeaderStatus/index.jsx';
 import ModalWrapper from '../Modals/ModalWrapper/ModalWrapper';
 import OpenModalButton from '../../components/OpenModalButton/OpenModalButton';
-import Footer from '../Footer/Footer';
 import userActions from '../../actions/userActions';
 
 require('./_index.scss');
@@ -27,14 +25,13 @@ class Admin extends Component {
           this.props.user.isDetermined &&
           this.props.user.type === 'administrator' &&
           <div>
-            <AdminHeader />
             <div className="container white">
               <div className="tab-wrapper">
                 <div className="left-section">
                   <Link to="/admin/teams" className={location.hash === '#/admin/' || location.hash === '#/admin' || location.hash === '#/admin/teams' ? 'active' : ''}>Teams</Link>
                   <Link to="/admin/sponsors" className={location.hash === '#/admin/sponsors' ? 'active' : ''}>Sponsors</Link>
                   <Link to="/admin/judges" className={location.hash === '#/admin/judges' ? 'active' : ''}>Judges</Link>
-                  <Link to="/admin/change-period" className={location.hash === '#/admin/change-period' ? 'active' : ''}>Change period</Link>
+                  <Link to="/admin/options" className={location.hash === '#/admin/options' ? 'active' : ''}>Options</Link>
                 </div>
 
                 <div className="right-section">
@@ -56,7 +53,6 @@ class Admin extends Component {
               { this.props.children }
               <ModalWrapper />
             </div>
-            <Footer />
           </div>
         }
 

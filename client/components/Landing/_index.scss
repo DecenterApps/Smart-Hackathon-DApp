@@ -22,9 +22,9 @@
 
       .logo {
         display: block !important;
-        height: 100px;
+        height: 60px;
         width: 100px;
-        background-size: 100px !important;
+        background-size: contain !important;
         background-position: 50% !important;
         background-repeat: no-repeat !important;
       }

@@ -7,7 +7,7 @@ import userActions from '../../actions/userActions';
 import teamActions from '../../actions/teamActions';
 import sponsorActions from '../../actions/sponsorActions';
 
-import HeaderStatus from '../Header/HeaderStatus/index.jsx';
+import Scoreboard from '../Scoreboard/Scoreboard';
 import DollarIcon from '../Decorative/DollarIcon/index.jsx';
 
 require('./_index.scss');
@@ -26,7 +26,6 @@ class Landing extends Component {
   render() {
     return (
       <div>
-        <HeaderStatus />
         <div className="container white landing-wrapper">
           {
             this.props.user.phase === 0 &&
@@ -41,14 +40,14 @@ class Landing extends Component {
           {
             this.props.user.phase === 1 &&
             <div>
-              <h1>Competition</h1>
+              <h1>Competition is ongoing. </h1>
             </div>
           }
           {
             (this.props.user.phase === 2 ||
              this.props.user.phase === 3) &&
              <div>
-               <h1>The judges are voting</h1>
+               <h1>The judges are voting. </h1>
              </div>
           }
           {
@@ -67,7 +66,11 @@ class Landing extends Component {
                          <th className="rewardable"><DollarIcon color={team.args.rewardEligible ? '#44ca44' : '#eee'} /></th>
                          <th>{team.args.teamName}</th>
                          <td>{team.args.memberNames}</td>
-                         <td>{team.args.teamAddress}</td>
+                         <td>
+                           <a href={`https://etherscan.io/address/${team.args.teamAddress}`} target="_blank" rel="noopener">
+                             {team.args.teamAddress}
+                           </a>
+                         </td>
                        </tr>
                      ))
                    }
@@ -86,7 +89,7 @@ class Landing extends Component {
                {
                  this.props.sponsors.sponsors.map((sponsor) => (
                    <div className="sponsor-wrapper" key={sponsor.transactionHash}>
-                     <a href={sponsor.args.sponsorSite}>
+                     <a href={sponsor.args.sponsorSite.substr(0, 4) === 'http' ? sponsor.args.sponsorSite : 'http://' + sponsor.args.sponsorSite}>
                        <span className="logo" style={{ backgroundImage: `url("${sponsor.args.sponsorLogoUrl}")` }} />
                        <span>{sponsor.args.sponsorName}</span>
                      </a>
@@ -98,7 +101,12 @@ class Landing extends Component {
           {
             this.props.user.phase === 4 &&
             <div>
-              <h1>Scoreboard</h1>
+              <h1>Thanks for being a part of Startit Blockchain Hackathon!</h1>
+
+              <div className="table-wrapper">
+                <h2>Here are the winners: </h2>
+                <Scoreboard />
+              </div>
             </div>
           }
         </div>

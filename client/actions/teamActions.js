@@ -37,13 +37,13 @@ const teamsFormValidator = (values) => {
 const submitAddTeamsForm = (team) => (dispatch) => {
   dispatch({ type: ADD_TEAM });
 
-  eth._registerTeam(team.name, team.address, team.teamMembers, team.excludeFromPrize)
+  eth._registerTeam(team.name, team.address, team.teamMembers, !team.excludeFromPrize)
     .then((res) => {
       dispatch({ type: ADD_TEAM_SUCCESS, payload: { team: res } });
       dispatch(toggleModal(location.hash, false));
     })
     .catch((error) => {
-      dispatch({ type: ADD_TEAM_ERROR, payload: { addTeamError: error.message } });
+      dispatch({ type: ADD_TEAM_ERROR, payload: { addTeamError: error.message.toString() } });
     });
 };
 
@@ -56,7 +56,7 @@ const fetchTeams = () => (dispatch) => {
     })
     .catch((error) => {
       console.log(error);
-      const errorMessage = error.message ? error.message : error;
+      const errorMessage = error.message ? error.message.toString() : error;
       dispatch({
         type: TEAMS_ERROR,
         error: errorMessage

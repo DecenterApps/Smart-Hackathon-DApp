@@ -40,3 +40,7 @@ export const PHASE_CHANGE = 'phase_change';
 export const CHANGE_PHASE = 'change_phase';
 export const CHANGE_PHASE_SUCCESS = 'change_phase_success';
 export const CHANGE_PHASE_ERROR = 'change_phase_error';
+
+export const SUBMIT_PAYOUT = 'submit_payment';
+export const SUBMIT_PAYOUT_SUCCESS = 'submit_payment_success';
+export const SUBMIT_PAYOUT_ERROR = 'submit_payment_error';

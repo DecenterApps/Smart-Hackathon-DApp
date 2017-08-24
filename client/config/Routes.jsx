@@ -9,8 +9,10 @@ import Admin from '../components/Admin/index.jsx';
 import AdminTeams from '../components/Admin/AdminTeams/index.jsx';
 import AdminSponsors from '../components/Admin/AdminSponsors/index.jsx';
 import AdminJudges from '../components/Admin/AdminJudges/index.jsx';
-import AdminChangePhase from '../components/Admin/AdminChangePhase/AdminChangePhase';
 import Landing from '../components/Landing/index.jsx';
+import HeaderStatus from '../components/Header/HeaderStatus/index';
+import Footer from '../components/Footer/Footer';
+import AdminOptions from '../components/Admin/AdminOptions/AdminOptions';
 
 import { periodChangedListener } from '../actions/userActions';
 
@@ -24,6 +26,7 @@ class Routes extends Component {
     return (
       <Provider store={this.props.store}>
         <HashRouter>
+          <HeaderStatus />
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route path="/jury" component={Jury} />
@@ -40,6 +43,7 @@ class Routes extends Component {
     );
   }
 }
+
 
 Routes.propTypes = {
   store: PropTypes.object.isRequired,
