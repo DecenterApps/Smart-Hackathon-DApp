@@ -26,18 +26,20 @@ class Routes extends Component {
     return (
       <Provider store={this.props.store}>
         <HashRouter>
-          <HeaderStatus />
-          <Switch>
-            <Route exact path="/" component={Landing} />
-            <Route path="/jury" component={Jury} />
-            <Route path="/sponsor" component={Sponsor} />
-            <Admin>
-              <Route path="/admin/teams" component={AdminTeams} />
-              <Route path="/admin/sponsors" component={AdminSponsors} />
-              <Route path="/admin/judges" component={AdminJudges} />
-              <Route path="/admin/change-period" component={AdminChangePhase} />
-            </Admin>
-          </Switch>
+          <div>
+            <HeaderStatus />
+            <Switch>
+              <Route exact path="/" component={Landing} />
+              <Route path="/jury" component={Jury} />
+              <Route path="/sponsor" component={Sponsor} />
+              <Admin>
+                <Route path="/admin/teams" component={AdminTeams} />
+                <Route path="/admin/sponsors" component={AdminSponsors} />
+                <Route path="/admin/judges" component={AdminJudges} />
+                <Route path="/admin/options" component={AdminOptions} />
+              </Admin>
+            </Switch>
+          </div>
         </HashRouter>
       </Provider>
     );
