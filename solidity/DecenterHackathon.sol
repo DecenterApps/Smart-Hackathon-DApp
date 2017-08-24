@@ -60,7 +60,7 @@ contract DecenterHackathon {
 
     // Administrator is able to switch between periods at any time
     function switchToNextPeriod() onlyOwner {
-        if(currentPeriod == Period.End) {
+        if(currentPeriod == Period.Verification || currentPeriod == Period.End) {
             return;
         }
 
@@ -176,6 +176,9 @@ contract DecenterHackathon {
                 PrizePaid(teams[_sortedTeams[i]].name, _prizeAmount);
             }
         }
+
+        currentPeriod = Period.End;
+        PeriodChanged(currentPeriod);
     }
 
     // Administrator can always retrieve all ETH from the contract (e.g. in case something goes wrong)
