@@ -1,4 +1,5 @@
 import {
+  NEW_TEAM,
   TEAM_UP,
   TEAM_DOWN,
   TEAMS_FETCH,
@@ -63,6 +64,20 @@ const fetchTeams = () => (dispatch) => {
     });
 };
 
+const teamsEventListener = () => (dispatch) => {
+  eth.TeamRegisteredEvent()
+    .then(data => {
+      console.log(data);
+      dispatch({
+        type: NEW_TEAM,
+        event: data,
+      });
+    })
+    .catch(error => {
+      console.log(error);
+    });
+};
+
 const moveTeamUp = (index) => {
   if (index === 0) {
     return {
@@ -92,14 +107,15 @@ const moveTeamDown = (index) => (dispatch, getState) => {
 const vote = (votes) => dispatch => {
   eth._vote(votes)
     .then(data => {
-
+      console.log(data);
     })
     .catch(error => {
-
+      console.log(error);
     });
 };
 
 module.exports = {
+  teamsEventListener,
   fetchTeams,
   teamsFormValidator,
   submitAddTeamsForm,

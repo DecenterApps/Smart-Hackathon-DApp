@@ -57,6 +57,7 @@ const fetchJudges = () => (dispatch) => {
 const judgeEventListener = () => (dispatch) => {
   eth.JuryMemberAddedEvent()
     .then(data => {
+      console.log(data);
       dispatch({
         type: NEW_JUDGE,
         event: data,

@@ -55,76 +55,112 @@ export const getBlockNumber = () =>
 
 export const JuryMemberAddedEvent = () =>
   new Promise((resolve, reject) => {
-    hackathonContract.JuryMemberAdded({}, { fromBlock: 0, toBlock: 'latest' })
-      .watch((error, event) => {
-        if (error) {
-          return reject(error);
-        }
+    getBlockNumber()
+      .then(latestBlock => {
+        hackathonContract.JuryMemberAdded({}, { fromBlock: latestBlock, toBlock: 'latest' })
+          .watch((error, event) => {
+            if (error) {
+              return reject(error);
+            }
 
-        return resolve(event);
+            return resolve(event);
+          });
+      })
+      .catch(error => {
+        return reject(error);
       });
   });
 
 export const PeriodChangedEvent = () =>
   new Promise((resolve, reject) => {
-    hackathonContract.PeriodChanged({}, { fromBlock: 0, toBlock: 'latest' })
-      .watch((error, event) => {
-        if (error) {
-          return reject(error);
-        }
+    getBlockNumber()
+      .then(latestBlock => {
+        hackathonContract.PeriodChanged({}, { fromBlock: latestBlock, toBlock: 'latest' })
+          .watch((error, event) => {
+            if (error) {
+              return reject(error);
+            }
 
-        console.log(`Period changed event: ${event}`);
-        return resolve(event);
+            console.log(`Period changed event: ${event}`);
+            return resolve(event);
+          });
+      })
+      .catch(error => {
+        return reject(error);
       });
   });
 
 export const PrizePaidEvent = () =>
   new Promise((resolve, reject) => {
-    hackathonContract.PrizePaid({}, { fromBlock: 0, toBlock: 'latest' })
-      .watch((error, event) => {
-        if (error) {
-          return reject(error);
-        }
+    getBlockNumber()
+      .then(latestBlock => {
+        hackathonContract.PrizePaid({}, { fromBlock: latestBlock, toBlock: 'latest' })
+          .watch((error, event) => {
+            if (error) {
+              return reject(error);
+            }
 
-        console.log(`Prize paid event: ${event}`);
-        return resolve(event);
-      });
+            console.log(`Prize paid event: ${event}`);
+            return resolve(event);
+          });
+      })
+      .catch(error => {
+        reject(error);
+      })
   });
 
 export const SponsorshipReceivedEvent = () =>
   new Promise((resolve, reject) => {
-    hackathonContract.SponsorshipReceived({}, { fromBlock: 0, toBlock: 'latest' })
-      .watch((error, event) => {
-        if (error) {
-          return reject(error);
-        }
+    getBlockNumber()
+      .then(latestBlock => {
+        hackathonContract.SponsorshipReceived({}, { fromBlock: latestBlock, toBlock: 'latest' })
+          .watch((error, event) => {
+            if (error) {
+              return reject(error);
+            }
 
-        console.log(`Sponsorship received event: ${event}`);
-        return resolve(event);
-      });
+            console.log(`Sponsorship received event: ${event}`);
+            return resolve(event);
+          });
+      })
+      .catch(error => {
+        reject(error);
+      })
   });
 
 export const TeamRegisteredEvent = () =>
   new Promise((resolve, reject) => {
-    hackathonContract.TeamRegistered({}, { fromBlock: 0, toBlock: 'latest' })
-      .watch((error, event) => {
-        if (error) {
-          return reject(error);
-        }
+    getBlockNumber()
+      .then(latestBlock => {
+        hackathonContract.TeamRegistered({}, { fromBlock: latestBlock, toBlock: 'latest' })
+          .watch((error, event) => {
+            if (error) {
+              return reject(error);
+            }
 
-        return resolve(event);
-      });
+            return resolve(event);
+          });
+      })
+      .catch(error => {
+        reject(error);
+      })
   });
 
 export const VotesReceivedEvent = () =>
   new Promise((resolve, reject) => {
-    hackathonContract.VotesReceived({}, { fromBlock: 0, toBlock: 'latest' })
-      .watch((error, event) => {
-        if (error) {
-          return reject(error);
-        }
+    getBlockNumber()
+      .then(latestBlock => {
+        hackathonContract.VotesReceived({}, { fromBlock: latestBlock, toBlock: 'latest' })
+          .watch((error, event) => {
+            if (error) {
+              return reject(error);
+            }
 
-        return resolve(event);
+            return resolve(event);
+          });
+      })
+      .catch(error => {
+        reject(error);
       });
   });
 
@@ -297,7 +333,7 @@ export const getUserType = () =>
     });
   });
 
-// setTimeout(() => {
-//   getPhase()
-//     .then(data => console.log(data.toString(10)));
-// }, 1000);
+setTimeout(() => {
+  getPhase()
+    .then(data => console.log(data.toString(10)));
+}, 1000);
