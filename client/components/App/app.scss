@@ -162,16 +162,13 @@ button {
 .table {
   display: flex;
   flex-flow: column nowrap;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.5;
-  border-bottom: 1px solid #d0d0d0;
   flex: 1 1 auto;
+  color: #777;
 }
 
 .th {
-  display: none;
-  font-weight: 700;
-  background-color: #f2f2f2;
   text-align: left;
 }
 
@@ -184,6 +181,7 @@ button {
   width: 100%;
   display: flex;
   flex-flow: row nowrap;
+  border-bottom: 1px solid #d0d0d0;
 }
 
 .td {
@@ -197,5 +195,4 @@ button {
   text-overflow: ellipsis;
   min-width: 0;
   white-space: nowrap;
-  border-bottom: 1px solid #d0d0d0;
 }
