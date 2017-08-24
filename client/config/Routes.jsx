@@ -45,6 +45,7 @@ class Routes extends Component {
                 <Route path="/admin/options" component={AdminOptions} />
               </Admin>
             </Switch>
+            <Footer />
           </div>
         </HashRouter>
       </Provider>

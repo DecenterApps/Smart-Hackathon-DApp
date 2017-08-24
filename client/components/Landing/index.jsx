@@ -122,7 +122,7 @@ class Landing extends Component {
               <h1>Thanks for being a part of Startit Blockchain Hackathon!</h1>
 
               <div className="table-wrapper">
-                <h2>Here are the winners: </h2>
+                <h2>Here is the final scoreboard:</h2>
                 <Scoreboard />
               </div>
             </div>
