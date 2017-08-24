@@ -185,9 +185,9 @@ export const _registerJuryMember = (juryMemberName, juryMemberAddress) =>
 export const _contributeToPrizePool = (name, amount, siteUrl, logoUrl) =>
   new Promise((resolve, reject) => {
     hackathonContract.contributeToPrizePool(
+      name.toString(),
       siteUrl.toString(),
       logoUrl.toString(),
-      name.toString(),
       { value: web3.toWei(amount, 'ether') },
       (error, result) => {
         if (error) {
