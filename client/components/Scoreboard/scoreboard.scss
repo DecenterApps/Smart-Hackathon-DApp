@@ -11,57 +11,100 @@
 
   .teams {
     .team {
-      padding: 15px 0;
-      border-bottom: 1px solid #dadada;
-      display: flex;
-      align-items: center;
 
-      span {
-        width: 100%;
-        display: inline-block;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .rank {
+      .team-rank {
         font-size: 14px;
-        max-width: 50px;
-        text-align: center;
         color: #95989A;
+        justify-content: center;
+        flex-grow: 0.4;
       }
 
-      .medal {
-        text-align: center;
-        max-width: 55px;
+      .medal, .reward-amount, .total-points {
+        font-size: 14px;
+        flex-grow: 0.4;
+        justify-content: center;
       }
 
       .team-name-wrapper {
-        max-width: 220px;
+            .rewardable {
+              position: relative;
+              top: 3px;
+              margin-right: 10px;
+            }
 
-        .rewardable {
-          width: auto;
-          position: relative;
-          top: 5px;
-          margin-right: 10px;
-        }
+            .team-name {
+              font-weight: 500;
+              font-size: 14px;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+      }
 
-        .team-name {
-          width: auto;
-          max-width: 175px;
-          font-size: 14px;
-        }
+      .total-points {
+        flex-grow: 0.3;
       }
 
       .members {
-        color: #757575;
-        max-width: 411px;
-        font-size: 12px;
+        flex-grow: 2;
+        display: block;
+        line-height: 25px;
+      }
+
+      .reward-amount {
+        padding-right: 20px;
+        display: block;
+        line-height: 25px;
+        flex-grow: 0.5;
+        justify-content: flex-end;
       }
     }
 
     &:last-child {
-      border-bottom: 0;
+      .team .td {
+        border-bottom: 0;
+      }
     }
   }
+}
+
+.table {
+  display: flex;
+  flex-flow: column nowrap;
+  font-size: 12px;
+  line-height: 1.5;
+  border-bottom: 1px solid #d0d0d0;
+  flex: 1 1 auto;
+}
+
+.th {
+  display: none;
+  font-weight: 700;
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+.th > .td {
+  white-space: normal;
+  justify-content: center;
+}
+
+.tr {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.td {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  flex-grow: 1;
+  flex-basis: 0;
+  padding: 20px 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  white-space: nowrap;
+  border-bottom: 1px solid #d0d0d0;
 }

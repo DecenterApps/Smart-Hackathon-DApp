@@ -44,22 +44,27 @@ class Scoreboard extends Component {
           }
 
           {
-            <div className="teams">
+            <div className="table teams">
               {
                 this.props.teams.map((team, index) => (
-                  <div className="team" key={team.transactionHash}>
-                    <span className="rank">#{index + 1}</span>
-                    <span className="medal" />
+                  <div className="tr team" key={team.transactionHash}>
+                    <div className="td team-rank">#{index + 1}</div>
 
-                    <span className="team-name-wrapper">
+                    <div className="td medal" />
+
+                    <div className="td team-name-wrapper">
                       <span className="rewardable">
                         <DollarIcon color={team.args.rewardEligible ? '#44ca44' : '#eee'} />
                       </span>
 
                       <span className="team-name">{team.args.teamName}</span>
-                    </span>
+                    </div>
 
-                    <span className="members">{team.args.memberNames}</span>
+                    <div className="td members">{team.args.memberNames}</div>
+
+                    <div className="td total-points">{team.args.points}</div>
+
+                    <span className="td reward-amount">{team.args.reward}</span>
                   </div>
                 ))
               }
