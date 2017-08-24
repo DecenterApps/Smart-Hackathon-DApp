@@ -7,8 +7,11 @@
 .form-wrapper {
   width: 100%;
 
+  $errorColor: #F57170;
+
   .form-item-wrapper {
-    margin-bottom: 20px;
+    position: relative;
+    margin-bottom: 35px;
 
     .form-item {
       border: 2px solid #E2E2E2;
@@ -19,8 +22,14 @@
     }
 
     .form-item-error {
-      border-color: #F57170;
-      outline-color: #F57170;
+      border-color: $errorColor;
+      outline-color: $errorColor;
+    }
+
+    div.form-item-error {
+      position: absolute;
+      color: $errorColor;
+      top: 61px;
     }
   }
 
@@ -52,7 +61,7 @@
   .submit-error {
     font-size: 18px;
     margin-bottom: 20px;
-    color: #F57170;
+    color: $errorColor;
   }
 
   .submit-button {

@@ -11,8 +11,9 @@ let SponsorsTeamsForm = ({ handleSubmit, pristine, submittingForm, invalid, addS
   <form className={styles['authentication-form']} onSubmit={handleSubmit}>
     <Field
       name="name"
+      showErrorText
       component={formGroup}
-      placeholder="Ime sponzora"
+      placeholder="Sponsor name"
       type="text"
       wrapperClassName="form-item-wrapper"
       inputClassName="form-item"
@@ -21,8 +22,9 @@ let SponsorsTeamsForm = ({ handleSubmit, pristine, submittingForm, invalid, addS
 
     <Field
       name="amount"
+      showErrorText
       component={formGroup}
-      placeholder="Iznos u ETH"
+      placeholder="Amount in ETH"
       type="text"
       wrapperClassName="form-item-wrapper"
       inputClassName="form-item"
@@ -31,8 +33,9 @@ let SponsorsTeamsForm = ({ handleSubmit, pristine, submittingForm, invalid, addS
 
     <Field
       name="websiteUrl"
+      showErrorText
       component={formGroup}
-      placeholder="URL sajta"
+      placeholder="Website URL"
       type="text"
       wrapperClassName="form-item-wrapper"
       inputClassName="form-item"
@@ -41,6 +44,7 @@ let SponsorsTeamsForm = ({ handleSubmit, pristine, submittingForm, invalid, addS
 
     <Field
       name="logoUrl"
+      showErrorText
       component={formGroup}
       placeholder="Logo URL"
       type="text"
@@ -63,8 +67,8 @@ let SponsorsTeamsForm = ({ handleSubmit, pristine, submittingForm, invalid, addS
 );
 
 SponsorsTeamsForm.defaultProps = {
-  submitTextSubmitting: 'Dodaje se',
-  submitText: 'Dodaj',
+  submitTextSubmitting: 'Adding',
+  submitText: 'Add',
 };
 
 const mapStateToProps = (state) => ({

@@ -6,34 +6,21 @@ import toggleModal from './modalsActions';
 
 import * as eth from '../modules/ethereumService';
 
-const isUriImage = (uri) => {
-  if (!uri) return false;
-  const uriNoParam = uri.split('?')[0];
-  const parts = uriNoParam.split('.');
-  const extension = parts[parts.length - 1];
-  const imageTypes = ['jpg', 'jpeg', 'tiff', 'png', 'gif', 'bmp'];
-  return imageTypes.indexOf(extension) !== -1;
-};
-
-const isURL = (str) => {
-  const regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/; // eslint-disable-line
-  return regexp.test(str);
-};
-
 const sponsorsFormValidator = (values) => {
   const errors = {};
 
-  if (Object.keys(values).length === 0) return {};
-  if (!values.name) errors.name = 'Obavezno';
-  if (!values.amount) errors.amount = 'Obavezno';
-  if (!values.logoUrl) errors.logoUrl = 'Obavezno';
-  if (!values.websiteUrl) errors.websiteUrl = 'Obavezno';
+  if (!values.name) errors.name = 'Required';
+  if (!values.amount) errors.amount = 'Required';
+  if (!values.logoUrl) errors.logoUrl = 'Required';
+  if (!values.websiteUrl) errors.websiteUrl = 'Required';
 
-  errors.logoUrl = !isUriImage(values.logoUrl);
-  errors.websiteUrl = !isURL(values.websiteUrl);
-  const commaError = values.amount && values.amount.indexOf(',') > 0;
-  const nanError = isNaN(parseFloat(values.amount));
-  errors.amount = commaError || nanError;
+  if (values.amount) {
+    const commaError = values.amount && values.amount.indexOf(',') > 0;
+    const nanError = isNaN(parseFloat(values.amount));
+
+    if (commaError) errors.amount = 'Use a full stop as a delimiter instead of a comma';
+    if (nanError) errors.amount = 'The provided input is not a number';
+  }
 
   return errors;
 };

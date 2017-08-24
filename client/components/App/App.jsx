@@ -25,10 +25,9 @@ class App extends Component {
       <div className={styles.app}>
         <AdminHeader />
 
-        <div className="form-name">Doprinesi nagradnom fondu</div>
-
         <div className="form-wrapper">
-          <AdminSponsorsForm submitText="Doprinesi" submitTextSubmitting="Šalje se" />
+          <div className="form-name">Contribute to prize pool</div>
+          <AdminSponsorsForm submitText="Contribute" submitTextSubmitting="Contributing" />
         </div>
 
         <Footer />

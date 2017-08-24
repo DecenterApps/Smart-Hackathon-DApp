@@ -8,7 +8,7 @@ const fetchPhase = () => (dispatch) => {
 
   eth.getPhase()
     .then((res) => {
-      const phase = parseFloat(res[res.length - 1].args.newPeriod.toString());
+      const phase = parseFloat(res);
       dispatch({ type: PHASE_FETCH_SUCCESS, payload: { phase } });
     })
     .catch((error) => {
