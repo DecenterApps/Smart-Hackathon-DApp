@@ -45,7 +45,7 @@ class AdminSponsors extends Component {
         {
           !this.props.sponsors.isFetching &&
           this.props.sponsors.sponsors.length > 0 &&
-          <table className="admin-table">
+          <table className="display-table">
             <tbody>
               {
                 this.props.sponsors.sponsors.map((sponsor) => (

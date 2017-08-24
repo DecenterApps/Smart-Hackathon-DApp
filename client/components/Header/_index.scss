@@ -14,9 +14,12 @@
       line-height: 30px;
       font-size: 26px;
       margin: 0;
-
+      a {
+        transition: all .1;
+      }
       &:hover a {
-        color: darkgray;
+        color: white;
+        opacity: .8;
       }
     }
     h2 {
