@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
-import AdminHeader from '../Header/HeaderStatus/index.jsx';
 import ModalWrapper from '../Modals/ModalWrapper/ModalWrapper';
 import OpenModalButton from '../../components/OpenModalButton/OpenModalButton';
-import Footer from '../Footer/Footer';
 import userActions from '../../actions/userActions';
 
 require('./_index.scss');
@@ -27,7 +25,6 @@ class Admin extends Component {
           this.props.user.isDetermined &&
           this.props.user.type === 'administrator' &&
           <div>
-            <AdminHeader />
             <div className="container white">
               <div className="tab-wrapper">
                 <div className="left-section">
@@ -56,7 +53,6 @@ class Admin extends Component {
               { this.props.children }
               <ModalWrapper />
             </div>
-            <Footer />
           </div>
         }
 

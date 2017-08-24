@@ -7,7 +7,6 @@ import userActions from '../../actions/userActions';
 import teamActions from '../../actions/teamActions';
 import sponsorActions from '../../actions/sponsorActions';
 
-import HeaderStatus from '../Header/HeaderStatus/index.jsx';
 import DollarIcon from '../Decorative/DollarIcon/index.jsx';
 
 require('./_index.scss');
@@ -26,7 +25,6 @@ class Landing extends Component {
   render() {
     return (
       <div>
-        <HeaderStatus />
         <div className="container white landing-wrapper">
           {
             this.props.user.phase === 0 &&
