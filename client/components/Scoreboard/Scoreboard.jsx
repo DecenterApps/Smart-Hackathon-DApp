@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Footer from '../Footer/Footer';
-import AdminHeader from '../Header/AdminHeader';
 import DollarIcon from '../Decorative/DollarIcon/index';
 import Loader from '../Decorative/Loader/index';
 import { fetchTeams } from '../../actions/teamActions';
@@ -22,8 +20,6 @@ class Scoreboard extends Component {
   render() {
     return (
       <div className="scoreboard">
-        <AdminHeader />
-
         <div className="container white">
           <div className="container-title">Scoreboard</div>
 
@@ -32,7 +28,7 @@ class Scoreboard extends Component {
             !this.props.teamsFetchError &&
             !this.props.teams.length > 0 &&
             <div className="empty-section">
-              Došlo je do greške
+              Error occurred
             </div>
           }
 
@@ -71,8 +67,6 @@ class Scoreboard extends Component {
             </div>
           }
         </div>
-
-        <Footer />
       </div>
     );
   }
