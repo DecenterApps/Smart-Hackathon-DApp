@@ -17,7 +17,7 @@ class Admin extends Component {
 
     this.state = {};
   }
-  componentWillMount() {
+  componentDidMount() {
     this.props.checkUser();
   }
   render() {

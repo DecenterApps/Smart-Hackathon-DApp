@@ -297,6 +297,21 @@ export const getUserType = () =>
     });
   });
 
+export const getUserTypeWithTimeout = () =>
+  new Promise((resolve, reject) => {
+    if (getAccount()) {
+      getUserType()
+        .then((res) => resolve(res))
+        .catch((error) => reject(error))
+    } else {
+      setTimeout(() => {
+        getUserType()
+          .then((res) => resolve(res))
+          .catch((error) => reject(error))
+      }, 500);
+    }
+  });
+
 // setTimeout(() => {
 //   getPhase()
 //     .then(data => console.log(data.toString(10)));
