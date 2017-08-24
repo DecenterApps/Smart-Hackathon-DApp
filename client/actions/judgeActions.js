@@ -14,10 +14,10 @@ import * as eth from '../modules/ethereumService';
 const judgesFormValidator = (values) => {
   const errors = {};
 
-  if (!values.name) errors.name = 'Obavezno';
-  if (!values.address) errors.address = 'Obavezno';
+  if (!values.name) errors.name = 'Required';
+  if (!values.address) errors.address = 'Required';
 
-  errors.address = !web3.isAddress(values.address);
+  if (values.address && !web3.isAddress(values.address)) errors.address = 'Ethereum address is not valid';
 
   return errors;
 };

@@ -11,8 +11,9 @@ let JudgesTeamsForm = ({ handleSubmit, pristine, submittingForm, invalid, addJud
   <form className={styles['authentication-form']} onSubmit={handleSubmit}>
     <Field
       name="name"
+      showErrorText
       component={formGroup}
-      placeholder="Ime"
+      placeholder="Name"
       type="text"
       wrapperClassName="form-item-wrapper"
       inputClassName="form-item"
@@ -21,8 +22,9 @@ let JudgesTeamsForm = ({ handleSubmit, pristine, submittingForm, invalid, addJud
 
     <Field
       name="address"
+      showErrorText
       component={formGroup}
-      placeholder="Ethereum adresa"
+      placeholder="Ethereum address"
       type="text"
       wrapperClassName="form-item-wrapper"
       inputClassName="form-item"
@@ -37,7 +39,7 @@ let JudgesTeamsForm = ({ handleSubmit, pristine, submittingForm, invalid, addJud
       disabled={pristine || submittingForm || invalid}
     >
       { submittingForm && <CubeLoader /> }
-      { submittingForm ? 'Dodaje se' : 'Dodaj' }
+      { submittingForm ? 'Submitting' : 'Submit' }
     </button>
   </form>
 );
