@@ -48,7 +48,11 @@ class Jury extends Component {
                   <p className="title">Cast Your Votes</p>
                   <p className="subtitle">Arrange the teams in desired order.</p>
                 </div>
-                <button onClick={this.voteForTeams} className="submit-button">SUBMIT</button>
+                <button
+                  disabled={this.props.user.phase === 2 ? '' : 'disabled'}
+                  onClick={this.voteForTeams}
+                  className="submit-button"
+                >SUBMIT</button>
               </div>
               {
                 this.props.teams.isFetching &&

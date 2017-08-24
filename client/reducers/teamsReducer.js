@@ -1,4 +1,5 @@
 import {
+  NEW_TEAM,
   TEAM_UP,
   TEAM_DOWN,
   TEAMS_FETCH,
@@ -38,6 +39,15 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         isFetching: false,
         error: action.error
+      };
+
+    case NEW_TEAM:
+      return {
+        ...state,
+        teams: [
+          ...state.teams,
+          action.event,
+        ]
       };
 
     case ADD_TEAM:

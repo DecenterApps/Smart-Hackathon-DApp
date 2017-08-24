@@ -14,6 +14,7 @@ class AdminSponsors extends Component {
   }
   componentWillMount() {
     this.props.fetchSponsors();
+    this.props.sponsorEventListener();
   }
   render() {
     return (
@@ -74,7 +75,8 @@ AdminSponsors.propTypes = {
     isFetching: PropTypes.bool,
     error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   }),
-  fetchSponsors: PropTypes.func.isRequired
+  fetchSponsors: PropTypes.func.isRequired,
+  sponsorEventListener: PropTypes.func.isRequired,
 };
 AdminSponsors.defaultProps = {
   sponsors: {

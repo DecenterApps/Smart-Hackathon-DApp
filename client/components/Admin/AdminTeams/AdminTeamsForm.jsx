@@ -5,10 +5,10 @@ import formGroup from '../../FormComonent/FormComponent';
 import { teamsFormValidator, submitAddTeamsForm } from '../../../actions/teamActions';
 import CubeLoader from '../../Decorative/CubeLoader/CubeLoader';
 
-const styles = require('../../FormComonent/forms.scss');
+require('../../FormComonent/forms.scss');
 
 let AdminTeamsForm = ({ handleSubmit, pristine, submittingForm, invalid, addTeamError }) => ( // eslint-disable-line
-  <form className={styles['authentication-form']} onSubmit={handleSubmit}>
+  <form onSubmit={handleSubmit}>
     <Field
       name="name"
       showErrorText

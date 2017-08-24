@@ -1,4 +1,5 @@
 import {
+  NEW_TEAM,
   TEAM_UP,
   TEAM_DOWN,
   TEAMS_FETCH,
@@ -68,18 +69,18 @@ const fetchTeamScores = () => (dispatch) => {
     .then((res) => {
       let result = {};
 
-      for(let i = i; i < res.length; i++) {
+      for (let i = i; i < res.length; i++) {
         let teamAddress = res[i].args.teamAddress;
         let juryMemberName = res[i].args.juryMemberName;
         let points = res[i].args.points;
 
-        if(result[teamAddress] !== undefined) {
+        if (result[teamAddress] !== undefined) {
           result[teamAddress].totalScore += points;
           result[teamAddress].scoreBreakdown[juryMemberName] = points;
         } else {
           result[teamAddress] = {
             totalScore: points,
-            scoreBreakdown: { juryMemberName: points }
+            scoreBreakdown: {juryMemberName: points}
           };
         }
 
@@ -90,6 +91,18 @@ const fetchTeamScores = () => (dispatch) => {
       const errorMessage = error.message ? error.message.toString() : error;
       console.log(errorMessage);
     });
+};
+
+const teamsEventListener = () => (dispatch) => {
+  eth.TeamRegisteredEvent((error, data) => {
+    if (!error) {
+      console.log(data);
+      dispatch({
+        type: NEW_TEAM,
+        event: data,
+      });
+    }
+  });
 };
 
 const moveTeamUp = (index) => {
@@ -121,14 +134,15 @@ const moveTeamDown = (index) => (dispatch, getState) => {
 const vote = (votes) => dispatch => {
   eth._vote(votes)
     .then(data => {
-
+      console.log(data);
     })
     .catch(error => {
-
+      console.log(error);
     });
 };
 
 module.exports = {
+  teamsEventListener,
   fetchTeams,
   teamsFormValidator,
   submitAddTeamsForm,
