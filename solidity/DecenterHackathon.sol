@@ -8,6 +8,7 @@ contract DecenterHackathon {
         uint score;
         bool rewardEligible;
         bool submittedByAdmin;
+        mapping(address => bool) votedForByJuryMember;
     }
 
     struct JuryMember {
@@ -22,7 +23,7 @@ contract DecenterHackathon {
         uint contribution;
     }
 
-    enum Period { Registration, Competition, Voting, Final }
+    enum Period { Registration, Competition, Voting, Verification, End }
 
     uint public totalContribution;
     Period public currentPeriod;
@@ -59,7 +60,7 @@ contract DecenterHackathon {
 
     // Administrator is able to switch between periods at any time
     function switchToNextPeriod() onlyOwner {
-        if(currentPeriod == Period.Final) {
+        if(currentPeriod == Period.End) {
             return;
         }
 
@@ -118,6 +119,7 @@ contract DecenterHackathon {
     // The _votes parameter should be an array of team addresses, sorted by score from highest to lowest based on jury member's preferences
     function vote(address[] _votes) onlyJury {
         require(currentPeriod == Period.Voting);
+        require(_votes.length == teamAddresses.length);
         require(juryMembers[msg.sender].hasVoted == false);
 
         uint _points = _votes.length;
@@ -128,7 +130,11 @@ contract DecenterHackathon {
             // All submitted teams must be registered
             require(bytes(teams[teamAddress].name).length > 0);
 
+            // Judge should not be able to vote for the same team more than once
+            require(teams[teamAddress].votedForByJuryMember[msg.sender] == false);
+
             teams[teamAddress].score += _points;
+            teams[teamAddress].votedForByJuryMember[msg.sender] = true;
 
             VoteReceived(juryMembers[msg.sender].name, teamAddress, _points);
             _points--;
@@ -141,7 +147,7 @@ contract DecenterHackathon {
     // Administrator can initiate prize payout during final period
     // The _sortedTeams parameter should be an array of correctly sorted teams by score, from highest to lowest
     function payoutPrizes(address[] _sortedTeams) onlyOwner {
-        require(currentPeriod == Period.Final);
+        require(currentPeriod == Period.Verification);
         require(_sortedTeams.length == teamAddresses.length);
 
         for(uint i = 0; i < _sortedTeams.length; i++) {
