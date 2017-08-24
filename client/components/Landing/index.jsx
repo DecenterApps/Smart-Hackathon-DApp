@@ -89,7 +89,11 @@ class Landing extends Component {
                {
                  this.props.sponsors.sponsors.map((sponsor) => (
                    <div className="sponsor-wrapper" key={sponsor.transactionHash}>
-                     <a href={sponsor.args.sponsorSite.substr(0, 4) === 'http' ? sponsor.args.sponsorSite : 'http://' + sponsor.args.sponsorSite}>
+                     <a
+                       href={sponsor.args.sponsorSite.substr(0, 4) === 'http' ? sponsor.args.sponsorSite : 'http://' + sponsor.args.sponsorSite}
+                       target="_blank"
+                       rel="noopener"
+                     >
                        <span className="logo" style={{ backgroundImage: `url("${sponsor.args.sponsorLogoUrl}")` }} />
                        <span>{sponsor.args.sponsorName}</span>
                      </a>
