@@ -57,7 +57,11 @@ class AdminTeams extends Component {
                     <th className="rewardable"><DollarIcon color={team.args.rewardEligible ? '#44ca44' : '#eee'} /></th>
                     <th>{team.args.teamName}</th>
                     <td>{team.args.memberNames}</td>
-                    <td>{team.args.teamAddress}</td>
+                    <td>
+                      <a href={`https://etherscan.io/address/${team.args.teamAddress}`} target="_blank" rel="noopener">
+                        {team.args.teamAddress}
+                      </a>
+                    </td>
                   </tr>
                 ))
               }
