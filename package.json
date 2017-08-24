@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "webpack-dev-server --history-api-fallback --compress --config ./webpack/webpack-dev.config.js",
-    "production": "webpack --config ./webpack/webpack-prod.config.js"
+    "prod": "webpack --config ./webpack/webpack-prod.config.js",
+    "prod-serve": "webpack-dev-server --history-api-fallback --compress --config ./webpack/webpack-prod.config.js"
   },
   "dependencies": {
     "autoprefixer-loader": "^3.2.0",
