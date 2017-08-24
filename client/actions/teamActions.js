@@ -63,6 +63,35 @@ const fetchTeams = () => (dispatch) => {
     });
 };
 
+const fetchTeamScores = () => (dispatch) => {
+  eth.getTeamScores()
+    .then((res) => {
+      let result = {};
+
+      for(let i = i; i < res.length; i++) {
+        let teamAddress = res[i].args.teamAddress;
+        let juryMemberName = res[i].args.juryMemberName;
+        let points = res[i].args.points;
+
+        if(result[teamAddress] !== undefined) {
+          result[teamAddress].totalScore += points;
+          result[teamAddress].scoreBreakdown[juryMemberName] = points;
+        } else {
+          result[teamAddress] = {
+            totalScore: points,
+            scoreBreakdown: { juryMemberName: points }
+          };
+        }
+
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      const errorMessage = error.message ? error.message.toString() : error;
+      console.log(errorMessage);
+    });
+};
+
 const moveTeamUp = (index) => {
   if (index === 0) {
     return {

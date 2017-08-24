@@ -284,6 +284,22 @@ export const getSponsors = () =>
       });
   });
 
+export const getTeamScores = (teamAddresses) =>
+  new Promise((resolve, reject) => {
+    hackathonContract.VoteReceived({}, {
+      fromBlock: contract.startingBlock, toBlock: 'latest',
+    })
+      .get((error, events) => {
+        if (error) {
+          return reject({
+            message: error,
+          });
+        }
+
+        return resolve(events);
+      });
+  });
+
 export const getUserType = () =>
   new Promise((resolve, reject) => {
     hackathonContract.getUserType(getAccount(), (error, result) => {
