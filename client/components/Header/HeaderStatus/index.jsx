@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { fetchPhase } from '../../../actions/userActions';
 import Header from '../index.jsx';
@@ -21,6 +22,19 @@ class AdminHeader extends Component {
     return (
       <div>
         <Header>
+          <span className="user-type-view-link">
+            {
+              this.props.isDetermined &&
+              this.props.userType === 'administrator' &&
+              <Link to="/admin">Administrator view</Link>
+            }
+            {
+              this.props.isDetermined &&
+              this.props.userType === 'jury' &&
+              <Link to="/jury">Judge view</Link>
+            }
+          </span>
+
           <span className="admin-header-period">
             <span className="period">Period:</span>
             { this.props.isFetching && <CubeLoader /> }
@@ -43,6 +57,8 @@ class AdminHeader extends Component {
 }
 
 AdminHeader.propTypes = {
+  isDetermined: PropTypes.bool.isRequired,
+  userType: PropTypes.string.isRequired,
   phase: PropTypes.number.isRequired,
   $fetchPhase: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
@@ -51,6 +67,8 @@ AdminHeader.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
+  isDetermined: state.user.isDetermined,
+  userType: state.user.type,
   phase: state.user.phase,
   isFetching: state.user.isFetching,
   phaseError: state.user.phaseError,

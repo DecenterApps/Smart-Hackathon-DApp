@@ -23,7 +23,7 @@ class Jury extends Component {
     this.voteForTeams = this.voteForTeams.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.checkUser();
     this.props.fetchTeams();
   }

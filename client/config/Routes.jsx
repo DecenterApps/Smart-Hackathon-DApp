@@ -10,7 +10,6 @@ import AdminTeams from '../components/Admin/AdminTeams/index.jsx';
 import AdminSponsors from '../components/Admin/AdminSponsors/index.jsx';
 import AdminJudges from '../components/Admin/AdminJudges/index.jsx';
 import AdminChangePhase from '../components/Admin/AdminChangePhase/AdminChangePhase';
-import Scoreboard from '../components/Scoreboard/Scoreboard';
 
 const Routes = ({ store }) => (
   <Provider store={store}>

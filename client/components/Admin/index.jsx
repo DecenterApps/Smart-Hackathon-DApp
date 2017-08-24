@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
-import AdminHeader from '../Header/AdminHeader/index.jsx';
+import AdminHeader from '../Header/HeaderStatus/index.jsx';
 import ModalWrapper from '../Modals/ModalWrapper/ModalWrapper';
 import OpenModalButton from '../../components/OpenModalButton/OpenModalButton';
 import Footer from '../Footer/Footer';
@@ -17,7 +17,7 @@ class Admin extends Component {
 
     this.state = {};
   }
-  componentWillMount() {
+  componentDidMount() {
     this.props.checkUser();
   }
   render() {
