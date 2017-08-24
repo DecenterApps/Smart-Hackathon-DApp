@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import userActions from '../../actions/userActions';
 import teamActions from '../../actions/teamActions';
 import sponsorActions from '../../actions/sponsorActions';
 
@@ -18,6 +19,7 @@ class Landing extends Component {
     this.state = {};
   }
   componentWillMount() {
+    this.props.checkUser();
     this.props.fetchTeams();
     this.props.fetchSponsors();
   }
@@ -113,6 +115,7 @@ Landing.propTypes = {
   sponsors: PropTypes.shape({
     sponsors: PropTypes.array,
   }),
+  checkUser: PropTypes.func.isRequired,
   fetchTeams: PropTypes.func.isRequired,
   fetchSponsors: PropTypes.func.isRequired,
 };
@@ -128,6 +131,7 @@ Landing.defaultProps = {
 
 const mapStateToProps = state => state;
 const mapDispatchToProps = dispatch => bindActionCreators({
+  ...userActions,
   ...teamActions,
   ...sponsorActions,
 }, dispatch);

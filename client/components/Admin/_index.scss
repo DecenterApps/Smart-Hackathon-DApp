@@ -27,28 +27,9 @@ $highlight: #673AB7;
 }
 
 .tab-wrapper {
-  border-bottom: 1px solid #eee;
-
-  a {
-    display: inline-block;
-    text-align: center;
-    padding: 20px;
-    margin: 0 10px;
-    border-bottom: 3px solid white;
-    color: #BFBFBF;
-    cursor: pointer;
-    &.active {
-      color: $highlight;
-      border-color: $highlight;
-    }
-  }
-}
-
-.tab-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 20px 0 0 0;
   border-bottom: 1px solid #eee;
 
   .left-section {
@@ -74,7 +55,7 @@ $highlight: #673AB7;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 40px;
+    margin-right: 30px;
 
     button {
       color: $highlight;
@@ -130,6 +111,14 @@ $highlight: #673AB7;
   }
 
   th, td {
+    &:first-child {
+      padding-left: 30px;
+    }
+    &:last-child {
+      padding-right: 30px;
+      text-align: right;
+    }
+
     padding: 20px 10px;
 
     &.highlighted {
