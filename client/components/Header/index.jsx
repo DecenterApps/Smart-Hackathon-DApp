@@ -8,7 +8,7 @@ const Header = ({ children }) => (
   <div className="header">
     <div className="title">
       <h1><Link to="/">Startit Blockchain Hackathon</Link></h1>
-      <h2>Belgrade 25/26/27 August</h2>
+      <h2>Belgrade 25/26/27 August 2017</h2>
     </div>
     <div className="other">
       {children}
