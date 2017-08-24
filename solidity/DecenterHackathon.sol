@@ -101,7 +101,7 @@ contract DecenterHackathon {
     // Anyone can contribute to the prize pool (i.e. either sponsor himself or administrator on behalf of the sponsor) during registration period
     function contributeToPrizePool(string _name, string _siteUrl, string _logoUrl) payable {
         require(currentPeriod == Period.Registration);
-        require(msg.value > 0);
+        require(msg.value >= 0.1 ether);
 
         sponsors.push(Sponsor({
             name: _name,

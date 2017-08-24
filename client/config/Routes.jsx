@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import App from '../components/App/App.jsx';
 import Jury from '../components/Jury/index.jsx';
+import Sponsor from '../components/Sponsor/index.jsx';
 import Admin from '../components/Admin/index.jsx';
 import AdminTeams from '../components/Admin/AdminTeams/index.jsx';
 import AdminSponsors from '../components/Admin/AdminSponsors/index.jsx';
@@ -17,6 +18,7 @@ const Routes = ({ store }) => (
       <Switch>
         <Route exact path="/" component={App} />
         <Route path="/jury" component={Jury} />
+        <Route path="/sponsor" component={Sponsor} />
         <Admin>
           <Route path="/admin/teams" component={AdminTeams} />
           <Route path="/admin/sponsors" component={AdminSponsors} />
