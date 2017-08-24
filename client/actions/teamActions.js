@@ -70,9 +70,7 @@ const fetchTeamScores = () => (dispatch) => {
       eth.getTeamScores()
         .then((events) => {
           let result = {};
-          console.log(teams);
           for (let i = 0; i < events.length; i++) {
-            console.log(events[i]);
             let teamAddress = events[i].args.teamAddress;
             let juryMemberName = events[i].args.juryMemberName;
             let points = parseInt(events[i].args.points.toString(10), 10);

@@ -49,7 +49,9 @@ class Scoreboard extends Component {
 
                     <div className="td members">{team.args.memberNames}</div>
 
-                    <div className="td total-points">{team.args.points}</div>
+                    <div className="td total-points">
+                      {this.props.sponsors.ethPrize / (2 ** (index + 1))}
+                    </div>
 
                     <span className="td reward-amount">{team.args.reward}</span>
                   </div>
@@ -66,13 +68,15 @@ class Scoreboard extends Component {
 Scoreboard.propTypes = {
   teams: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
-  teamsFetchError: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]).isRequired
+  teamsFetchError: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]).isRequired,
+  sponsors: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   teams: state.teams.teams,
   isFetching: state.teams.isFetching,
-  teamsFetchError: state.teams.error
+  teamsFetchError: state.teams.error,
+  sponsors: state.sponsors,
 });
 
-export default connect(mapStateToProps, { })(Scoreboard);
+export default connect(mapStateToProps, {})(Scoreboard);
