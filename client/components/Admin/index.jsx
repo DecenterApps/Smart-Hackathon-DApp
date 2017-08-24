@@ -31,7 +31,7 @@ class Admin extends Component {
                   <Link to="/admin/teams" className={location.hash === '#/admin/' || location.hash === '#/admin' || location.hash === '#/admin/teams' ? 'active' : ''}>Teams</Link>
                   <Link to="/admin/sponsors" className={location.hash === '#/admin/sponsors' ? 'active' : ''}>Sponsors</Link>
                   <Link to="/admin/judges" className={location.hash === '#/admin/judges' ? 'active' : ''}>Judges</Link>
-                  <Link to="/admin/change-period" className={location.hash === '#/admin/change-period' ? 'active' : ''}>Change period</Link>
+                  <Link to="/admin/options" className={location.hash === '#/admin/options' ? 'active' : ''}>Options</Link>
                 </div>
 
                 <div className="right-section">

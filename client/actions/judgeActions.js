@@ -55,16 +55,15 @@ const fetchJudges = () => (dispatch) => {
 };
 
 const judgeEventListener = () => (dispatch) => {
-  eth.JuryMemberAddedEvent()
-    .then(data => {
+  eth.JuryMemberAddedEvent((error, data) => {
+    if (!error) {
+      console.log(data);
       dispatch({
         type: NEW_JUDGE,
         event: data,
       });
-    })
-    .catch(error => {
-      console.log(error);
-    });
+    }
+  });
 };
 
 module.exports = {

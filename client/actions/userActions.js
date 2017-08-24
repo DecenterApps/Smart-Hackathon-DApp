@@ -1,7 +1,37 @@
-import { PHASE_FETCH, PHASE_FETCH_SUCCESS, PHASE_FETCH_ERROR, CHANGE_PHASE,
-  CHANGE_PHASE_SUCCESS, CHANGE_PHASE_ERROR, USER_CHECKING, USER_FOUND } from './types';
+import {
+  PHASE_FETCH, PHASE_FETCH_SUCCESS, PHASE_FETCH_ERROR, CHANGE_PHASE,
+  CHANGE_PHASE_SUCCESS, CHANGE_PHASE_ERROR, USER_CHECKING, USER_FOUND,
+  SUBMIT_PAYOUT, SUBMIT_PAYOUT_ERROR, SUBMIT_PAYOUT_SUCCESS
+} from './types';
 
 import * as eth from '../modules/ethereumService';
+
+const payoutTeams = (sortedTeams) => (dispatch) => {
+  dispatch({ type: SUBMIT_PAYOUT });
+
+  let sorted = true;
+
+  for (let i = 0; i < sortedTeams.length - 1; i += 1) {
+    if (sortedTeams[i].points > sortedTeams[i + 1].points) {
+      sorted = false;
+      break;
+    }
+  }
+
+  if (!sorted) {
+    dispatch({ type: SUBMIT_PAYOUT_ERROR });
+  }
+
+  const teamAddresses = sortedTeams.map((elem) => (elem.address));
+
+  eth._payoutPrizes(teamAddresses)
+    .then(() => {
+      dispatch({ type: SUBMIT_PAYOUT_SUCCESS });
+    })
+    .catch(() => {
+      dispatch({ type: SUBMIT_PAYOUT_ERROR });
+    });
+};
 
 const fetchPhase = () => (dispatch) => {
   dispatch({ type: PHASE_FETCH });
@@ -29,7 +59,6 @@ const changePhase = () => (dispatch) => {
     });
 };
 
-
 const checkUser = () => (dispatch) => {
   dispatch({ type: USER_CHECKING });
   eth.getUserTypeWithTimeout()
@@ -45,4 +74,26 @@ const checkUser = () => (dispatch) => {
     });
 };
 
-module.exports = { checkUser, fetchPhase, changePhase };
+const periodChangedListener = () => (dispatch) => {
+  eth.PeriodChangedEvent((error, event) => {
+    if (!error) {
+      console.log(event);
+      const phase = parseFloat(event.args.newPeriod.toString());
+      console.log(phase);
+      dispatch({
+        type: CHANGE_PHASE_SUCCESS,
+        payload: {
+          phase,
+        }
+      });
+    }
+  });
+};
+
+module.exports = {
+  periodChangedListener,
+  checkUser,
+  fetchPhase,
+  changePhase,
+  payoutTeams
+};

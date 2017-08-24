@@ -159,5 +159,9 @@ $highlight: #673AB7;
     padding: 20px 10px;
     display: inline-block;
     float: right;
+
+    &:first-of-type {
+      padding-right: 30px;
+    }
   }
 }

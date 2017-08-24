@@ -24,8 +24,14 @@
     font-size: 13px;
     color: #fff;
 
-    &:hover {
-      background-color: darken(#673AB7, 5);
+    &:hover:not(:disabled) {
+      background: lighten(#673AB7, 15);
+    }
+
+    &:disabled {
+      user-select: none;
+      cursor: not-allowed;
+      background: lighten(#673AB7, 30);
     }
   }
 }

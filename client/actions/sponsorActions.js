@@ -1,5 +1,5 @@
 import {
-  SPONSORS_FETCH, SPONSORS_SUCCESS, SPONSORS_ERROR, ADD_SPONSOR, ADD_SPONSOR_SUCCESS,
+  NEW_SPONSOR, SPONSORS_FETCH, SPONSORS_SUCCESS, SPONSORS_ERROR, ADD_SPONSOR, ADD_SPONSOR_SUCCESS,
   ADD_SPONSOR_ERROR
 } from './types';
 import toggleModal from './modalsActions';
@@ -81,6 +81,20 @@ const fetchSponsors = () => (dispatch) => {
     });
 };
 
+const sponsorEventListener = () => (dispatch) => {
+  eth.SponsorshipReceivedEvent((error, data) => {
+    if (!error) {
+      dispatch({
+        type: NEW_SPONSOR,
+        event: data,
+      });
+    }
+  });
+};
+
 module.exports = {
-  fetchSponsors, sponsorsFormValidator, submitAddSponsorsForm
+  fetchSponsors,
+  sponsorsFormValidator,
+  submitAddSponsorsForm,
+  sponsorEventListener,
 };

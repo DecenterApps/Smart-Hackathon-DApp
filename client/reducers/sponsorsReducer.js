@@ -1,4 +1,7 @@
-import { SPONSORS_FETCH, SPONSORS_SUCCESS, SPONSORS_ERROR, ADD_SPONSOR, ADD_SPONSOR_SUCCESS, ADD_SPONSOR_ERROR } from '../actions/types';
+import {
+  SPONSORS_FETCH, SPONSORS_SUCCESS, SPONSORS_ERROR, ADD_SPONSOR, ADD_SPONSOR_SUCCESS,
+  ADD_SPONSOR_ERROR, NEW_SPONSOR
+} from '../actions/types';
 
 
 const INITIAL_STATE = {
@@ -28,6 +31,15 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         isFetching: false,
         error: action.error
+      };
+
+    case NEW_SPONSOR:
+      return {
+        ...state,
+        sponsors: [
+          ...state.sponsors,
+          action.event,
+        ]
       };
 
     case ADD_SPONSOR:
