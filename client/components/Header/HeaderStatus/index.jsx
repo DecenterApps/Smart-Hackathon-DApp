@@ -33,7 +33,7 @@ class AdminHeader extends Component {
               this.props.isDetermined &&
               this.props.userType === 'jury' &&
               (location.hash.indexOf('#/jury') === -1) &&
-              <Link to="/jury">Judge view</Link>
+              <Link to="/jury">Vote</Link>
             }
           </span>
 

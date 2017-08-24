@@ -1,6 +1,6 @@
 import {
   SPONSORS_FETCH, SPONSORS_SUCCESS, SPONSORS_ERROR, ADD_SPONSOR, ADD_SPONSOR_SUCCESS,
-  ADD_SPONSOR_ERROR, NEW_SPONSOR
+  ADD_SPONSOR_ERROR, NEW_SPONSOR, SPONSORS_PRIZE_ETH, SPONSORS_PRIZE_EUR
 } from '../actions/types';
 
 
@@ -60,6 +60,18 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         submitting: false,
         addSponsorError: action.payload.addSponsorError
+      };
+
+    case SPONSORS_PRIZE_ETH:
+      return {
+        ...state,
+        ethPrize: action.prize,
+      };
+
+    case SPONSORS_PRIZE_EUR:
+      return {
+        ...state,
+        eurPrize: action.prize,
       };
 
     default:

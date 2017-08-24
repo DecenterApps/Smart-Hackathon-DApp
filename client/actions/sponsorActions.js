@@ -1,6 +1,6 @@
 import {
   NEW_SPONSOR, SPONSORS_FETCH, SPONSORS_SUCCESS, SPONSORS_ERROR, ADD_SPONSOR, ADD_SPONSOR_SUCCESS,
-  ADD_SPONSOR_ERROR
+  ADD_SPONSOR_ERROR, SPONSORS_PRIZE_ETH, SPONSORS_PRIZE_EUR
 } from './types';
 import toggleModal from './modalsActions';
 
@@ -81,6 +81,38 @@ const fetchSponsors = () => (dispatch) => {
     });
 };
 
+const fetchPrizePoolSize = () => (dispatch) => {
+  eth.getPrizePoolSize()
+    .then((res) => {
+      const prize = web3.fromWei(res).toString();
+      console.log(prize);
+      dispatch({
+        type: SPONSORS_PRIZE_ETH,
+        prize
+      });
+      fetch('https://www.bitstamp.net/api/v2/ticker/etheur/', {
+        method: 'get'
+      })
+        .then(response => response.json())
+        .then((data) => {
+          console.log(data.last);
+          console.log(data.last * prize);
+          let eurPrize = data.last * prize;
+          eurPrize = eurPrize.toFixed(2);
+          dispatch({
+            type: SPONSORS_PRIZE_EUR,
+            prize: eurPrize.toString(),
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
 const sponsorEventListener = () => (dispatch) => {
   eth.SponsorshipReceivedEvent((error, data) => {
     if (!error) {
@@ -97,4 +129,5 @@ module.exports = {
   sponsorsFormValidator,
   submitAddSponsorsForm,
   sponsorEventListener,
+  fetchPrizePoolSize,
 };
