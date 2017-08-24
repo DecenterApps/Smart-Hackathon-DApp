@@ -11,8 +11,9 @@ let AdminTeamsForm = ({ handleSubmit, pristine, submittingForm, invalid, addTeam
   <form className={styles['authentication-form']} onSubmit={handleSubmit}>
     <Field
       name="name"
+      showErrorText
       component={formGroup}
-      placeholder="Ime"
+      placeholder="Name"
       type="text"
       wrapperClassName="form-item-wrapper"
       inputClassName="form-item"
@@ -21,8 +22,9 @@ let AdminTeamsForm = ({ handleSubmit, pristine, submittingForm, invalid, addTeam
 
     <Field
       name="address"
+      showErrorText
       component={formGroup}
-      placeholder="Ethereum adresa"
+      placeholder="Ethereum address"
       type="text"
       wrapperClassName="form-item-wrapper"
       inputClassName="form-item"
@@ -31,8 +33,9 @@ let AdminTeamsForm = ({ handleSubmit, pristine, submittingForm, invalid, addTeam
 
     <Field
       name="teamMembers"
+      showErrorText
       component={formGroup}
-      placeholder="Clanovi tima (razdvojiti zarezima)"
+      placeholder="Team members (separate by commas)"
       type="text"
       wrapperClassName="form-item-wrapper"
       inputClassName="form-item"
@@ -43,7 +46,7 @@ let AdminTeamsForm = ({ handleSubmit, pristine, submittingForm, invalid, addTeam
       name="excludeFromPrize"
       component={formGroup}
       showLabel
-      labelText="Izuzmi iz nagrade"
+      labelText="Exclude from prize pool"
       type="checkbox"
       id="excludeFromPrizeId"
       wrapperClassName="form-item-wrapper-checkbox"
@@ -59,7 +62,7 @@ let AdminTeamsForm = ({ handleSubmit, pristine, submittingForm, invalid, addTeam
       disabled={pristine || submittingForm || invalid}
     >
       { submittingForm && <CubeLoader /> }
-      { submittingForm ? 'Dodaje se' : 'Dodaj' }
+      { submittingForm ? 'Submitting' : 'Submit' }
     </button>
   </form>
 );

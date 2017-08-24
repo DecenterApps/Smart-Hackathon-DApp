@@ -15,18 +15,17 @@ import * as eth from '../modules/ethereumService';
 const teamsFormValidator = (values) => {
   const errors = {};
 
-  if (!values.name) errors.name = 'Obavezno';
+  if (!values.name) errors.name = 'Required';
+  if (!values.address) errors.address = 'Required';
 
-  if (!values.address) errors.address = 'Obavezno';
+  if (values.address && !web3.isAddress(values.address)) errors.address = 'Ethereum address is not valid';
 
-  if (values.address) errors.address = !web3.isAddress(values.address);
-
-  if (!values.teamMembers) errors.teamMembers = 'Obavezno';
+  if (!values.teamMembers) errors.teamMembers = 'Required';
 
   if (values.teamMembers) {
     const teamMembers = values.teamMembers.split(', ');
     teamMembers.reduce((sum, val) => {
-      if (val.indexOf(',') > 0) errors.teamMembers = 'Pravilno razdvoji';
+      if (val.indexOf(',') > 0) errors.teamMembers = 'Team members are not correctly separated';
       return sum.concat(`, ${val}`);
     }, '');
   }
