@@ -53,7 +53,11 @@ class AdminJudges extends Component {
                 this.props.judges.judges.map((judge) => (
                   <tr key={judge.transactionHash}>
                     <th>{judge.args.juryMemberName}</th>
-                    <td>{judge.args.juryMemberAddress}</td>
+                    <td>
+                      <a href={`https://etherscan.io/address/${judge.args.juryMemberAddress}`} target="_blank" rel="noopener">
+                        {judge.args.juryMemberAddress}
+                      </a>
+                    </td>
                   </tr>
                 ))
               }

@@ -66,7 +66,11 @@ class Landing extends Component {
                          <th className="rewardable"><DollarIcon color={team.args.rewardEligible ? '#44ca44' : '#eee'} /></th>
                          <th>{team.args.teamName}</th>
                          <td>{team.args.memberNames}</td>
-                         <td><a href={`https://etherscan.io/address/${team.args.teamAddress}`}>{team.args.teamAddress}</a></td>
+                         <td>
+                           <a href={`https://etherscan.io/address/${team.args.teamAddress}`} target="_blank" rel="noopener">
+                             {team.args.teamAddress}
+                           </a>
+                         </td>
                        </tr>
                      ))
                    }
@@ -85,7 +89,7 @@ class Landing extends Component {
                {
                  this.props.sponsors.sponsors.map((sponsor) => (
                    <div className="sponsor-wrapper" key={sponsor.transactionHash}>
-                     <a href={sponsor.args.sponsorSite}>
+                     <a href={sponsor.args.sponsorSite.substr(0, 4) === 'http' ? sponsor.args.sponsorSite : 'http://' + sponsor.args.sponsorSite}>
                        <span className="logo" style={{ backgroundImage: `url("${sponsor.args.sponsorLogoUrl}")` }} />
                        <span>{sponsor.args.sponsorName}</span>
                      </a>

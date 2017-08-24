@@ -51,7 +51,11 @@ class AdminSponsors extends Component {
                 this.props.sponsors.sponsors.map((sponsor) => (
                   <tr key={sponsor.transactionHash}>
                     <th>{sponsor.args.sponsorName}</th>
-                    <th>{sponsor.args.sponsorSite}</th>
+                    <th>
+                      <a href={sponsor.args.sponsorSite.substr(0, 4) === 'http' ? sponsor.args.sponsorSite : 'http://' + sponsor.args.sponsorSite} target="_blank" rel="noopener">
+                        {sponsor.args.sponsorSite.substr(0, 4) === 'http' ? sponsor.args.sponsorSite : 'http://' + sponsor.args.sponsorSite}
+                      </a>
+                    </th>
                     <td>{web3.fromWei(sponsor.args.amount).toString()} ETH</td>
                   </tr>
                 ))

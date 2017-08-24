@@ -15,7 +15,8 @@ module.exports = {
     'import/extensions': 0,
     'no-unused-vars': 1,
     'no-new': 0,
-    'no-underscore-dangle': 0
+    'no-underscore-dangle': 0,
+    'prefer-template': 0,
   },
   'plugins': [
     'react', 'import'
