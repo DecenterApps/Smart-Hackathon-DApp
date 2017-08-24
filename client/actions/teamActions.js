@@ -65,33 +65,50 @@ const fetchTeams = () => (dispatch) => {
 };
 
 const fetchTeamScores = () => (dispatch) => {
-  eth.getTeamScores()
-    .then((events) => {
-      let result = {};
+  eth.getTeams()
+    .then((teams) => {
+      eth.getTeamScores()
+        .then((events) => {
+          let result = {};
+          console.log(teams);
+          for (let i = 0; i < events.length; i++) {
+            console.log(events[i]);
+            let teamAddress = events[i].args.teamAddress;
+            let juryMemberName = events[i].args.juryMemberName;
+            let points = parseInt(events[i].args.points.toString(10), 10);
 
-      for (let i = i; i < events.length; i++) {
-        let teamAddress = events[i].args.teamAddress;
-        let juryMemberName = events[i].args.juryMemberName;
-        let points = events[i].args.points;
+            if (result[teamAddress] !== undefined) {
+              result[teamAddress].totalScore += points;
+              result[teamAddress].scoreBreakdown[juryMemberName] = points;
+            } else {
+              result[teamAddress] = {
+                totalScore: points,
+                scoreBreakdown: [{
+                  juryMemberName,
+                  points
+                }]
+              };
+            }
+          }
 
-        if (result[teamAddress] !== undefined) {
-          result[teamAddress].totalScore += points;
-          result[teamAddress].scoreBreakdown[juryMemberName] = points;
-        } else {
-          result[teamAddress] = {
-            totalScore: points,
-            scoreBreakdown: { juryMemberName: points }
-          };
-        }
-      }
+          let teamsWithPoints = teams.map((item) => {
+            let score = result[item.args.teamAddress];
+            let scoredItem = item;
+            scoredItem.args.totalScore = score.totalScore;
+            scoredItem.args.scoreBreakdown = score.scoreBreakdown;
 
-      console.log(events, result);
+            return scoredItem;
+          }).sort((a, b) => b.args.totalScore - a.args.totalScore);
+
+          dispatch({ type: TEAMS_SUCCESS, teams: teamsWithPoints });
+        })
+        .catch((error) => {
+          console.log(error);
+          const errorMessage = error.message ? error.message.toString() : error;
+          console.log(errorMessage);
+        });
     })
-    .catch((error) => {
-      console.log(error);
-      const errorMessage = error.message ? error.message.toString() : error;
-      console.log(errorMessage);
-    });
+    .catch(error => console.log(error));
 };
 
 const teamsEventListener = () => (dispatch) => {

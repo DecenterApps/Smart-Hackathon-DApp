@@ -23,7 +23,7 @@ class Payout extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchTeams();
+    this.props.fetchTeamScores();
   }
 
   payoutTeams() {
@@ -94,7 +94,7 @@ class Payout extends Component {
                   <div className="td team-rank">{i + 1}.</div>
                   <div className="td team-name">{team.args.teamName}</div>
                   <div className="td">{team.args.teamAddress}</div>
-                  <div className="td team-points">{team.args.points}</div>
+                  <div className="td team-points">{team.args.totalScore}</div>
                   <div
                     className="td arrows"
                     onClick={() => this.props.moveTeamDown(i)}
@@ -131,10 +131,10 @@ Payout.propTypes = {
     submittingPayout: PropTypes.bool.isRequired,
     submittingPayoutError: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired
   }).isRequired,
-  fetchTeams: PropTypes.func.isRequired,
   moveTeamUp: PropTypes.func.isRequired,
   moveTeamDown: PropTypes.func.isRequired,
   payoutTeams: PropTypes.func.isRequired,
+  fetchTeamScores: PropTypes.func.isRequired,
 };
 
 Payout.defaultProps = {
