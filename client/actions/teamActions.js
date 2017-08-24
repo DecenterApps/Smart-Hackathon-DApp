@@ -80,10 +80,9 @@ const fetchTeamScores = () => (dispatch) => {
         } else {
           result[teamAddress] = {
             totalScore: points,
-            scoreBreakdown: {juryMemberName: points}
+            scoreBreakdown: { juryMemberName: points }
           };
         }
-
       }
     })
     .catch((error) => {
