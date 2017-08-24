@@ -6,6 +6,7 @@ contract DecenterHackathon {
         string name;
         string memberNames;
         uint score;
+        uint reward;
         bool rewardEligible;
         bool submittedByAdmin;
         mapping(address => bool) votedForByJuryMember;
@@ -78,6 +79,7 @@ contract DecenterHackathon {
             name: _name,
             memberNames: _memberNames,
             score: 0,
+            reward: 0,
             rewardEligible: _rewardEligible,
             submittedByAdmin: false
         });
@@ -172,6 +174,7 @@ contract DecenterHackathon {
 
             if(teams[_sortedTeams[i]].rewardEligible) {
                 _sortedTeams[i].transfer(_prizeAmount);
+                teams[_sortedTeams[i]].reward = _prizeAmount;
                 prizePoolDivider *= 2;
                 PrizePaid(teams[_sortedTeams[i]].name, _prizeAmount);
             }
