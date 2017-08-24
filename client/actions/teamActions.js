@@ -77,7 +77,7 @@ const fetchTeamScores = () => (dispatch) => {
 
             if (result[teamAddress] !== undefined) {
               result[teamAddress].totalScore += points;
-              result[teamAddress].scoreBreakdown[juryMemberName] = points;
+              result[teamAddress].scoreBreakdown.push({ juryMemberName, points });
             } else {
               result[teamAddress] = {
                 totalScore: points,

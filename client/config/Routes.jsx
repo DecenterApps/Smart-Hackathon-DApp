@@ -32,7 +32,7 @@ class Routes extends Component {
     return (
       <Provider store={this.props.store}>
         <HashRouter>
-          <div>
+          <div className="top-level-wrapper">
             <HeaderStatus />
             <Switch>
               <Route exact path="/" component={Landing} />

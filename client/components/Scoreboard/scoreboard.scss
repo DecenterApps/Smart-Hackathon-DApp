@@ -1,6 +1,8 @@
 .scoreboard {
-  .container {
+
+  .container.white {
     padding: 0;
+    overflow: visible;
   }
 
   .container-title {
@@ -26,23 +28,25 @@
       }
 
       .team-name-wrapper {
-            .rewardable {
-              position: relative;
-              top: 3px;
-              margin-right: 10px;
-            }
+          .rewardable {
+            position: relative;
+            top: 3px;
+            margin-right: 10px;
+          }
 
-            .team-name {
-              font-weight: 500;
-              font-size: 14px;
-              white-space: nowrap;
-              overflow: hidden;
-              text-overflow: ellipsis;
-            }
+          .team-name {
+            font-weight: 500;
+            font-size: 14px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
       }
 
       .total-points {
         flex-grow: 0.3;
+        overflow: visible;
+        cursor: pointer;
       }
 
       .members {
@@ -55,8 +59,12 @@
         padding-right: 20px;
         display: block;
         line-height: 25px;
-        flex-grow: 0.5;
-        justify-content: flex-end;
+        flex-grow: 0.4;
+        text-align: right;
+
+        span {
+          margin-left: 5px;
+        }
       }
     }
 
@@ -66,4 +74,47 @@
       }
     }
   }
+}
+
+div.tooltips {
+  position: relative;
+  display: inline;
+}
+div.tooltips .tooltip-wrapper {
+  position: absolute;
+  width: 250px;
+  color: #FFFFFF;
+  background: #673AB7;
+  top: 47px;
+  line-height: 25px;
+  text-align: center;
+  visibility: hidden;
+  border-radius: 3px;
+
+  .jury-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    padding: 3px 8px;
+  }
+}
+div.tooltips .tooltip-wrapper:after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  transform: rotate(180deg);
+  margin-left: -8px;
+  width: 0; height: 0;
+  border-top: 8px solid #673AB7;
+  border-right: 8px solid transparent;
+  border-left: 8px solid transparent;
+  right: 19px;
+}
+div:hover.tooltips .tooltip-wrapper {
+  visibility: visible;
+  opacity: 0.9;
+  bottom: 30px;
+  right: 10%;
+  z-index: 999;
 }

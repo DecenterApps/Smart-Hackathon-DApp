@@ -1,3 +1,7 @@
+.top-level-wrapper {
+  overflow: hidden;
+}
+
 .landing-wrapper {
   text-align: center;
   padding: 40px 0 !important;
@@ -5,6 +9,38 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  .end-wrapper {
+    .table-wrapper {
+      margin-top: 30px;
+
+      .scoreboard-header {
+        margin-bottom: 30px;
+      }
+
+      .table {
+        margin-bottom: 0;
+
+        .members {
+          text-align: left;
+        }
+
+        .medal {
+          flex-grow: 0.2;
+          margin-right: 28px;
+        }
+
+        .last-child {
+          border-bottom: 0;
+        }
+      }
+    }
+  }
+
+  &.last-phase {
+    padding-bottom: 0 !important;
+    overflow: visible;
+  }
 
   p {
     margin: 0;

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import DollarIcon from '../Decorative/DollarIcon/index';
 import Loader from '../Decorative/Loader/index';
 import { fetchTeamScores } from '../../actions/teamActions';
+import MedalIcon from '../Decorative/MedalIcon/MedalIcon';
 
 require('./scoreboard.scss');
 
@@ -38,10 +39,14 @@ class Scoreboard extends Component {
             <div className="table teams">
               {
                 this.props.teams.map((team, index) => (
-                  <div className="tr team" key={team.transactionHash}>
+                  <div className={`${index === (this.props.teams.length - 1) ? 'last-child' : ''} tr team`} key={team.transactionHash}>
                     <div className="td team-rank">#{index + 1}</div>
 
-                    <div className="td medal" />
+                    <div className="td medal">
+                      { index === 0 && <MedalIcon color="#FFC107" />}
+                      { index === 1 && <MedalIcon color="#BDBDBD" />}
+                      { index === 2 && <MedalIcon color="#F57C00" />}
+                    </div>
 
                     <div className="td team-name-wrapper">
                       <span className="team-name">{team.args.teamName}</span>
@@ -49,11 +54,27 @@ class Scoreboard extends Component {
 
                     <div className="td members">{team.args.memberNames}</div>
 
-                    <div className="td total-points">
-                      {this.props.sponsors.ethPrize / (2 ** (index + 1))}
+                    <div
+                      className="td total-points tooltips"
+                    >
+                      <div>{team.args.totalScore}</div>
+                      <span
+                        className="tooltip-wrapper"
+                        style={{ height: (team.args.scoreBreakdown.length * 31) + 'px' }}
+                      >
+                        {team.args.scoreBreakdown.map((juryVote) => (
+                          <span className="jury-row" key={juryVote.juryMemberName}>
+                            <span className="jury-name">{juryVote.juryMemberName}:</span>
+                            <span className="jury-points">{juryVote.points} PTS</span>
+                          </span>
+                        ))}
+                      </span>
                     </div>
 
-                    <span className="td reward-amount">{team.args.reward}</span>
+                    <span className="td reward-amount">
+                      {parseFloat(this.props.sponsors.ethPrize) / (2 ** (index + 1))}
+                      <span>ETH</span>
+                    </span>
                   </div>
                 ))
               }

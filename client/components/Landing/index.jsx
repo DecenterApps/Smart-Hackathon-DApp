@@ -27,7 +27,7 @@ class Landing extends Component {
   render() {
     return (
       <div>
-        <div className="container white landing-wrapper">
+        <div className={`${this.props.user.phase === 4 ? 'last-phase' : ''} container white landing-wrapper`}>
           {
             this.props.user.phase === 0 &&
             <div>
@@ -118,11 +118,11 @@ class Landing extends Component {
           }
           {
             this.props.user.phase === 4 &&
-            <div>
+            <div className="end-wrapper">
               <h1>Thanks for being a part of Startit Blockchain Hackathon!</h1>
 
               <div className="table-wrapper">
-                <h2>Here is the final scoreboard:</h2>
+                <h2 className="scoreboard-header">Here is the final scoreboard:</h2>
                 <Scoreboard />
               </div>
             </div>
