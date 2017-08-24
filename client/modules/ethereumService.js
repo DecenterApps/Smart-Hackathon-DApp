@@ -1,5 +1,5 @@
 /* eslint-disable */
-import contract from './contract.json';
+import contract from './config.json';
 
 const networkIds = {
   mainnet: '1',
@@ -295,6 +295,21 @@ export const getUserType = () =>
 
       return resolve(result);
     });
+  });
+
+export const getUserTypeWithTimeout = () =>
+  new Promise((resolve, reject) => {
+    if (getAccount()) {
+      getUserType()
+        .then((res) => resolve(res))
+        .catch((error) => reject(error))
+    } else {
+      setTimeout(() => {
+        getUserType()
+          .then((res) => resolve(res))
+          .catch((error) => reject(error))
+      }, 500);
+    }
   });
 
 // setTimeout(() => {
