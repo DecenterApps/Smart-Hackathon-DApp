@@ -33,7 +33,7 @@ class Landing extends Component {
               <h1>Welcome to Startit Blockchain Hackathon</h1>
               <p>
                 The competition has not started yet.
-                Feel free to <Link to="/sponsor">contribute</Link>.
+                Feel free to <Link to="/sponsor">contribute</Link> to the prize pool.
               </p>
             </div>
           }
