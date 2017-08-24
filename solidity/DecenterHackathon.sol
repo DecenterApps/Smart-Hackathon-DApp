@@ -40,7 +40,7 @@ contract DecenterHackathon {
     event TeamRegistered(string teamName, address teamAddress, string memberNames, bool rewardEligible);
     event JuryMemberAdded(string juryMemberName, address juryMemberAddress);
     event SponsorshipReceived(string sponsorName, string sponsorSite, string sponsorLogoUrl, uint amount);
-    event VoteReceived(string juryMemberName, address teamAddress, uint points);
+    event VoteReceived(string juryMemberName, address indexed teamAddress, uint points);
     event PrizePaid(string teamName, uint amount);
 
     modifier onlyOwner {
