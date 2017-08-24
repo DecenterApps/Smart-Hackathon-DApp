@@ -2,18 +2,17 @@ import { Provider } from 'react-redux';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import React from 'react';
 import PropTypes from 'prop-types';
-import App from '../components/App/App.jsx';
 import Jury from '../components/Jury/index.jsx';
+import App from '../components/App/App.jsx';
 import Sponsor from '../components/Sponsor/index.jsx';
 import Admin from '../components/Admin/index.jsx';
 import AdminTeams from '../components/Admin/AdminTeams/index.jsx';
 import AdminSponsors from '../components/Admin/AdminSponsors/index.jsx';
 import AdminJudges from '../components/Admin/AdminJudges/index.jsx';
-import AdminChangePhase from '../components/Admin/AdminChangePhase/AdminChangePhase';
-import Scoreboard from '../components/Scoreboard/Scoreboard';
 import Landing from '../components/Landing/index.jsx';
 import HeaderStatus from '../components/Header/HeaderStatus/index';
 import Footer from '../components/Footer/Footer';
+import AdminOptions from '../components/Admin/AdminOptions/AdminOptions';
 
 const Routes = ({ store }) => (
   <Provider store={store}>
@@ -28,7 +27,7 @@ const Routes = ({ store }) => (
             <Route path="/admin/teams" component={AdminTeams} />
             <Route path="/admin/sponsors" component={AdminSponsors} />
             <Route path="/admin/judges" component={AdminJudges} />
-            <Route path="/admin/change-period" component={AdminChangePhase} />
+            <Route path="/admin/options" component={AdminOptions} />
           </Admin>
         </Switch>
         <Footer />

@@ -221,6 +221,21 @@ export const _vote = (votes) =>
     });
   });
 
+export const _payoutPrizes = (teamAddresses) =>
+  new Promise((resolve, reject) => {
+    hackathonContract.contributeToPrizePool(
+      teamAddresses,
+      (error, result) => {
+      if (error) {
+        return reject({
+          message: error,
+        });
+      }
+
+      return resolve(result);
+    });
+  });
+
 /* Getters for contract state */
 
 export const getTeams = () =>

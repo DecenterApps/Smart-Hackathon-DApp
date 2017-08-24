@@ -5,10 +5,10 @@ import formGroup from '../../FormComonent/FormComponent';
 import { judgesFormValidator, submitAddJudgesForm } from '../../../actions/judgeActions';
 import CubeLoader from '../../Decorative/CubeLoader/CubeLoader';
 
-const styles = require('../../FormComonent/forms.scss');
+require('../../FormComonent/forms.scss');
 
 let JudgesTeamsForm = ({ handleSubmit, pristine, submittingForm, invalid, addJudgeError }) => ( // eslint-disable-line
-  <form className={styles['authentication-form']} onSubmit={handleSubmit}>
+  <form onSubmit={handleSubmit}>
     <Field
       name="name"
       showErrorText

@@ -1,5 +1,8 @@
-import { USER_CHECKING, USER_FOUND, PHASE_FETCH, PHASE_FETCH_SUCCESS, PHASE_FETCH_ERROR,
-  CHANGE_PHASE, CHANGE_PHASE_SUCCESS, CHANGE_PHASE_ERROR } from '../actions/types';
+import {
+  USER_CHECKING, USER_FOUND, PHASE_FETCH, PHASE_FETCH_SUCCESS, PHASE_FETCH_ERROR,
+  CHANGE_PHASE, CHANGE_PHASE_SUCCESS, CHANGE_PHASE_ERROR,
+  SUBMIT_PAYOUT, SUBMIT_PAYOUT_SUCCESS, SUBMIT_PAYOUT_ERROR
+} from '../actions/types';
 
 
 const INITIAL_STATE = {
@@ -11,6 +14,8 @@ const INITIAL_STATE = {
   phaseError: false,
   changingError: false,
   changingPhase: false,
+  submittingPayout: false,
+  submittingPayoutError: false,
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -63,6 +68,26 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         changingPhase: false,
         changingError: 'Error occurred while changing period'
+      };
+
+    case SUBMIT_PAYOUT:
+      return {
+        ...state,
+        submittingPayout: true
+      };
+
+    case SUBMIT_PAYOUT_SUCCESS:
+      return {
+        ...state,
+        submittingPayout: false,
+        submittingPayoutError: false
+      };
+
+    case SUBMIT_PAYOUT_ERROR:
+      return {
+        ...state,
+        submittingPayout: false,
+        submittingPayoutError: 'Error occurred while submitting payout'
       };
 
     default:

@@ -1,7 +1,37 @@
-import { PHASE_FETCH, PHASE_FETCH_SUCCESS, PHASE_FETCH_ERROR, CHANGE_PHASE,
-  CHANGE_PHASE_SUCCESS, CHANGE_PHASE_ERROR, USER_CHECKING, USER_FOUND } from './types';
+import {
+  PHASE_FETCH, PHASE_FETCH_SUCCESS, PHASE_FETCH_ERROR, CHANGE_PHASE,
+  CHANGE_PHASE_SUCCESS, CHANGE_PHASE_ERROR, USER_CHECKING, USER_FOUND,
+  SUBMIT_PAYOUT, SUBMIT_PAYOUT_ERROR, SUBMIT_PAYOUT_SUCCESS
+} from './types';
 
 import * as eth from '../modules/ethereumService';
+
+const payoutTeams = (sortedTeams) => (dispatch) => {
+  dispatch({ type: SUBMIT_PAYOUT });
+
+  let sorted = true;
+
+  for (let i = 0; i < sortedTeams.length - 1; i += 1) {
+    if (sortedTeams[i].points > sortedTeams[i + 1].points) {
+      sorted = false;
+      break;
+    }
+  }
+
+  if (!sorted) {
+    dispatch({ type: SUBMIT_PAYOUT_ERROR });
+  }
+
+  const teamAddresses = sortedTeams.map((elem) => (elem.address));
+
+  eth._payoutPrizes(teamAddresses)
+    .then(() => {
+      dispatch({ type: SUBMIT_PAYOUT_SUCCESS });
+    })
+    .catch(() => {
+      dispatch({ type: SUBMIT_PAYOUT_ERROR });
+    });
+};
 
 const fetchPhase = () => (dispatch) => {
   dispatch({ type: PHASE_FETCH });
@@ -45,4 +75,4 @@ const checkUser = () => (dispatch) => {
     });
 };
 
-module.exports = { checkUser, fetchPhase, changePhase };
+module.exports = { checkUser, fetchPhase, changePhase, payoutTeams };
