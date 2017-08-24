@@ -16,11 +16,13 @@
   font-weight: 700;
   margin-right: 25px;
   text-transform: uppercase;
-  color: #673AB7;
-  text-decoration: underline;
   font-size: 18px;
+  background: #842e77;
+  padding: 12px;
+  color: white;
+  border-radius: 3px;
 
-  &:link {
+  &:hover {
     text-decoration: underline;
   }
 }

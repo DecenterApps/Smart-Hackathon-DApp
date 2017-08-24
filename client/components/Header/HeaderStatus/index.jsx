@@ -26,11 +26,13 @@ class AdminHeader extends Component {
             {
               this.props.isDetermined &&
               this.props.userType === 'administrator' &&
+              (location.hash.indexOf('#/admin') === -1) &&
               <Link to="/admin">Administrator view</Link>
             }
             {
               this.props.isDetermined &&
               this.props.userType === 'jury' &&
+              (location.hash.indexOf('#/jury') === -1) &&
               <Link to="/jury">Judge view</Link>
             }
           </span>
