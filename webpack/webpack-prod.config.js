@@ -60,7 +60,8 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        env: '"production"'
+        env: '"production"',
+        NODE_ENV: '"production"',
       }
     })
   ]
