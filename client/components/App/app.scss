@@ -183,6 +183,9 @@ button {
   display: flex;
   flex-flow: row nowrap;
   border-bottom: 1px solid #d0d0d0;
+  &:first-child {
+    border-top: 1px solid #d0d0d0;
+  }
 }
 
 .td {

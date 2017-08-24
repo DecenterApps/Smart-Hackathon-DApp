@@ -7,6 +7,7 @@ import userActions from '../../actions/userActions';
 import teamActions from '../../actions/teamActions';
 import sponsorActions from '../../actions/sponsorActions';
 
+import Scoreboard from '../Scoreboard/Scoreboard';
 import DollarIcon from '../Decorative/DollarIcon/index.jsx';
 
 require('./_index.scss');
@@ -39,14 +40,14 @@ class Landing extends Component {
           {
             this.props.user.phase === 1 &&
             <div>
-              <h1>Competition</h1>
+              <h1>Competition is ongoing. </h1>
             </div>
           }
           {
             (this.props.user.phase === 2 ||
              this.props.user.phase === 3) &&
              <div>
-               <h1>The judges are voting</h1>
+               <h1>The judges are voting. </h1>
              </div>
           }
           {
@@ -96,7 +97,12 @@ class Landing extends Component {
           {
             this.props.user.phase === 4 &&
             <div>
-              <h1>Scoreboard</h1>
+              <h1>Thanks for being a part of Startit Blockchain Hackathon!</h1>
+
+              <div className="table-wrapper">
+                <h2>Here are the winners: </h2>
+                <Scoreboard />
+              </div>
             </div>
           }
         </div>

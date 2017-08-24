@@ -21,8 +21,6 @@ class Scoreboard extends Component {
     return (
       <div className="scoreboard">
         <div className="container white">
-          <div className="container-title">Scoreboard</div>
-
           {
             !this.props.isFetching &&
             !this.props.teamsFetchError &&
@@ -49,10 +47,6 @@ class Scoreboard extends Component {
                     <div className="td medal" />
 
                     <div className="td team-name-wrapper">
-                      <span className="rewardable">
-                        <DollarIcon color={team.args.rewardEligible ? '#44ca44' : '#eee'} />
-                      </span>
-
                       <span className="team-name">{team.args.teamName}</span>
                     </div>
 
