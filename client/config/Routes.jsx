@@ -15,11 +15,17 @@ import Footer from '../components/Footer/Footer';
 import AdminOptions from '../components/Admin/AdminOptions/AdminOptions';
 
 import { periodChangedListener } from '../actions/userActions';
+import { judgeEventListener } from '../actions/judgeActions';
+import { teamsEventListener } from '../actions/teamActions';
+import { sponsorEventListener } from '../actions/sponsorActions';
 
 class Routes extends Component {
   componentWillMount() {
     console.log(this.props.store);
     this.props.store.dispatch(periodChangedListener());
+    this.props.store.dispatch(judgeEventListener());
+    this.props.store.dispatch(teamsEventListener());
+    this.props.store.dispatch(sponsorEventListener());
   }
 
   render() {

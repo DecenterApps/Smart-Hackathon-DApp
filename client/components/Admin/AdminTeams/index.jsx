@@ -17,7 +17,7 @@ class AdminTeams extends Component {
   }
   componentWillMount() {
     this.props.fetchTeams();
-    this.props.teamsEventListener();
+    this.props.fetchTeamScores();
   }
   render() {
     return (
@@ -81,7 +81,7 @@ AdminTeams.propTypes = {
     error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]).isRequired,
   }),
   fetchTeams: PropTypes.func.isRequired,
-  teamsEventListener: PropTypes.func.isRequired,
+  fetchTeamScores: PropTypes.func.isRequired,
 };
 
 AdminTeams.defaultProps = {
