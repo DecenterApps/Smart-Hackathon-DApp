@@ -15,7 +15,7 @@ module.exports = {
   entry: './client/index.js',
   output: {
     path: path.resolve('dist'),
-    filename: '[hash]-[hash].js',
+    filename: '[name].js',
     chunkFilename: '[chunkhash]-[chunkhash].js',
   },
   module: {
@@ -43,7 +43,7 @@ module.exports = {
   },
   plugins: [
     new CleanPlugin([path.resolve('dist')], { root: path.resolve(__dirname, '../') }),
-    new ExtractTextPlugin('[chunkhash]-[chunkhash].css', {allChunks: true}),
+    new ExtractTextPlugin('[name].css', {allChunks: true}),
     HtmlWebpackPluginConfig,
     // optimizations
     new OptimizeCssAssetsPlugin({
