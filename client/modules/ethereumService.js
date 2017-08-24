@@ -1,5 +1,5 @@
 /* eslint-disable */
-import contract from './contract.json';
+import contract from './config.json';
 
 const networkIds = {
   mainnet: '1',
