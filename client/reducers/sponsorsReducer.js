@@ -10,6 +10,7 @@ const INITIAL_STATE = {
   addSponsorError: false,
   ethPrize: '0',
   eurPrize: '0',
+  showThanks: false,
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -54,13 +55,15 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         submitting: false,
         addSponsorError: false,
+        showThanks: true,
       };
 
     case ADD_SPONSOR_ERROR:
       return {
         ...state,
         submitting: false,
-        addSponsorError: action.payload.addSponsorError
+        addSponsorError: action.payload.addSponsorError,
+        showThanks: false,
       };
 
     case SPONSORS_PRIZE_ETH:

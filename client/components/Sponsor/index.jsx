@@ -27,10 +27,19 @@ class Sponsor extends Component {
           this.props.user.phase > 2 &&
           <Redirect to="/" />
         }
-        <div className="form-wrapper">
-          <div className="form-name">Contribute to prize pool</div>
-          <AdminSponsorsForm submitText="Contribute" submitTextSubmitting="Contributing" />
-        </div>
+
+        {
+          this.props.sponsors.showThanks &&
+          <div className="sponsor-thanks">Thanks for contributing!</div>
+        }
+
+        {
+          !this.props.sponsors.showThanks &&
+          <div className="form-wrapper">
+            <div className="form-name">Contribute to prize pool</div>
+            <AdminSponsorsForm submitText="Contribute" submitTextSubmitting="Contributing" />
+          </div>
+        }
       </div>
     );
   }
@@ -40,7 +49,8 @@ Sponsor.propTypes = {
   checkUser: PropTypes.func.isRequired,
   user: PropTypes.shape({
     phase: PropTypes.number.isRequired
-  }).isRequired
+  }).isRequired,
+  sponsors: PropTypes.object.isRequired
 };
 const mapStateToProps = state => state;
 
