@@ -53,6 +53,9 @@ class Landing extends Component {
             this.props.user.phase === 1 &&
             <div>
               <h1>Competition is ongoing. </h1>
+              <p>
+                Feel free to <Link to="/sponsor">contribute</Link> to the prize pool.
+              </p>
             </div>
           }
           {
@@ -60,6 +63,9 @@ class Landing extends Component {
              this.props.user.phase === 3) &&
              <div>
                <h1>The judges are voting, please be patient. </h1>
+               <p>
+                 Feel free to <Link to="/sponsor">contribute</Link> to the prize pool.
+               </p>
              </div>
           }
           {

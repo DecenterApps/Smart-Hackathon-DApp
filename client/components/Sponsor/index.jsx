@@ -23,6 +23,10 @@ class Sponsor extends Component {
   render() {
     return (
       <div className="app">
+        {
+          this.props.user.phase > 2 &&
+          <Redirect to="/" />
+        }
         <div className="form-wrapper">
           <div className="form-name">Contribute to prize pool</div>
           <AdminSponsorsForm submitText="Contribute" submitTextSubmitting="Contributing" />
@@ -34,6 +38,9 @@ class Sponsor extends Component {
 
 Sponsor.propTypes = {
   checkUser: PropTypes.func.isRequired,
+  user: PropTypes.shape({
+    phase: PropTypes.number.isRequired
+  }).isRequired
 };
 const mapStateToProps = state => state;
 
