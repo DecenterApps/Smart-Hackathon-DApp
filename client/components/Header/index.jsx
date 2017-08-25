@@ -4,10 +4,13 @@ import { Link } from 'react-router-dom';
 
 require('./_index.scss');
 
-const Header = ({ children }) => (
+const Header = ({ children, noLink }) => (
   <div className="header">
     <div className="title">
-      <h1><Link to="/">Startit Blockchain Hackathon</Link></h1>
+      <h1>
+        {noLink && <div>Startit Blockchain Hackathon</div>}
+        {!noLink && <Link to="/">Startit Blockchain Hackathon</Link>}
+      </h1>
       <h2>Belgrade 25/26/27 August 2017</h2>
     </div>
     <div className="other">
@@ -17,10 +20,12 @@ const Header = ({ children }) => (
 );
 
 Header.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
+  noLink: PropTypes.bool
 };
 
 Header.defaultProps = {
+  noLink: false,
   children: []
 };
 

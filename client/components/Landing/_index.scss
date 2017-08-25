@@ -45,6 +45,23 @@
     overflow: visible;
   }
 
+  &.chrome-metamask-wrapper {
+    .browser-wrapper {
+      h2 {
+        margin-bottom: 0;
+      }
+
+      a {
+        text-decoration: underline;
+        margin: 0 5px;
+      }
+
+      &.not-chrome h2 {
+        line-height: 35px;
+      }
+    }
+  }
+
   p {
     margin: 0;
     a {
