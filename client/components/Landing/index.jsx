@@ -22,9 +22,13 @@ class Landing extends Component {
     this.props.checkUser();
     this.props.fetchSponsors();
     this.props.fetchPrizePoolSize();
+    if(this.props.user.phase === 4) {
+      this.props.fetchTeamScores();
+    }
   }
   componentWillReceiveProps(nextProps) {
     if(nextProps.user.phase !== this.props.user.phase) {
+      console.log(nextProps.user.phase, this.props.user.phase);
       if(nextProps.user.phase === 4) {
         this.props.fetchTeamScores();
       } else {
