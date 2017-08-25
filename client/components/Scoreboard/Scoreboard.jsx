@@ -61,7 +61,7 @@ class Scoreboard extends Component {
             !this.props.teamsFetchError &&
             this.props.teams.length > 0 &&
             <div className="table teams">
-              <div className="tr team table-header">
+              <div className="tr team table-info-header">
                 <div className="td team-rank">Rank</div>
                 <div className="td medal" />
                 <div className="td team-name-wrapper">Team</div>
@@ -109,12 +109,7 @@ class Scoreboard extends Component {
 
                     <span className="td reward-amount">
                       <span className="reward-amount-eth">
-                        {
-                          team.args.rewardEligible ?
-                            parseFloat(this.props.sponsors.ethPrize)
-                            / (2 ** (index + 1)) : 0
-                        } ETH
-                        {this.renderReward(team)}
+                        {this.renderReward(team)} ETH
                       </span>
                     </span>
                   </div>

@@ -122,7 +122,14 @@ class Landing extends Component {
                        target="_blank"
                        rel="noopener"
                      >
-                       <span className="logo" style={{ backgroundImage: `url("${sponsor.args.sponsorLogoUrl}")` }} />
+                       <span
+                         className="logo"
+                         style={{
+                           backgroundImage: `url("${sponsor.args.sponsorLogoUrl.substr(0, 4) === 'http' ?
+                             sponsor.args.sponsorLogoUrl :
+                             'http://' + sponsor.args.sponsorLogoUrl}")`
+                         }}
+                       />
                        <span>{sponsor.args.sponsorName}</span>
                      </a>
                    </div>
