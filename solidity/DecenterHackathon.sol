@@ -129,7 +129,7 @@ contract DecenterHackathon {
     }
 
     // Check if jury member voted
-    function checkJuryVoted(address _juryAddress) returns (bool){
+    function checkJuryVoted(address _juryAddress) constant returns (bool){
         require(bytes(juryMembers[_juryAddress].name).length != 0);
 
         return juryMembers[_juryAddress].hasVoted;
