@@ -9,11 +9,33 @@ import EthereumIcon from '../Decorative/EthereumIcon/EthereumIcon';
 
 require('./scoreboard.scss');
 
+let prizeIndex = 0;
+
 class Scoreboard extends Component {
   constructor(props) {
     super(props);
 
     this.state = {};
+
+    this.renderReward = this.renderReward.bind(this);
+  }
+
+  renderReward(item) {
+    if(prizeIndex + 1 === this.props.teams.length) {
+      prizeIndex = 0;
+    }
+    if (!item.args.rewardEligible) {
+      return (
+        'N/A'
+      );
+    }
+
+    prizeIndex++;
+
+    return (
+      parseFloat(this.props.sponsors.ethPrize)
+      / (2 ** (prizeIndex + 1))
+    );
   }
 
   render() {
@@ -50,13 +72,16 @@ class Scoreboard extends Component {
             <div className="table teams">
               {
                 this.props.teams.map((team, index) => (
-                  <div className={`${index === (this.props.teams.length - 1) ? 'last-child' : ''} tr team`} key={team.transactionHash}>
+                  <div
+                    className={`${index === (this.props.teams.length - 1) ? 'last-child' : ''} tr team`}
+                    key={team.transactionHash}
+                  >
                     <div className="td team-rank">#{index + 1}</div>
 
                     <div className="td medal">
-                      { index === 0 && <MedalIcon color="#FFC107" />}
-                      { index === 1 && <MedalIcon color="#BDBDBD" />}
-                      { index === 2 && <MedalIcon color="#F57C00" />}
+                      {index === 0 && <MedalIcon color="#FFC107" />}
+                      {index === 1 && <MedalIcon color="#BDBDBD" />}
+                      {index === 2 && <MedalIcon color="#F57C00" />}
                     </div>
 
                     <div className="td team-name-wrapper">
@@ -84,11 +109,7 @@ class Scoreboard extends Component {
 
                     <span className="td reward-amount">
                       <span className="reward-amount-eth">
-                        {
-                          team.args.rewardEligible ?
-                            parseFloat(web3.fromWei(this.props.sponsors.ethPrize).toString())
-                            / (2 ** (index + 1)) : 0
-                        }
+                        {this.renderReward(team)}
                       </span>
                       <span className="eth-icon-wrapper"><EthereumIcon /></span>
                     </span>

@@ -3,12 +3,13 @@ import {
   ADD_SPONSOR_ERROR, NEW_SPONSOR, SPONSORS_PRIZE_ETH, SPONSORS_PRIZE_EUR
 } from '../actions/types';
 
-
 const INITIAL_STATE = {
   isFetching: true,
   sponsors: [],
   submitting: false,
-  addSponsorError: false
+  addSponsorError: false,
+  ethPrize: '0',
+  eurPrize: '0',
 };
 
 export default (state = INITIAL_STATE, action) => {
