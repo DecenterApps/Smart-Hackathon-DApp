@@ -22,6 +22,9 @@ class Landing extends Component {
     this.props.checkUser();
     this.props.fetchSponsors();
     this.props.fetchPrizePoolSize();
+    if(this.props.user.phase === 0) {
+      this.props.fetchTeams();
+    }
     if(this.props.user.phase === 4) {
       this.props.fetchTeamScores();
     }
@@ -133,7 +136,7 @@ class Landing extends Component {
               <table className="display-table">
                 <tbody>
                   {
-                    this.props.teams.teams.map((team) => (
+                    this.props.teams.teams.filter(team => !team.args.disqualified).map((team) => (
                       <tr key={team.transactionHash}>
                         <th className="rewardable" title={team.args.rewardEligible ? 'Eligible for reward' : 'Not eligible for reward'}>
                           <DollarIcon color={team.args.rewardEligible ? '#44ca44' : '#eee'} />

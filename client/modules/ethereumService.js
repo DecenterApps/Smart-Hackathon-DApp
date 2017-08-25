@@ -257,21 +257,45 @@ export const _payoutPrizes = (teamAddresses) =>
     hackathonContract.payoutPrizes(
       teamAddresses,
       (error, result) => {
-      if (error) {
-        return reject({
-          message: error,
-        });
-      }
+        if (error) {
+          return reject({
+            message: error,
+          });
+        }
 
-      return resolve(result);
-    });
+        return resolve(result);
+      });
   });
 
 /* Getters for contract state */
 
 export const getTeams = () =>
   new Promise((resolve, reject) => {
-    hackathonContract.TeamRegistered({}, {
+    getDisqualifiedTeams()
+      .then(disqualifiedTeams => {
+        hackathonContract.TeamRegistered({}, {
+          fromBlock: contract.startingBlock, toBlock: 'latest'
+        })
+          .get((error, events) => {
+            if (error) {
+              return reject({
+                message: error,
+              });
+            }
+            let alteredEvents = events.map(item => {
+              if (disqualifiedTeams.indexOf(item.args.teamAddress) === -1) return item;
+              let alteredEvent = item;
+              alteredEvent.args.disqualified = true;
+              return alteredEvent
+            });
+            return resolve(alteredEvents);
+          });
+      });
+  });
+
+export const getDisqualifiedTeams = () =>
+  new Promise((resolve, reject) => {
+    hackathonContract.TeamDisqualified({}, {
       fromBlock: contract.startingBlock, toBlock: 'latest'
     })
       .get((error, events) => {
@@ -281,7 +305,7 @@ export const getTeams = () =>
           });
         }
 
-        return resolve(events);
+        return resolve(events.map(item => item.args.teamAddress));
       });
   });
 
@@ -393,10 +417,10 @@ export const getPrizePoolSize = () =>
       }
 
       return resolve(result);
-    })
+    });
   });
 
 // setTimeout(() => {
-//   getPhase()
-//     .then(data => console.log(data.toString(10)));
+//   getDisqualifiedTeams()
+//     .then(data => console.log(data));
 // }, 1000);
