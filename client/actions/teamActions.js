@@ -65,6 +65,7 @@ const fetchTeams = () => (dispatch) => {
 };
 
 const fetchTeamScores = () => (dispatch) => {
+  dispatch({ type: TEAMS_FETCH });
   eth.getTeams()
     .then((teams) => {
       eth.getTeamScores()

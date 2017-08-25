@@ -23,7 +23,8 @@ export default (state = INITIAL_STATE, action) => {
     case TEAMS_FETCH:
       return {
         ...state,
-        isFetching: true
+        isFetching: true,
+        teams: [],
       };
 
     case TEAMS_SUCCESS:
