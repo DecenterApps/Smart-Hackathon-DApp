@@ -67,6 +67,7 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         ethPrize: action.prize,
+        eurPrize: undefined,
       };
 
     case SPONSORS_PRIZE_EUR:

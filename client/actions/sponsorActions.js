@@ -118,6 +118,7 @@ const sponsorEventListener = () => (dispatch) => {
         type: NEW_SPONSOR,
         event: data,
       });
+      dispatch(fetchPrizePoolSize());
     }
   });
 };
