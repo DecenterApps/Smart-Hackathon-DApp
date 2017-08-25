@@ -283,7 +283,6 @@ export const getTeams = () =>
               });
             }
             let alteredEvents = events.map(item => {
-              console.log(item);
               if (disqualifiedTeams.indexOf(item.args.teamAddress) === -1) return item;
               let alteredEvent = item;
               alteredEvent.args.disqualified = true;
@@ -421,7 +420,7 @@ export const getPrizePoolSize = () =>
     });
   });
 
-setTimeout(() => {
-  getDisqualifiedTeams()
-    .then(data => console.log(data));
-}, 1000);
+// setTimeout(() => {
+//   getDisqualifiedTeams()
+//     .then(data => console.log(data));
+// }, 1000);
