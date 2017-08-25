@@ -31,8 +31,10 @@ class Scoreboard extends Component {
     prizeIndex++;
 
     return (
-      parseFloat(this.props.sponsors.ethPrize)
-      / (2 ** (prizeIndex + 1))
+      (
+        parseFloat(this.props.sponsors.ethPrize)
+        / (2 ** (prizeIndex + 1))
+      ).toString() + ' ETH'
     );
   }
 
@@ -101,7 +103,7 @@ class Scoreboard extends Component {
                         {team.args.scoreBreakdown.map((juryVote) => (
                           <span className="jury-row" key={juryVote.juryMemberName}>
                             <span className="jury-name">{juryVote.juryMemberName}:</span>
-                            <span className="jury-points">{juryVote.points} PTS</span>
+                            <span className="jury-points">{juryVote.points}</span>
                           </span>
                         ))}
                       </span>
@@ -109,7 +111,7 @@ class Scoreboard extends Component {
 
                     <span className="td reward-amount">
                       <span className="reward-amount-eth">
-                        {this.renderReward(team)} ETH
+                        {this.renderReward(team)}
                       </span>
                     </span>
                   </div>
