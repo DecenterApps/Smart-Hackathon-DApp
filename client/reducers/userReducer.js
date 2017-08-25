@@ -97,7 +97,7 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         submittingPayout: false,
-        submittingPayoutError: 'Error occurred while submitting payout'
+        submittingPayoutError: action.message
       };
 
     case ALREADY_VOTED:
