@@ -47,3 +47,9 @@ export const CHANGE_PHASE_ERROR = 'change_phase_error';
 export const SUBMIT_PAYOUT = 'submit_payment';
 export const SUBMIT_PAYOUT_SUCCESS = 'submit_payment_success';
 export const SUBMIT_PAYOUT_ERROR = 'submit_payment_error';
+
+export const VOTE = 'jury_vote';
+export const VOTE_SUCCESS = 'jury_vote_success';
+export const VOTE_ERROR = 'jury_vote_error';
+
+export const ALREADY_VOTED = 'already_voted';

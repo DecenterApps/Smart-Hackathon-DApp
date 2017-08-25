@@ -1,7 +1,8 @@
 import {
   PHASE_FETCH, PHASE_FETCH_SUCCESS, PHASE_FETCH_ERROR, CHANGE_PHASE,
   CHANGE_PHASE_SUCCESS, CHANGE_PHASE_ERROR, USER_CHECKING, USER_FOUND,
-  SUBMIT_PAYOUT, SUBMIT_PAYOUT_ERROR, SUBMIT_PAYOUT_SUCCESS, UPDATE_PHASE
+  SUBMIT_PAYOUT, SUBMIT_PAYOUT_ERROR, SUBMIT_PAYOUT_SUCCESS, UPDATE_PHASE,
+  ALREADY_VOTED
 } from './types';
 
 import * as eth from '../modules/ethereumService';
@@ -92,10 +93,19 @@ const periodChangedListener = () => (dispatch) => {
   });
 };
 
+const checkIfJuryVoted = () => (dispatch) => {
+  eth.checkJuryVoted((error) => {
+    if (!error) {
+      dispatch({ type: ALREADY_VOTED });
+    }
+  });
+};
+
 module.exports = {
   periodChangedListener,
   checkUser,
   fetchPhase,
   changePhase,
-  payoutTeams
+  payoutTeams,
+  checkIfJuryVoted
 };
