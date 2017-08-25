@@ -128,6 +128,13 @@ contract DecenterHackathon {
         SponsorshipReceived(_name, _siteUrl, _logoUrl, msg.value);
     }
 
+    // Check if jury member voted
+    function checkJuryVoted(address _juryAddress) returns (bool){
+        require(bytes(juryMembers[_juryAddress].name).length != 0);
+
+        return juryMembers[_juryAddress].hasVoted;
+    }
+
     // Jury members can vote during voting period
     // The _votes parameter should be an array of team addresses, sorted by score from highest to lowest based on jury member's preferences
     function vote(address[] _votes) onlyJury {
