@@ -42,7 +42,7 @@ class Landing extends Component {
   render() {
     return (
       <div>
-        <div className={`${this.props.user.phase === 4 ? 'last-phase' : ''} container white landing-wrapper`}>
+        <div className="container white landing-wrapper">
           {
             this.props.user.phase === 0 &&
             <div>
@@ -76,77 +76,6 @@ class Landing extends Component {
              </div>
           }
           {
-            (this.props.user.phase === 0 ||
-             this.props.user.phase === 1 ||
-             this.props.user.phase === 2 ||
-             this.props.user.phase === 3) &&
-             this.props.teams.teams.length > 0 &&
-             <div className="table-wrapper">
-               <h2>Teams: </h2>
-               <table className="display-table">
-                 <tbody>
-                   {
-                     this.props.teams.teams.filter(team => !team.args.disqualified).map((team) => (
-                       <tr key={team.transactionHash}>
-                         <th className="rewardable" title={team.args.rewardEligible ? 'Eligible for reward' : 'Not eligible for reward'}>
-                           <DollarIcon color={team.args.rewardEligible ? '#44ca44' : '#eee'} />
-                         </th>
-                         <th>{team.args.teamName}</th>
-                         <td>{team.args.memberNames}</td>
-                         <td>
-                           <a href={`https://etherscan.io/address/${team.args.teamAddress}`} target="_blank" rel="noopener">
-                             {team.args.teamAddress}
-                           </a>
-                         </td>
-                       </tr>
-                     ))
-                   }
-                 </tbody>
-               </table>
-             </div>
-          }
-          {
-            (this.props.user.phase === 0 ||
-              this.props.user.phase === 1 ||
-              this.props.user.phase === 2 ||
-              this.props.user.phase === 3) &&
-             this.props.sponsors.sponsors.length > 0 &&
-             <div className="sponsors-wrapper">
-               {
-                 this.props.sponsors.ethPrize &&
-                 <h2>
-                   Total prize pool: { this.props.sponsors.ethPrize } ETH
-                   {
-                     this.props.sponsors.eurPrize &&
-                     <span> ({ this.props.sponsors.eurPrize } EUR)</span>
-                   }
-                 </h2>
-               }
-               <h2>Sponsors: </h2>
-               {
-                 this.props.sponsors.sponsors.map((sponsor) => (
-                   <div className="sponsor-wrapper" key={sponsor.transactionHash}>
-                     <a
-                       href={sponsor.args.sponsorSite.substr(0, 4) === 'http' ? sponsor.args.sponsorSite : 'http://' + sponsor.args.sponsorSite}
-                       target="_blank"
-                       rel="noopener"
-                     >
-                       <span
-                         className="logo"
-                         style={{
-                           backgroundImage: `url("${sponsor.args.sponsorLogoUrl.substr(0, 4) === 'http' ?
-                             sponsor.args.sponsorLogoUrl :
-                             'http://' + sponsor.args.sponsorLogoUrl}")`
-                         }}
-                       />
-                       <span>{sponsor.args.sponsorName}</span>
-                     </a>
-                   </div>
-                 ))
-               }
-             </div>
-          }
-          {
             this.props.user.phase === 4 &&
             <div className="end-wrapper">
               <h1>Thanks for being a part of Startit Blockchain Hackathon!</h1>
@@ -155,6 +84,75 @@ class Landing extends Component {
                 <h2 className="scoreboard-header">Here is the final scoreboard:</h2>
                 <Scoreboard />
               </div>
+            </div>
+          }
+          {
+            this.props.sponsors.sponsors.length > 0 &&
+            <div className="sponsors-wrapper">
+              <h2>Sponsors: </h2>
+              {
+                this.props.sponsors.sponsors.map((sponsor) => (
+                  <div className="sponsor-wrapper" key={sponsor.transactionHash}>
+                    <a
+                      href={sponsor.args.sponsorSite.substr(0, 4) === 'http' ? sponsor.args.sponsorSite : 'http://' + sponsor.args.sponsorSite}
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      <span
+                        className="logo"
+                        style={{
+                          backgroundImage: `url("${sponsor.args.sponsorLogoUrl.substr(0, 4) === 'http' ?
+                            sponsor.args.sponsorLogoUrl :
+                            'http://' + sponsor.args.sponsorLogoUrl}")`
+                        }}
+                      />
+                      <span>{sponsor.args.sponsorName}</span>
+                    </a>
+                  </div>
+                ))
+              }
+              {
+                this.props.sponsors.ethPrize &&
+                <p className="prize-pool-wrapper">
+                  Total prize pool size: <b>
+                    { this.props.sponsors.ethPrize } ETH
+                    {
+                      this.props.sponsors.eurPrize &&
+                      <span> ({ this.props.sponsors.eurPrize } EUR)</span>
+                    }
+                  </b>
+                </p>
+              }
+            </div>
+          }
+          {
+            (this.props.user.phase === 0 ||
+              this.props.user.phase === 1 ||
+              this.props.user.phase === 2 ||
+              this.props.user.phase === 3) &&
+            this.props.teams.teams.length > 0 &&
+            <div className="table-wrapper">
+              <h2>Teams: </h2>
+              <table className="display-table">
+                <tbody>
+                  {
+                    this.props.teams.teams.filter(team => !team.args.disqualified).map((team) => (
+                      <tr key={team.transactionHash}>
+                        <th className="rewardable" title={team.args.rewardEligible ? 'Eligible for reward' : 'Not eligible for reward'}>
+                          <DollarIcon color={team.args.rewardEligible ? '#44ca44' : '#eee'} />
+                        </th>
+                        <th>{team.args.teamName}</th>
+                        <td>{team.args.memberNames}</td>
+                        <td>
+                          <a href={`https://etherscan.io/address/${team.args.teamAddress}`} target="_blank" rel="noopener">
+                            {team.args.teamAddress}
+                          </a>
+                        </td>
+                      </tr>
+                    ))
+                  }
+                </tbody>
+              </table>
             </div>
           }
         </div>
