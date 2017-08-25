@@ -229,7 +229,7 @@ contract DecenterHackathon {
 
     // Returns total prize pool size
     function getPrizePoolSize() constant returns (uint) {
-        return this.balance;
+        return totalContribution;
     }
 
     function restartPeriod() onlyOwner {
