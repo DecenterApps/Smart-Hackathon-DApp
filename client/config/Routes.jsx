@@ -21,7 +21,6 @@ import { sponsorEventListener } from '../actions/sponsorActions';
 
 class Routes extends Component {
   componentWillMount() {
-    console.log(this.props.store);
     this.props.store.dispatch(periodChangedListener());
     this.props.store.dispatch(judgeEventListener());
     this.props.store.dispatch(teamsEventListener());

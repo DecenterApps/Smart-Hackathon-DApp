@@ -169,6 +169,10 @@ button {
   color: #777;
 }
 
+.table-header {
+  border-top: 0 !important;
+}
+
 .th {
   text-align: left;
 }
@@ -182,9 +186,9 @@ button {
   width: 100%;
   display: flex;
   flex-flow: row nowrap;
-  border-bottom: 1px solid #d0d0d0;
+  border-bottom: 1px solid #eee;
   &:first-child {
-    border-top: 1px solid #d0d0d0;
+    border-top: 1px solid #eee;
   }
 }
 

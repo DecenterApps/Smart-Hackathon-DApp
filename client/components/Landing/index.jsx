@@ -67,7 +67,9 @@ class Landing extends Component {
                    {
                      this.props.teams.teams.map((team) => (
                        <tr key={team.transactionHash}>
-                         <th className="rewardable"><DollarIcon color={team.args.rewardEligible ? '#44ca44' : '#eee'} /></th>
+                         <th className="rewardable" title={team.args.rewardEligible ? 'Eligible for reward' : 'Not eligible for reward'}>
+                           <DollarIcon color={team.args.rewardEligible ? '#44ca44' : '#eee'} />
+                         </th>
                          <th>{team.args.teamName}</th>
                          <td>{team.args.memberNames}</td>
                          <td>
