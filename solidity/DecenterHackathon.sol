@@ -220,6 +220,13 @@ contract DecenterHackathon {
         }
     }
 
+    // Check if jury member voted
+    function checkJuryVoted(address _juryAddress) constant returns (bool){
+        require(bytes(juryMembers[_juryAddress].name).length != 0);
+
+        return juryMembers[_juryAddress].hasVoted;
+    }
+
     // Returns total prize pool size
     function getPrizePoolSize() constant returns (uint) {
         return this.balance;
