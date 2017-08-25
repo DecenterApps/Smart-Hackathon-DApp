@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import DollarIcon from '../Decorative/DollarIcon/index';
 import Loader from '../Decorative/Loader/index';
 import { fetchTeamScores } from '../../actions/teamActions';
 import MedalIcon from '../Decorative/MedalIcon/MedalIcon';
-import EthereumIcon from '../Decorative/EthereumIcon/EthereumIcon';
 
 require('./scoreboard.scss');
 
@@ -20,13 +18,6 @@ class Scoreboard extends Component {
     return (
       <div className="scoreboard">
         <div className="container white">
-          {
-            !this.props.isFetching &&
-            !this.props.teamsFetchError &&
-            <div className="scoreboard-regular-header">
-              Scoreboard
-            </div>
-          }
           {
             !this.props.isFetching &&
             this.props.teamsFetchError &&
@@ -48,6 +39,15 @@ class Scoreboard extends Component {
             !this.props.teamsFetchError &&
             this.props.teams.length > 0 &&
             <div className="table teams">
+              <div className="tr team table-header">
+                <div className="td team-rank">Rank</div>
+                <div className="td medal" />
+                <div className="td team-name-wrapper">Team</div>
+                <div className="td members">Members</div>
+                <div className="td total-points">Points</div>
+                <div className="td reward-amount">Reward</div>
+
+              </div>
               {
                 this.props.teams.map((team, index) => (
                   <div className={`${index === (this.props.teams.length - 1) ? 'last-child' : ''} tr team`} key={team.transactionHash}>
@@ -68,7 +68,7 @@ class Scoreboard extends Component {
                     <div
                       className="td total-points tooltips"
                     >
-                      <div>{team.args.totalScore} PTS</div>
+                      <div>{team.args.totalScore}</div>
                       <span
                         className="tooltip-wrapper"
                         style={{ height: (team.args.scoreBreakdown.length * 31) + 'px' }}
@@ -86,11 +86,10 @@ class Scoreboard extends Component {
                       <span className="reward-amount-eth">
                         {
                           team.args.rewardEligible ?
-                            parseFloat(web3.fromWei(this.props.sponsors.ethPrize).toString())
+                            parseFloat(this.props.sponsors.ethPrize)
                             / (2 ** (index + 1)) : 0
-                        }
+                        } ETH
                       </span>
-                      <span className="eth-icon-wrapper"><EthereumIcon /></span>
                     </span>
                   </div>
                 ))
