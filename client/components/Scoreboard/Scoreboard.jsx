@@ -73,7 +73,7 @@ class Scoreboard extends Component {
 
               </div>
               {
-                this.props.teams.map((team, index) => (
+                this.props.teams.filter(team => !team.args.disqualified).map((team, index) => (
                   <div
                     className={`${index === (this.props.teams.length - 1) ? 'last-child' : ''} tr team`}
                     key={team.transactionHash}
