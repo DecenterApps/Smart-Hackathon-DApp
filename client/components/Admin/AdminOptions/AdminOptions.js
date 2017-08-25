@@ -11,27 +11,27 @@ const AdminOptions = ({
   $changePhase, changingPhase, changingError, phase, lastPhaseIndex
 }) => (
   <div>
-    <div className="admin-change-phase">
-      {
-        phase < lastPhaseIndex &&
+    {
+      phase < lastPhaseIndex - 1 &&
+      <div className="admin-change-phase">
         <span>Switch to the next period:</span>
-      }
-
-      {
-        phase < lastPhaseIndex &&
         <button onClick={$changePhase} disabled={changingPhase}>
           {changingPhase && <CubeLoader />}
           {changingPhase ? 'Changing' : 'Go'}
         </button>
-      }
 
-      {
-        phase < lastPhaseIndex &&
-        changingError && <div className="change-error">{changingError}</div>
-      }
+        {
+          changingError && <div className="change-error">{changingError}</div>
+        }
 
-      { phase === lastPhaseIndex && <div>The last period is active. It can not be changed</div>}
-    </div>
+      </div>
+    }
+    {
+      phase === lastPhaseIndex &&
+      <div className="admin-change-phase">
+        The last period is active. It can not be changed
+      </div>
+    }
     {
       phase === 3 && <Payout />
     }
