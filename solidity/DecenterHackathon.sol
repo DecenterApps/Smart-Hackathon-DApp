@@ -9,6 +9,7 @@ contract DecenterHackathon {
         uint reward;
         bool rewardEligible;
         bool submittedByAdmin;
+        bool disqualified;
         mapping(address => bool) votedForByJuryMember;
     }
 
@@ -43,6 +44,7 @@ contract DecenterHackathon {
     event SponsorshipReceived(string sponsorName, string sponsorSite, string sponsorLogoUrl, uint amount);
     event VoteReceived(string juryMemberName, address indexed teamAddress, uint points);
     event PrizePaid(string teamName, uint amount);
+    event TeamDisqualified(address teamAddress);
 
     modifier onlyOwner {
         require(msg.sender == administrator);
@@ -81,11 +83,20 @@ contract DecenterHackathon {
             score: 0,
             reward: 0,
             rewardEligible: _rewardEligible,
-            submittedByAdmin: false
+            submittedByAdmin: false,
+            disqualified: false
         });
 
         teamAddresses.push(_teamAddress);
         TeamRegistered(_name, _teamAddress, _memberNames, _rewardEligible);
+    }
+
+    // Administrator can disqualify team
+    function disqualifyTeam(address _teamAddress) onlyOwner {
+        require(bytes(teams[_teamAddress].name).length != 0);
+
+        teams[_teamAddress].disqualified = true;
+        TeamDisqualified(_teamAddress);
     }
 
     // Administrator can add new jury members during registration period
@@ -172,7 +183,7 @@ contract DecenterHackathon {
 
             uint _prizeAmount = totalContribution / prizePoolDivider;
 
-            if(teams[_sortedTeams[i]].rewardEligible) {
+            if(teams[_sortedTeams[i]].rewardEligible && !teams[_sortedTeams[i]].disqualified) {
                 _sortedTeams[i].transfer(_prizeAmount);
                 teams[_sortedTeams[i]].reward = _prizeAmount;
                 prizePoolDivider *= 2;
