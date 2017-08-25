@@ -101,7 +101,7 @@ class Payout extends Component {
                       <div className="td team-rank">{i + 1}.</div>
                       <div className="td team-name">{team.args.teamName}</div>
                       <div className="td team-address">{team.args.teamAddress}</div>
-                      <div className="td team-points">{team.args.totalScore} PTS</div>
+                      <div className="td team-points">{team.args.totalScore} points</div>
                       <div
                         className="td arrows"
                         onClick={() => this.props.moveTeamDown(i)}
