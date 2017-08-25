@@ -8,8 +8,8 @@ const Header = ({ children, noLink }) => (
   <div className="header">
     <div className="title">
       <h1>
-        {noLink && <div>Startit Blockchain Hackathon</div>}
-        {!noLink && <Link to="/">Startit Blockchain Hackathon</Link>}
+        {noLink && <div>Blockchain Community Hackathon</div>}
+        {!noLink && <Link to="/">Blockchain Community Hackathon</Link>}
       </h1>
       <h2>Belgrade 25/26/27 August 2017</h2>
     </div>

@@ -46,7 +46,7 @@ class Landing extends Component {
           {
             this.props.user.phase === 0 &&
             <div>
-              <h1>Welcome to Startit Blockchain Hackathon</h1>
+              <h1>Welcome to Blockchain Community Hackathon</h1>
               <p>
                 The competition has not started yet.
                 <br />If you are a competitor, please make sure your details below are correct,
@@ -78,7 +78,7 @@ class Landing extends Component {
           {
             this.props.user.phase === 4 &&
             <div className="end-wrapper">
-              <h1>Thanks for being a part of Startit Blockchain Hackathon!</h1>
+              <h1>Thanks for being a part of Blockchain Community Hackathon!</h1>
 
               <div className="table-wrapper">
                 <h2 className="scoreboard-header">Here is the final scoreboard:</h2>
