@@ -21,8 +21,20 @@ class Landing extends Component {
   componentWillMount() {
     this.props.checkUser();
     this.props.fetchSponsors();
-    this.props.fetchTeamScores();
     this.props.fetchPrizePoolSize();
+    if(this.props.user.phase === 0) {
+      this.props.fetchTeams();
+    }
+  }
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.user.phase !== this.props.user.phase) {
+      console.log(nextProps.user.phase, this.props.user.phase);
+      if(this.props.user.phase === 4) {
+        this.props.fetchTeamScores();
+      } else {
+        this.props.fetchTeams();
+      }
+    }
   }
   render() {
     return (
@@ -146,6 +158,7 @@ Landing.propTypes = {
     eurPrize: PropTypes.string,
   }),
   checkUser: PropTypes.func.isRequired,
+  fetchTeams: PropTypes.func.isRequired,
   fetchTeamScores: PropTypes.func.isRequired,
   fetchSponsors: PropTypes.func.isRequired,
   fetchPrizePoolSize: PropTypes.func.isRequired,
