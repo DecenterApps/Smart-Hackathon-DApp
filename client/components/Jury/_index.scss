@@ -2,6 +2,28 @@
   padding: 26px 21px 10px 21px;
   display: flex;
 
+  &.jury-table-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .button-status-wrapper {
+    display: flex;
+
+    .voting-status {
+      margin-right: 15px;
+      margin-top: 5px;
+
+      &.voting-error {
+        color: #F57170;
+      }
+
+      &.voting-success {
+        color: #28CC9E;
+      }
+    }
+  }
+
   .title{
     font-size: 20px;
     color: #212121;

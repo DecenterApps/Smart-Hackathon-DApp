@@ -96,17 +96,20 @@ class Scoreboard extends Component {
                       className="td total-points tooltips"
                     >
                       <div>{team.args.totalScore}</div>
-                      <span
-                        className="tooltip-wrapper"
-                        style={{ height: (team.args.scoreBreakdown.length * 31) + 'px' }}
-                      >
-                        {team.args.scoreBreakdown.map((juryVote) => (
-                          <span className="jury-row" key={juryVote.juryMemberName}>
-                            <span className="jury-name">{juryVote.juryMemberName}:</span>
-                            <span className="jury-points">{juryVote.points}</span>
-                          </span>
-                        ))}
-                      </span>
+                      {
+                        team.args.scoreBreakdown &&
+                        <span
+                          className="tooltip-wrapper"
+                          style={{ height: (team.args.scoreBreakdown.length * 31) + 'px' }}
+                        >
+                          {team.args.scoreBreakdown.map((juryVote) => (
+                            <span className="jury-row" key={juryVote.juryMemberName}>
+                              <span className="jury-name">{juryVote.juryMemberName}:</span>
+                              <span className="jury-points">{juryVote.points}</span>
+                            </span>
+                          ))}
+                        </span>
+                      }
                     </div>
 
                     <span className="td reward-amount">

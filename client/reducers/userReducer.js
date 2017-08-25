@@ -1,7 +1,8 @@
 import {
   USER_CHECKING, USER_FOUND, PHASE_FETCH, PHASE_FETCH_SUCCESS, PHASE_FETCH_ERROR,
   CHANGE_PHASE, CHANGE_PHASE_SUCCESS, CHANGE_PHASE_ERROR,
-  SUBMIT_PAYOUT, SUBMIT_PAYOUT_SUCCESS, SUBMIT_PAYOUT_ERROR, UPDATE_PHASE
+  SUBMIT_PAYOUT, SUBMIT_PAYOUT_SUCCESS, SUBMIT_PAYOUT_ERROR, UPDATE_PHASE,
+  ALREADY_VOTED, VOTE, VOTE_SUCCESS, VOTE_ERROR
 } from '../actions/types';
 
 
@@ -16,6 +17,10 @@ const INITIAL_STATE = {
   changingPhase: false,
   submittingPayout: false,
   submittingPayoutError: false,
+  alreadyVoted: false,
+  voting: false,
+  votingError: false,
+  votingSuccess: false
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -93,6 +98,34 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         submittingPayout: false,
         submittingPayoutError: 'Error occurred while submitting payout'
+      };
+
+    case ALREADY_VOTED:
+      return {
+        ...state,
+        alreadyVoted: true
+      };
+
+    case VOTE:
+      return {
+        ...state,
+        voting: true
+      };
+
+    case VOTE_SUCCESS:
+      return {
+        ...state,
+        voting: false,
+        votingError: false,
+        votingSuccess: true
+      };
+
+    case VOTE_ERROR:
+      return {
+        ...state,
+        voting: false,
+        votingSuccess: false,
+        votingError: 'Error occurred while voting'
       };
 
     default:

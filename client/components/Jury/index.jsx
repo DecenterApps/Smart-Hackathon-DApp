@@ -25,6 +25,7 @@ class Jury extends Component {
   componentDidMount() {
     this.props.checkUser();
     this.props.fetchTeams();
+    this.props.checkIfJuryVoted();
   }
 
   voteForTeams() {
@@ -43,16 +44,26 @@ class Jury extends Component {
           this.props.user.type === 'jury' &&
           <div>
             <div className="container white">
-              <div className="table-header">
+              <div className="table-header jury-table-header">
                 <div className="title-wrapper">
                   <p className="title">Cast Your Votes</p>
                   <p className="subtitle">Arrange the teams in desired order.</p>
                 </div>
-                <button
-                  disabled={this.props.user.phase === 2 ? '' : 'disabled'}
-                  onClick={this.voteForTeams}
-                  className="submit-button"
-                >SUBMIT</button>
+                <span className="button-status-wrapper">
+                  {
+                    this.props.user.votingError &&
+                    <div className="voting-status voting-error">{this.props.user.votingError}</div>
+                  }
+                  {
+                    this.props.user.votingSuccess &&
+                    <div className="voting-status voting-success">Votes sent to contract</div>
+                  }
+                  <button
+                    disabled={(this.props.user.phase === 2 && !this.props.user.alreadyVoted) && !this.props.user.voting ? '' : 'disabled'}
+                    onClick={this.voteForTeams}
+                    className="submit-button"
+                  >SUBMIT</button>
+                </span>
               </div>
               {
                 this.props.teams.isFetching &&
@@ -133,15 +144,24 @@ Jury.propTypes = {
     teams: PropTypes.array,
     error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   }),
-  fetchTeams: PropTypes.func.isRequired,
   moveTeamUp: PropTypes.func.isRequired,
   moveTeamDown: PropTypes.func.isRequired,
   vote: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   checkUser: PropTypes.func.isRequired,
+  fetchTeams: PropTypes.func.isRequired,
+  alreadyVoted: PropTypes.bool.isRequired,
+  voting: PropTypes.bool.isRequired,
+  votingError: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
+  votingSuccess: PropTypes.bool.isRequired,
+  checkIfJuryVoted: PropTypes.func.isRequired
 };
 
 Jury.defaultProps = {
+  alreadyVoted: false,
+  votingError: false,
+  voting: false,
+  votingSuccess: false,
   teams: {
     isFetching: true,
     teams: [1]
@@ -151,7 +171,7 @@ Jury.defaultProps = {
 const mapStateToProps = state => state;
 const mapDispatchToProps = dispatch => bindActionCreators({
   ...teamActions,
-  ...userActions,
+  ...userActions
 }, dispatch);
 
 export default connect(

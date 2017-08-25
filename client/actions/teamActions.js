@@ -7,7 +7,10 @@ import {
   TEAMS_ERROR,
   ADD_TEAM,
   ADD_TEAM_ERROR,
-  ADD_TEAM_SUCCESS
+  ADD_TEAM_SUCCESS,
+  VOTE,
+  VOTE_SUCCESS,
+  VOTE_ERROR
 } from './types';
 import toggleModal from './modalsActions';
 
@@ -65,6 +68,7 @@ const fetchTeams = () => (dispatch) => {
 };
 
 const fetchTeamScores = () => (dispatch) => {
+  dispatch({ type: TEAMS_FETCH });
   eth.getTeams()
     .then((teams) => {
       eth.getTeamScores()
@@ -148,12 +152,14 @@ const moveTeamDown = (index) => (dispatch, getState) => {
 };
 
 const vote = (votes) => dispatch => {
+  dispatch({ type: VOTE });
+
   eth._vote(votes)
     .then(data => {
-      console.log(data);
+      dispatch({ type: VOTE_SUCCESS });
     })
     .catch(error => {
-      console.log(error);
+      dispatch({ type: VOTE_ERROR });
     });
 };
 
