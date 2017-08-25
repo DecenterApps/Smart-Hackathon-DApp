@@ -1,7 +1,10 @@
 /* eslint-disable */
 export default () => {
   if (typeof web3 !== 'undefined') {
-    return window.web3 = new Web3(web3.currentProvider);
+    window.web3 = new Web3(web3.currentProvider);
+    return true;
+  } else {
+    return false;
   }
 
   /*const web3 = require('web3');

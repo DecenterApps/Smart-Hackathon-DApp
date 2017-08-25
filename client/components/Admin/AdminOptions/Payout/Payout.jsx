@@ -30,7 +30,7 @@ class Payout extends Component {
     // fix after points implementation
     const votes = this.props.teams.teams.map((elem, i) => ({
       address: elem.args.teamAddress,
-      points: i + 1,
+      points: elem.args.totalScore,
     }));
 
     this.props.payoutTeams(votes);
