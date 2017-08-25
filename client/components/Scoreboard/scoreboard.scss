@@ -1,4 +1,7 @@
 .scoreboard {
+  .table {
+    color: black !important;
+  }
 
   .container.white {
     padding: 0;
@@ -23,7 +26,6 @@
 
       .team-rank {
         font-size: 14px;
-        color: #95989A;
         justify-content: center;
         flex-grow: 0.4;
       }
@@ -91,7 +93,7 @@
 
     &:last-child {
       .team .td {
-        border-bottom: 0;
+        //border-bottom: 0;
       }
     }
   }
