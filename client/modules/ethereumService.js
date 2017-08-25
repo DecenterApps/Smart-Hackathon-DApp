@@ -374,6 +374,15 @@ export const getUserTypeWithTimeout = () =>
     }
   });
 
+export const checkJuryVoted = () => {
+  new Promise((resolve) => {
+    hackathonContract.checkJuryVoted(getAccount(), (error, result) => {
+      return resolve(result);
+    });
+  });
+
+};
+
 export const getPrizePoolSize = () =>
   new Promise((resolve, reject) => {
     hackathonContract.getPrizePoolSize((error, result) => {
