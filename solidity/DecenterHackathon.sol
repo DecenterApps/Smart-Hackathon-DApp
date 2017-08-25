@@ -9,7 +9,6 @@ contract DecenterHackathon {
         uint reward;
         bool rewardEligible;
         bool submittedByAdmin;
-        bool disqualified;
         mapping(address => bool) votedForByJuryMember;
     }
 
@@ -22,6 +21,7 @@ contract DecenterHackathon {
         string name;
         string siteUrl;
         string logoUrl;
+        address ethAddress;
         uint contribution;
     }
 
@@ -44,7 +44,6 @@ contract DecenterHackathon {
     event SponsorshipReceived(string sponsorName, string sponsorSite, string sponsorLogoUrl, uint amount);
     event VoteReceived(string juryMemberName, address indexed teamAddress, uint points);
     event PrizePaid(string teamName, uint amount);
-    event TeamDisqualified(address teamAddress);
 
     modifier onlyOwner {
         require(msg.sender == administrator);
@@ -83,20 +82,11 @@ contract DecenterHackathon {
             score: 0,
             reward: 0,
             rewardEligible: _rewardEligible,
-            submittedByAdmin: false,
-            disqualified: false
+            submittedByAdmin: false
         });
 
         teamAddresses.push(_teamAddress);
         TeamRegistered(_name, _teamAddress, _memberNames, _rewardEligible);
-    }
-
-    // Administrator can disqualify team
-    function disqualifyTeam(address _teamAddress) onlyOwner {
-        require(bytes(teams[_teamAddress].name).length != 0);
-
-        teams[_teamAddress].disqualified = true;
-        TeamDisqualified(_teamAddress);
     }
 
     // Administrator can add new jury members during registration period
@@ -121,18 +111,12 @@ contract DecenterHackathon {
             name: _name,
             siteUrl: _siteUrl,
             logoUrl: _logoUrl,
+            ethAddress: msg.sender,
             contribution: msg.value
         }));
 
         totalContribution += msg.value;
         SponsorshipReceived(_name, _siteUrl, _logoUrl, msg.value);
-    }
-
-    // Check if jury member voted
-    function checkJuryVoted(address _juryAddress) constant returns (bool){
-        require(bytes(juryMembers[_juryAddress].name).length != 0);
-
-        return juryMembers[_juryAddress].hasVoted;
     }
 
     // Jury members can vote during voting period
@@ -190,7 +174,7 @@ contract DecenterHackathon {
 
             uint _prizeAmount = totalContribution / prizePoolDivider;
 
-            if(teams[_sortedTeams[i]].rewardEligible && !teams[_sortedTeams[i]].disqualified) {
+            if(teams[_sortedTeams[i]].rewardEligible) {
                 _sortedTeams[i].transfer(_prizeAmount);
                 teams[_sortedTeams[i]].reward = _prizeAmount;
                 prizePoolDivider *= 2;
@@ -198,13 +182,20 @@ contract DecenterHackathon {
             }
         }
 
+        // Some small amount of ETH might remain in the contract after payout, becuase rewards are determened logarithmically
+        // This amount is returned to contract owner to cover deployment and transaction costs
+        // In case this amount turns out to be significantly larger than these costs, the administrator will distribute it to all teams equally
+        administrator.transfer(this.balance);
+
         currentPeriod = Period.End;
         PeriodChanged(currentPeriod);
     }
 
-    // Administrator can always retrieve all ETH from the contract (e.g. in case something goes wrong)
-    function sendRemainingEtherToOwner() onlyOwner {
-        administrator.transfer(this.balance);
+    // In case something goes wrong and contract needs to be redeployed, this is a way to return all contributions to the sponsors
+    function returnContributionsToTheSponsors() onlyOwner {
+        for(uint i = i; i < sponsors.length; i++) {
+            sponsors[i].ethAddress.transfer(sponsors[i].contribution);
+        }
     }
 
     // Public function that returns user type for the given address
