@@ -204,7 +204,7 @@ contract DecenterHackathon {
 
     // In case something goes wrong and contract needs to be redeployed, this is a way to return all contributions to the sponsors
     function returnContributionsToTheSponsors() onlyOwner {
-        for(uint i = i; i < sponsors.length; i++) {
+        for(uint i = 0; i < sponsors.length; i++) {
             sponsors[i].ethAddress.transfer(sponsors[i].contribution);
         }
     }
