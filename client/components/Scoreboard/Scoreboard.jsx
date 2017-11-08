@@ -19,9 +19,11 @@ class Scoreboard extends Component {
   }
 
   renderReward(item) {
+    // resets prizeIndex on re-rendering
     if(prizeIndex + 1 === this.props.teams.length) {
       prizeIndex = 0;
     }
+
     if (!item.args.rewardEligible) {
       return (
         'N/A'
@@ -33,7 +35,7 @@ class Scoreboard extends Component {
     return (
       (
         parseFloat(this.props.sponsors.ethPrize)
-        / (2 ** (prizeIndex + 1))
+        / (2 ** (prizeIndex))
       ).toString() + ' ETH'
     );
   }
