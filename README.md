@@ -1,8 +1,8 @@
-# Hackathon Solidity smart contract
+# Smart Hackathon DApp
 
 This is a fully functional DApp that can be used to automate every aspect of a typical hackathon.
 
-Administrator (contract owner) can add jury members, sponsors can donate ETH to the prize pool and contestents can register teams and receive prizes from the pool.
+Administrator (contract owner) can add jury members, jury members can vote, sponsors can donate ETH to the prize pool and contestents can register teams and receive prizes from the pool.
 
 The applications consistes of React-based front-end that interacts with Ethereum smart contracts (written in Solidity) via web3.
 
